@@ -7,10 +7,37 @@ $energized: #f29c2c !default;
 $assertive: #c70e17 !default;
 $royal: #886aea !default;
 $dark: #444 !default;
+$font-family-sans-serif: "Open Sans",
+"Helvetica Neue",
+"Roboto",
+"Segoe UI",
+sans-serif !default;
+$font-family-light-sans-serif: "Open Sans",
+"HelveticaNeue-Light",
+"Roboto-Light",
+"Segoe UI-Light",
+sans-serif-light !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+@font-face {
+    font-family: 'Open Sans';
+    src: url("../fonts/OpenSans-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url("../fonts/OpenSans-Light.ttf");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url("../fonts/OpenSans-Regular.ttf");
+}
+
 .gradient-bg {
     background-color: #09386b;
     background-image: linear-gradient(to top, #2174d0, #09386b);
@@ -21,5 +48,27 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
         color: white;
         border-color: transparent;
         background-color: transparent;
+        font-size: 14px;
+        p {
+            color: white;
+            font-size: 12px;
+        }
+        h2 {
+            color: white;
+            font-weight: bold;
+        }
+    }
+    .item {
+        border-left: 3px solid transparent;
+        .activated,
+        &.active {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-color: white;
+        }
+    }
+    .item-icon-left {
+        .icon {
+            font-size: 20px;
+        }
     }
 }

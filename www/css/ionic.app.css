@@ -3323,7 +3323,7 @@ body,
   word-wrap: break-word;
   font-size: 14px;
   font-family: -apple-system;
-  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 20px;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
@@ -3579,7 +3579,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 500;
-  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 1.2; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
   .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
@@ -5104,7 +5104,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   white-space: nowrap;
   font-weight: 400;
   font-size: 14px;
-  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   opacity: 0.7; }
   .tab-item:hover {
     cursor: pointer; }
@@ -7534,7 +7534,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
+  font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
 
 .item-input {
   display: -webkit-box;
@@ -9799,11 +9799,45 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../fonts/OpenSans-Bold.ttf");
+  font-weight: 700; }
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../fonts/OpenSans-Light.ttf");
+  font-weight: 300; }
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../fonts/OpenSans-Regular.ttf"); }
+
 .gradient-bg {
   background-color: #09386b;
   background-image: linear-gradient(to top, #2174d0, #09386b);
   background-image: -webkit-linear-gradient(to top, #2174d0, #09386b); }
-  .gradient-bg .item, .gradient-bg .item-complex .item-content, .gradient-bg .item-radio .item-content {
+  .gradient-bg .item,
+  .gradient-bg .item-complex .item-content,
+  .gradient-bg .item-radio .item-content {
     color: white;
     border-color: transparent;
-    background-color: transparent; }
+    background-color: transparent;
+    font-size: 14px; }
+    .gradient-bg .item p,
+    .gradient-bg .item-complex .item-content p,
+    .gradient-bg .item-radio .item-content p {
+      color: white;
+      font-size: 12px; }
+    .gradient-bg .item h2,
+    .gradient-bg .item-complex .item-content h2,
+    .gradient-bg .item-radio .item-content h2 {
+      color: white;
+      font-weight: bold; }
+  .gradient-bg .item {
+    border-left: 3px solid transparent; }
+    .gradient-bg .item .activated, .gradient-bg .item.active {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-color: white; }
+  .gradient-bg .item-icon-left .icon {
+    font-size: 20px; }

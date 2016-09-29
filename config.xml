@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.ioniccoachmentor327038" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.wohlig.coachmentor" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Coach Mentor</name>
   <description>
 Coach Mentor
     </description>
-  <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+  <author email="info@wohlig.com" href="http://wohlig.com/">
+      Wohlig Technology
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -20,12 +20,6 @@ Coach Mentor
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
-  <plugin name="cordova-plugin-device" spec="~1.1.3"/>
-  <plugin name="cordova-plugin-console" spec="~1.0.4"/>
-  <plugin name="cordova-plugin-whitelist" spec="~1.3.0"/>
-  <plugin name="cordova-plugin-splashscreen" spec="~4.0.0"/>
-  <plugin name="cordova-plugin-statusbar" spec="~2.2.0"/>
-  <plugin name="ionic-plugin-keyboard" spec="~2.2.1"/>
   <platform name="ios">
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>

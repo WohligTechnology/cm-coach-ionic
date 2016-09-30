@@ -71,3 +71,42 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
         }
     }
 }
+
+.ln-fit:before {
+    font-size: 24px !important;
+}
+
+.dp {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+.picture-hold {
+    padding-top: 30px;
+    text-align: center;
+    background-image: linear-gradient(to top, #2174d0, #004a9b);
+    background-image: -webkit-linear-gradient(to top, #2174d0, #004a9b);
+    color: white;
+    h3 {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 15px 0px 5px;
+    }
+}
+
+.main-info {
+    text-align: center;
+    p {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 12px;
+    }
+    h3 {
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+}

@@ -9839,3 +9839,35 @@ a.button {
     border-left: 2px solid white; }
   .gradient-bg .item-icon-left .icon {
     font-size: 20px; }
+
+.ln-fit:before {
+  font-size: 24px !important; }
+
+.dp {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  background-size: cover;
+  margin: 0 auto; }
+
+.picture-hold {
+  padding-top: 30px;
+  text-align: center;
+  background-image: linear-gradient(to top, #2174d0, #004a9b);
+  background-image: -webkit-linear-gradient(to top, #2174d0, #004a9b);
+  color: white; }
+  .picture-hold h3 {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 15px 0px 5px; }
+
+.main-info {
+  text-align: center; }
+  .main-info p {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px; }
+  .main-info h3 {
+    font-weight: 400;
+    margin-bottom: 10px; }

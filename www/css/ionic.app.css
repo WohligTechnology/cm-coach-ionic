@@ -9834,10 +9834,8 @@ a.button {
     .gradient-bg .item-radio .item-content h2 {
       color: white;
       font-weight: bold; }
-  .gradient-bg .item {
-    border-left: 3px solid transparent; }
-    .gradient-bg .item .activated, .gradient-bg .item.active {
-      background-color: rgba(0, 0, 0, 0.2);
-      border-color: white; }
+  .gradient-bg .item .activated, .gradient-bg .item.on {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-left: 2px solid white; }
   .gradient-bg .item-icon-left .icon {
     font-size: 20px; }

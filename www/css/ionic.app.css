@@ -9896,31 +9896,31 @@ a.button {
     font-size: 13px;
     padding: 2px 0; }
 
-.blog-detail .tag-box {
+.tag-box {
   padding: 2px 10px;
   border: 1px solid;
   border-radius: 20px;
   display: inline-block;
   margin-top: 5px; }
-  .blog-detail .tag-box + .tag-box {
+  .tag-box + .tag-box {
     margin-left: 3px; }
 
-.blog-detail .text-justified {
+.text-justified {
   text-align: justify; }
 
-.blog-detail .read-more {
+.read-more {
   height: 40px;
   overflow: hidden !important; }
-  .blog-detail .read-more.read-full {
+  .read-more.read-full {
     height: auto; }
 
-.blog-detail .text-right {
+.text-right {
   text-align: right !important; }
 
-.blog-detail p.bold {
+p.bold {
   font-size: 12px;
   font-weight: bold; }
 
-.blog-detail .share .item {
+.share .item {
   padding: 0;
   font-size: 14px; }

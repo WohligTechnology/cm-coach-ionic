@@ -95,7 +95,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-  .state('app./athletes-coached-detail', {
+  .state('app.athletes-coached-detail', {
       url: '/athletes-coached-detail',
       views: {
         'menuContent': {

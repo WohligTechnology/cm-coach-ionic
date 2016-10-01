@@ -19,5 +19,14 @@ angular.module('starter.controllers', [])
 .controller('ChatDetailCtrl', function ($scope) {
 
 })
+.controller('CompetitionCtrl', function ($scope) {
+
+})
+.controller('AthletesCoachedCtrl', function ($scope) {
+
+})
+.controller('AthletesCoachedDetailCtrl', function ($scope) {
+
+})
 
 ;

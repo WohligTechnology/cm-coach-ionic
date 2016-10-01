@@ -77,6 +77,33 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('app.competition', {
+      url: '/competition',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/competition.html',
+          controller: 'CompetitionCtrl'
+        }
+      }
+    })
+  .state('app.athletes-coached', {
+      url: '/athletes-coached',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/athletes-coach.html',
+          controller: 'AthletesCoachedCtrl'
+        }
+      }
+    })
+  .state('app./athletes-coached-detail', {
+      url: '/athletes-coached-detail',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates//athletes-coach-detail.html',
+          controller: 'AthletesCoachedDetailCtrl'
+        }
+      }
+    })
 
 
   ;

@@ -1,0 +1,22 @@
+<ion-view view-title="Sachin">
+    <ion-content class="has-footer">
+        <div class="chat-holder">
+            <div class="bubble me">
+                <div class="msg">Hi!</div>
+                <div class="time-stamp">11:00PM</div>
+            </div>
+            <div class="bubble">
+                <div class="msg">Hi!</div>
+                <div class="time-stamp">11:01PM</div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+        <label class="item-input-wrapper">
+        <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+      </label>
+        <button class="button button-clear" ng-click="sendMessage();">
+        Send
+      </button>
+    </ion-footer-bar>
+</ion-view>

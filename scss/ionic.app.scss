@@ -16,129 +16,160 @@ $font-family-light-sans-serif: "Open Sans",
 "HelveticaNeue-Light",
 "Roboto-Light",
 "Segoe UI-Light",
-sans-serif-light !default;
-// The path for our ionicons font files, relative to the built CSS in www/css
-$ionicons-font-path: "../lib/ionic/fonts" !default;
-// Include all of Ionic
+sans-serif-light !default; // The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @font-face {
-    font-family: 'Open Sans';
-    src: url("../fonts/OpenSans-Bold.ttf");
-    font-weight: 700;
+  font-family: 'Open Sans';
+  src: url("../fonts/OpenSans-Bold.ttf");
+  font-weight: 700;
 }
 
 @font-face {
-    font-family: 'Open Sans';
-    src: url("../fonts/OpenSans-Light.ttf");
-    font-weight: 300;
+  font-family: 'Open Sans';
+  src: url("../fonts/OpenSans-Light.ttf");
+  font-weight: 300;
 }
 
 @font-face {
-    font-family: 'Open Sans';
-    src: url("../fonts/OpenSans-Regular.ttf");
+  font-family: 'Open Sans';
+  src: url("../fonts/OpenSans-Regular.ttf");
 }
 
 .gradient-bg {
-    background-color: #09386b;
-    background-image: linear-gradient(to top, #2174d0, #09386b);
-    background-image: -webkit-linear-gradient(to top, #2174d0, #09386b);
-    .item,
-    .item-complex .item-content,
-    .item-radio .item-content {
-        color: white;
-        border-color: transparent;
-        background-color: transparent;
-        font-size: 14px;
-        p {
-            color: white;
-            font-size: 12px;
-        }
-        h2 {
-            color: white;
-            font-weight: bold;
-        }
+  background-color: #09386b;
+  background-image: linear-gradient(to top, #2174d0, #09386b);
+  background-image: -webkit-linear-gradient(to top, #2174d0, #09386b);
+  .item,
+  .item-complex .item-content,
+  .item-radio .item-content {
+    color: white;
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 14px;
+    p {
+      color: white;
+      font-size: 12px;
     }
-    .item {
-        .activated,
-        &.on {
-            background-color: rgba(0, 0, 0, 0.2);
-            border-left: 2px solid white;
-        }
+    h2 {
+      color: white;
+      font-weight: bold;
     }
-    .item-icon-left {
-        .icon {
-            font-size: 20px;
-        }
+  }
+  .text-right {
+    text-align: right;
+  }
+  .item {
+    &.on,
+    .activated {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-left: 2px solid white;
     }
+  }
+  .item-icon-left {
+    .icon {
+      font-size: 20px;
+    }
+  }
 }
 
 .ln-fit:before {
-    font-size: 24px !important;
+  font-size: 24px !important;
 }
 
 .dp {
-    height: 100px;
-    width: 100px;
-    border-radius: 100%;
-    background-size: cover;
-    margin: 0 auto;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  background-size: cover;
+  margin: 0 auto;
 }
 
 .picture-hold {
-    padding-top: 30px;
-    text-align: center;
-    background-image: linear-gradient(to top, #2174d0, #004a9b);
-    background-image: -webkit-linear-gradient(to top, #2174d0, #004a9b);
+  padding-top: 30px;
+  text-align: center;
+  background-image: linear-gradient(to top, #2174d0, #004a9b);
+  background-image: -webkit-linear-gradient(to top, #2174d0, #004a9b);
+  color: white;
+  h3 {
     color: white;
-    h3 {
-        color: white;
-        font-size: 18px;
-        font-weight: 700;
-        margin: 15px 0px 5px;
-    }
+    font-size: 18px;
+    font-weight: 700;
+    margin: 15px 0 5px;
+  }
 }
 
 .main-info {
-    text-align: center;
-    p {
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 12px;
-    }
-    h3 {
-        font-weight: 400;
-        margin-bottom: 10px;
-    }
+  text-align: center;
+  p {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  h3 {
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
 }
 
-.tag-box {
+.blog-detail {
+  .item-body {
+    padding: 0;
+    .card-title {
+      margin: 2px 0;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    p {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      color: #666;
+      line-height: 120%;
+      text-align: justify;
+      font-size: 13px;
+    }
+    .item-content {
+      // padding: 13px 16px 14px;
+      padding: 5px 10px;
+    }
+    .date {
+      font-weight: 400;
+      color: #000;
+      font-size: 13px;
+      padding: 2px 0;
+    }
+  }
+  .tag-box {
     padding: 2px 10px;
     border: 1px solid;
     border-radius: 20px;
     display: inline-block;
     margin-top: 5px;
     +.tag-box {
-        margin-left: 3px
+      margin-left: 3px
     }
-}
-
-.text-justified {
+  }
+  .text-justified {
     text-align: justify;
-}
-
-.read-more {
+  }
+  .read-more {
     height: 40px;
     overflow: hidden !important;
     &.read-full {
-        height: auto;
+      height: auto;
     }
-}
-
-.text-right {
+  }
+  .text-right {
     text-align: right !important;
-}
-
-p.bold {
+  }
+  p.bold {
     font-size: 12px;
     font-weight: bold;
+  }
+  .share {
+    .item {
+      padding: 0;
+      font-size: 14px;
+    }
+  }
 }

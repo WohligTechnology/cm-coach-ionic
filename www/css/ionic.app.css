@@ -9871,3 +9871,28 @@ a.button {
   .main-info h3 {
     font-weight: 400;
     margin-bottom: 10px; }
+
+.tag-box {
+  padding: 2px 10px;
+  border: 1px solid;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 5px; }
+  .tag-box + .tag-box {
+    margin-left: 3px; }
+
+.text-justified {
+  text-align: justify; }
+
+.read-more {
+  height: 40px;
+  overflow: hidden !important; }
+  .read-more.read-full {
+    height: auto; }
+
+.text-right {
+  text-align: right !important; }
+
+p.bold {
+  font-size: 12px;
+  font-weight: bold; }

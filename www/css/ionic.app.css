@@ -9983,3 +9983,6 @@ p.bold {
 
 .bubble + .bubble {
   margin-top: 15px; }
+
+.item-name h2 {
+  margin-top: 10px; }

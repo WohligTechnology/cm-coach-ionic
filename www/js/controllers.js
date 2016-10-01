@@ -6,4 +6,18 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileCtrl', function ($scope) {
 
-});
+})
+.controller('BlogCtrl', function ($scope) {
+
+})
+.controller('BlogDetailCtrl', function ($scope) {
+
+})
+.controller('ChatCtrl', function ($scope) {
+
+})
+.controller('ChatDetailCtrl', function ($scope) {
+
+})
+
+;

@@ -41,6 +41,43 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('app.blog', {
+    url: '/blog',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/blog.html',
+        controller: 'BlogCtrl'
+      }
+    }
+  })
+  .state('app.blogdetail', {
+    url: '/blog-detail',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/blog-detail.html',
+        controller: 'BlogDetailCtrl'
+      }
+    }
+  })
+  .state('app.chat', {
+    url: '/chat',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/chat.html',
+        controller: 'ChatCtrl'
+      }
+    }
+  })
+  .state('app.chatdetail', {
+    url: '/chat-detail',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/chat-detail.html',
+        controller: 'ChatDetailCtrl'
+      }
+    }
+  })
+
 
   ;
   // if none of the above states are matched, use this as the fallback

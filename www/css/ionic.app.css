@@ -9834,7 +9834,10 @@ a.button {
     .gradient-bg .item-radio .item-content h2 {
       color: white;
       font-weight: bold; }
-  .gradient-bg .item .activated, .gradient-bg .item.on {
+  .gradient-bg .text-right {
+    text-align: right; }
+  .gradient-bg .item.on,
+  .gradient-bg .item .activated {
     background-color: rgba(0, 0, 0, 0.2);
     border-left: 2px solid white; }
   .gradient-bg .item-icon-left .icon {
@@ -9860,7 +9863,7 @@ a.button {
     color: white;
     font-size: 18px;
     font-weight: 700;
-    margin: 15px 0px 5px; }
+    margin: 15px 0 5px; }
 
 .main-info {
   text-align: center; }
@@ -9871,3 +9874,27 @@ a.button {
   .main-info h3 {
     font-weight: 400;
     margin-bottom: 10px; }
+
+.blog-detail .item-body {
+  padding: 0; }
+  .blog-detail .item-body .card-title {
+    margin: 2px 0;
+    font-size: 16px;
+    font-weight: 400; }
+  .blog-detail .item-body p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #666;
+    line-height: 120%;
+    text-align: justify;
+    font-size: 13px; }
+  .blog-detail .item-body .item-content {
+    padding: 5px 10px; }
+  .blog-detail .item-body .date {
+    font-weight: 400;
+    color: #000;
+    font-size: 13px;
+    padding: 2px 0; }
+  .blog-detail .item-body .share .item {
+    padding: 0;
+    font-size: 14px; }

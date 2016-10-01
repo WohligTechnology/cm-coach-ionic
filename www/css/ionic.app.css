@@ -9895,10 +9895,11 @@ a.button {
 .blog-detail .item-body {
   padding: 0; }
   .blog-detail .item-body .card-title {
-    margin: 2px 0;
-    font-size: 18px;
+    padding: 0 0 3px;
+    font-size: 14px;
     font-weight: 600;
-    color: #666; }
+    color: #666;
+    margin: 0; }
   .blog-detail .item-body p {
     margin-top: 5px;
     margin-bottom: 5px;

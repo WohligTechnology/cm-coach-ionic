@@ -9963,3 +9963,23 @@ p.bold {
     font-size: 18px;
     font-weight: 700;
     margin: 15px 0 5px; }
+
+.chat-holder {
+  padding: 20px 15px; }
+  .chat-holder .time-stamp {
+    font-size: 11px; }
+
+.bubble.me {
+  text-align: right; }
+  .bubble.me .msg {
+    background-color: #004a9b;
+    color: white; }
+
+.bubble .msg {
+  padding: 10px;
+  background-color: #e2e2e2;
+  display: inline-block;
+  border-radius: 10px; }
+
+.bubble + .bubble {
+  margin-top: 15px; }

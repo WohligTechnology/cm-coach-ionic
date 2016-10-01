@@ -136,10 +136,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
   .item-body {
     padding: 0;
     .card-title {
-      margin: 2px 0;
-      font-size: 18px;
+      padding: 0 0 3px;
+      font-size: 14px;
       font-weight: 600;
       color: #666;
+      margin: 0;
     }
     p {
       margin-top: 5px;

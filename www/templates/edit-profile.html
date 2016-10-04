@@ -9,8 +9,7 @@
     <div class="pro-edit">
       <form action="">
         <div class="list">
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Name</span>
+          <label class="item item-input">
             <input type="text" placeholder="Sachin Tendulkar">
           </label>
           <label class="item item-input item-select">
@@ -23,9 +22,8 @@
               <option>Level 3</option>
             </select>
           </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Years of Coaching</span>
-            <input type="text" placeholder="2 years">
+          <label class="item item-input">
+            <input type="text" placeholder="2 Year">
           </label>
           <label class="item item-input item-select">
             <div class="input-label">
@@ -38,25 +36,27 @@
             </select>
           </label>
           <label class="item item-input item-stacked-label">
-            <span class="input-label">Contact</span>
-            <input type="text" placeholder="+9190000000001">
+            <!-- <span class="input-label">Contact</span> -->
+            <input type="tel" placeholder="+9190000000001">
           </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Email</span>
-            <input type="email" placeholder="sachin@gmail.com">
+          <label class="item item-input">
+            <input type="text"placeholder="sachin@gmail.com">
           </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Date of Birth</span>
+
+          <label class="item item-input">
             <input type="date" placeholder="April 24, 1973">
           </label>
-          <label class="item item-input item-stacked-label">
+          <label class="item item-input item-select">
             <span class="input-label">Gender</span>
-            <ion-radio ng-model="choice" ng-value="'Male'">Male</ion-radio>
-            <ion-radio ng-model="choice" ng-value="'Female'">Female</ion-radio>
+            <select>
+              <option selected>Male</option>
+              <option>Female</option>
+
+            </select>
           </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">About</span>
-            <textarea name="about" rows="8" cols="40"></textarea>
+          <label class="item item-input">
+
+            <textarea placeholder="About" rows="4" cols="50"></textarea>
           </label>
           <ion-item class="item-text-wrap multi-select">
             <h3>Coaching Focus</h3>

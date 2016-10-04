@@ -9996,18 +9996,28 @@ p.bold {
 .pb30 {
   padding-bottom: 30px; }
 
-.pro-edit .item-select {
-  min-height: 73px; }
+.pro-edit .input-label {
+  color: #000;
+  font-size: 14px; }
+
+.pro-edit .item {
+  min-height: 50px; }
 
 .pro-edit .item-radio {
   border: none;
   font-size: 14px; }
 
-.pro-edit textarea {
-  border: 1px solid #ddd;
-  margin-top: 8px;
-  padding: 4px 8px 3px 5px;
-  width: 96%; }
+.pro-edit input::-webkit-input-placeholder, .pro-edit textarea::-webkit-input-placeholder {
+  color: #000; }
+
+.pro-edit input::-moz-placeholder, .pro-edit textarea::-moz-placeholder {
+  color: #000; }
+
+.pro-edit input:-moz-placeholder, .pro-edit textarea:-moz-placeholder {
+  color: #000; }
+
+.pro-edit input:-ms-input-placeholder, .pro-edit textarea:-ms-input-placeholder {
+  color: #000; }
 
 .multi-select .active {
   background: #004a9b;

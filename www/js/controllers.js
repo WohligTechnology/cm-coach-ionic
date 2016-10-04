@@ -22,6 +22,9 @@ angular.module('starter.controllers', [])
   .controller('CompetitionCtrl', function($scope) {
 
   })
+  .controller('EditProfileCtrl', function($scope) {
+
+  })
   .controller('AthletesCoachedCtrl', function($scope, $ionicModal) {
     $ionicModal.fromTemplateUrl('templates/modal/modal-coach.html', {
       scope: $scope,

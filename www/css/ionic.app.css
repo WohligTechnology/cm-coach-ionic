@@ -9882,6 +9882,11 @@ a.button {
     font-weight: 700;
     margin: 15px 0 5px; }
 
+.pic-edit {
+  padding: 30px 0;
+  text-align: center;
+  background: rgba(231, 231, 231, 0.65); }
+
 .main-info {
   text-align: center; }
   .main-info p {
@@ -9987,3 +9992,23 @@ p.bold {
 
 .item-name h2 {
   margin-top: 10px; }
+
+.pb30 {
+  padding-bottom: 30px; }
+
+.pro-edit .item-select {
+  min-height: 73px; }
+
+.pro-edit .item-radio {
+  border: none;
+  font-size: 14px; }
+
+.pro-edit textarea {
+  border: 1px solid #ddd;
+  margin-top: 8px;
+  padding: 4px 8px 3px 5px;
+  width: 96%; }
+
+.multi-select .active {
+  background: #004a9b;
+  color: #fff; }

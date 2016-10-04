@@ -365,13 +365,38 @@ p.bold {
   left: 50%;
   transform: translateX(-50%);
   font-size: 11px;
-&:after{
-  width: 0;
-height: 0;
-border-left: 5px solid transparent;
-border-right: 5px solid transparent;
-border-top: 5px solid #fc483f;
-bottom: -5px;
-content: '';
+  &:after {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fc483f;
+    bottom: -5px;
+    content: '';
+  }
 }
+.sp-reg {
+  padding-top: 10px;
+  display: block;
+}
+.rigistration {
+  .input-label {
+    color: #000;
+    font-size: 14px;
+    @include placeholder {
+      color: #666;
+    }
+  }
+  textarea {
+    border: 1px solid #ddd;
+    padding: 5px;
+    width: 96%;
+    margin-top: 10px;
+  }
+  .item-select {
+    min-height: 70px;
+}
+}
+.mt20{
+      margin-top: 20px;
 }

@@ -66,6 +66,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('app.registration', {
+    url: '/registration',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/registration.html',
+        controller: 'RegistrationCtrl'
+      }
+    }
+  })
   .state('app.blogdetail', {
     url: '/blog-detail',
     views: {

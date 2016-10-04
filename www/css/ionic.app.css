@@ -10126,3 +10126,31 @@ p.bold {
     border-top: 5px solid #fc483f;
     bottom: -5px;
     content: ''; }
+
+.sp-reg {
+  padding-top: 10px;
+  display: block; }
+
+.rigistration .input-label {
+  color: #000;
+  font-size: 14px; }
+  .rigistration .input-label::-webkit-input-placeholder {
+    color: #666; }
+  .rigistration .input-label::-moz-placeholder {
+    color: #666; }
+  .rigistration .input-label:-moz-placeholder {
+    color: #666; }
+  .rigistration .input-label:-ms-input-placeholder {
+    color: #666; }
+
+.rigistration textarea {
+  border: 1px solid #ddd;
+  padding: 5px;
+  width: 96%;
+  margin-top: 10px; }
+
+.rigistration .item-select {
+  min-height: 70px; }
+
+.mt20 {
+  margin-top: 20px; }

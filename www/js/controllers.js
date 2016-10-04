@@ -25,6 +25,9 @@ angular.module('starter.controllers', [])
   .controller('CompetitionCtrl', function($scope) {
 
   })
+  .controller('RegistrationCtrl', function($scope) {
+
+  })
   .controller('EditProfileCtrl', function($scope) {
 
   })

@@ -26,12 +26,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
   src: url("../fonts/OpenSans-Regular.ttf");
 }
 @mixin placeholder {
-    $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
-    @each $placeholder in $placeholders {
-        &:#{$placeholder}-placeholder {
-            @content;
-        }
+  $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
+  @each $placeholder in $placeholders {
+    &:#{$placeholder}-placeholder {
+      @content;
     }
+  }
 }
 .pb10 {
   padding-bottom: 10px;
@@ -252,32 +252,32 @@ p.bold {
   .input-label {
     color: #000;
     font-size: 14px;
-}
-  .item{
+  }
+  .item {
     min-height: 50px;
   }
   .item-radio {
     border: none;
     font-size: 14px;
   }
-
-  input, textarea{
+  input,
+  textarea {
     @include placeholder {
-        color: #000;
+      color: #000;
     }
   }
 }
-.multi-select{
-  .active{
-      background: $positive;
-      color:#fff;
+.multi-select {
+  .active {
+    background: $positive;
+    color: #fff;
   }
 }
-.ch-relative{
+.ch-relative {
   position: relative;
-  .button{
+  .button {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     z-index: 98;
     background: $positive;
     color: #fff;
@@ -287,14 +287,68 @@ p.bold {
     min-width: 35px;
     left: 50%;
     transform: translatex(50%);
-    padding: 0px;
-    &:before{
+    padding: 0;
+    &:before {
       line-height: 30px;
       font-size: 18px !important;
     }
   }
-  .activated{
-      background: $positive !important;
-      opacity: 1 !important;
+  .activated {
+    background: $positive !important;
+    opacity: 1 !important;
   }
+}
+.m20 {
+  margin: 20px 0;
+}
+.done-btn {
+  border-color: #fff !important;
+}
+.bg-login {
+  background: url(../img/bg-login.jpg)no-repeat;
+  background-size: cover;
+}
+.mt30{
+      margin-top: 30%;
+}
+.logo {
+  text-align: center;
+}
+.login-form {
+  margin-top: 15%;
+  i {
+    font-size: 24px;
+    color: #fff;
+    margin-right: 10px;
+  }
+  .item {
+    background: transparent;
+    border-color: transparent;
+    border-bottom: 1px solid #b4b4b4;
+    margin: 3px 15px;
+        padding: 6px 0 5px 0px;
+    input {
+      color: #fff;
+      @include placeholder {
+        color: #fff;
+      }
+    }
+  }
+}
+.text-right{
+  float: right;
+}
+.pr15{
+  padding-right: 15px;
+      padding-top: 10px;
+}
+.text-left{
+  float: left;
+}
+.pl15{
+  padding-left: 15px;
+      padding-top: 10px;
+}
+.color-white{
+  color: #fff;
 }

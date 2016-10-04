@@ -10007,16 +10007,20 @@ p.bold {
   border: none;
   font-size: 14px; }
 
-.pro-edit input::-webkit-input-placeholder, .pro-edit textarea::-webkit-input-placeholder {
+.pro-edit input::-webkit-input-placeholder,
+.pro-edit textarea::-webkit-input-placeholder {
   color: #000; }
 
-.pro-edit input::-moz-placeholder, .pro-edit textarea::-moz-placeholder {
+.pro-edit input::-moz-placeholder,
+.pro-edit textarea::-moz-placeholder {
   color: #000; }
 
-.pro-edit input:-moz-placeholder, .pro-edit textarea:-moz-placeholder {
+.pro-edit input:-moz-placeholder,
+.pro-edit textarea:-moz-placeholder {
   color: #000; }
 
-.pro-edit input:-ms-input-placeholder, .pro-edit textarea:-ms-input-placeholder {
+.pro-edit input:-ms-input-placeholder,
+.pro-edit textarea:-ms-input-placeholder {
   color: #000; }
 
 .multi-select .active {
@@ -10027,7 +10031,7 @@ p.bold {
   position: relative; }
   .ch-relative .button {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     z-index: 98;
     background: #004a9b;
     color: #fff;
@@ -10037,10 +10041,66 @@ p.bold {
     min-width: 35px;
     left: 50%;
     transform: translatex(50%);
-    padding: 0px; }
+    padding: 0; }
     .ch-relative .button:before {
       line-height: 30px;
       font-size: 18px !important; }
   .ch-relative .activated {
     background: #004a9b !important;
     opacity: 1 !important; }
+
+.m20 {
+  margin: 20px 0; }
+
+.done-btn {
+  border-color: #fff !important; }
+
+.bg-login {
+  background: url(../img/bg-login.jpg) no-repeat;
+  background-size: cover; }
+
+.mt30 {
+  margin-top: 30%; }
+
+.logo {
+  text-align: center; }
+
+.login-form {
+  margin-top: 15%; }
+  .login-form i {
+    font-size: 24px;
+    color: #fff;
+    margin-right: 10px; }
+  .login-form .item {
+    background: transparent;
+    border-color: transparent;
+    border-bottom: 1px solid #b4b4b4;
+    margin: 3px 15px;
+    padding: 6px 0 5px 0px; }
+    .login-form .item input {
+      color: #fff; }
+      .login-form .item input::-webkit-input-placeholder {
+        color: #fff; }
+      .login-form .item input::-moz-placeholder {
+        color: #fff; }
+      .login-form .item input:-moz-placeholder {
+        color: #fff; }
+      .login-form .item input:-ms-input-placeholder {
+        color: #fff; }
+
+.text-right {
+  float: right; }
+
+.pr15 {
+  padding-right: 15px;
+  padding-top: 10px; }
+
+.text-left {
+  float: left; }
+
+.pl15 {
+  padding-left: 15px;
+  padding-top: 10px; }
+
+.color-white {
+  color: #fff; }

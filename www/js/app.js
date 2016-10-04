@@ -41,6 +41,13 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('login', {
+    url: '/login',
+
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+
+  })
   .state('app.edit-profile', {
     url: '/edit-profile',
     views: {

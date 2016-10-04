@@ -10076,7 +10076,7 @@ p.bold {
     border-color: transparent;
     border-bottom: 1px solid #b4b4b4;
     margin: 3px 15px;
-    padding: 6px 0 5px 0px; }
+    padding: 20px 0 5px; }
     .login-form .item input {
       color: #fff; }
       .login-form .item input::-webkit-input-placeholder {
@@ -10104,3 +10104,25 @@ p.bold {
 
 .color-white {
   color: #fff; }
+
+.ps-relative {
+  position: relative; }
+
+.error-msg {
+  background-color: #fc483f;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  top: 2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px; }
+  .error-msg:after {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fc483f;
+    bottom: -5px;
+    content: ''; }

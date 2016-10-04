@@ -308,8 +308,8 @@ p.bold {
   background: url(../img/bg-login.jpg)no-repeat;
   background-size: cover;
 }
-.mt30{
-      margin-top: 30%;
+.mt30 {
+  margin-top: 30%;
 }
 .logo {
   text-align: center;
@@ -326,7 +326,7 @@ p.bold {
     border-color: transparent;
     border-bottom: 1px solid #b4b4b4;
     margin: 3px 15px;
-        padding: 6px 0 5px 0px;
+    padding: 20px 0 5px;
     input {
       color: #fff;
       @include placeholder {
@@ -335,20 +335,43 @@ p.bold {
     }
   }
 }
-.text-right{
+.text-right {
   float: right;
 }
-.pr15{
+.pr15 {
   padding-right: 15px;
-      padding-top: 10px;
+  padding-top: 10px;
 }
-.text-left{
+.text-left {
   float: left;
 }
-.pl15{
+.pl15 {
   padding-left: 15px;
-      padding-top: 10px;
+  padding-top: 10px;
 }
-.color-white{
+.color-white {
   color: #fff;
+}
+.ps-relative {
+  position: relative;
+}
+.error-msg {
+  background-color: #fc483f;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  top: 2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+&:after{
+  width: 0;
+height: 0;
+border-left: 5px solid transparent;
+border-right: 5px solid transparent;
+border-top: 5px solid #fc483f;
+bottom: -5px;
+content: '';
+}
 }

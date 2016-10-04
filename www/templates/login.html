@@ -4,15 +4,17 @@
       <img src="img/logo.png" alt="Coach Mentor">
     </div>
     <div class="login-form padding-horizontal">
-      <form action="">
+      <form action=""  name="formName" ng-submit="submitForm(formData);">
         <div class="list">
-          <label class="item item-input">
+          <label class="item item-input ps-relative">
             <i class="ln-envelope"></i>
-            <input type="email" placeholder="Email Address">
+            <input type="email" placeholder="Email Address" name="email" required>
+            <div class="error-msg" ng-show="myForm.email.$error.required && myForm.email.$dirty">Email Address is required</div>
           </label>
-          <label class="item item-input">
+          <label class="item item-input ps-relative">
             <i class="ln-lock"></i>
-            <input type="password" placeholder="Password">
+            <input type="password" placeholder="Password" name="password" required>
+              <div class="error-msg" ng-show="myForm.password.$error.required && myForm.password.$dirty">Password is required</div>
           </label>
           <div class="text-right pr15">
             <a href="" class="color-white">Forgot Password ?</a>

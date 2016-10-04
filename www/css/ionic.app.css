@@ -10022,3 +10022,22 @@ p.bold {
 .multi-select .active {
   background: #004a9b;
   color: #fff; }
+
+.ch-relative {
+  position: relative; }
+  .ch-relative .button {
+    position: absolute;
+    bottom: 0px;
+    z-index: 98;
+    background: #004a9b;
+    color: #fff;
+    border-radius: 100%;
+    font-size: 15px;
+    min-height: 35px;
+    min-width: 35px;
+    left: 50%;
+    transform: translatex(50%);
+    padding: 0px; }
+    .ch-relative .button:before {
+      line-height: 30px;
+      font-size: 18px !important; }

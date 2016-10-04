@@ -293,4 +293,8 @@ p.bold {
       font-size: 18px !important;
     }
   }
+  .activated{
+      background: $positive !important;
+      opacity: 1 !important;
+  }
 }

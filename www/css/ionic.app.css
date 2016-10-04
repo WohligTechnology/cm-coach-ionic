@@ -10041,3 +10041,6 @@ p.bold {
     .ch-relative .button:before {
       line-height: 30px;
       font-size: 18px !important; }
+  .ch-relative .activated {
+    background: #004a9b !important;
+    opacity: 1 !important; }

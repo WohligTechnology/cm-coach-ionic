@@ -10065,28 +10065,42 @@ p.bold {
 .logo {
   text-align: center; }
 
-.login-form {
+.login-form, .psw-form {
   margin-top: 15%; }
-  .login-form i {
+  .login-form i, .psw-form i {
     font-size: 24px;
     color: #fff;
     margin-right: 10px; }
-  .login-form .item {
+  .login-form .item, .psw-form .item {
     background: transparent;
     border-color: transparent;
     border-bottom: 1px solid #b4b4b4;
     margin: 3px 15px;
     padding: 20px 0 5px; }
-    .login-form .item input {
+    .login-form .item input, .psw-form .item input {
       color: #fff; }
-      .login-form .item input::-webkit-input-placeholder {
+      .login-form .item input::-webkit-input-placeholder, .psw-form .item input::-webkit-input-placeholder {
         color: #fff; }
-      .login-form .item input::-moz-placeholder {
+      .login-form .item input::-moz-placeholder, .psw-form .item input::-moz-placeholder {
         color: #fff; }
-      .login-form .item input:-moz-placeholder {
+      .login-form .item input:-moz-placeholder, .psw-form .item input:-moz-placeholder {
         color: #fff; }
-      .login-form .item input:-ms-input-placeholder {
+      .login-form .item input:-ms-input-placeholder, .psw-form .item input:-ms-input-placeholder {
         color: #fff; }
+
+.psw-form i {
+  color: #004a9b; }
+
+.psw-form .item input {
+  color: #004a9b; }
+  .psw-form .item input::-webkit-input-placeholder {
+    color: #004a9b; }
+  .psw-form .item input::-moz-placeholder {
+    color: #004a9b; }
+  .psw-form .item input:-moz-placeholder {
+    color: #004a9b; }
+  .psw-form .item input:-ms-input-placeholder {
+    color: #004a9b; }
 
 .text-right {
   float: right; }
@@ -10164,3 +10178,9 @@ p.bold {
     bottom: -5px;
     position: absolute;
     left: 50%; }
+
+.sb-btn .button.button-positive.activated {
+  border-color: transparent !important; }
+
+.light-grey {
+  color: #666; }

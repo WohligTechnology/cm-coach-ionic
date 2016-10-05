@@ -2,10 +2,13 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
-})
-.controller('LoginCtrl', function($scope, $ionicModal, $timeout) {
+  })
+  .controller('LoginCtrl', function($scope, $ionicModal, $timeout) {
 
-})
+  })
+  .controller('ForgotPasswordCtrl', function($scope, $ionicModal, $timeout) {
+
+  })
 
 .controller('ProfileCtrl', function($scope) {
 
@@ -42,7 +45,7 @@ angular.module('starter.controllers', [])
       $scope.modal.show();
     };
     $scope.closeModal = function() {
-    $scope.modal.hide();
+      $scope.modal.hide();
     };
   })
   .controller('AthletesCoachedDetailCtrl', function($scope, $ionicModal) {

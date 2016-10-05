@@ -7,6 +7,7 @@ $energized: #f29c2c !default;
 $assertive: #c70e17 !default;
 $royal: #886aea !default;
 $dark: #444 !default;
+$light-grey: #666 !default;
 $font-family-sans-serif: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
 $font-family-light-sans-serif: "Open Sans", "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default; // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
@@ -80,6 +81,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
       border-left: 2px solid white;
     }
   }
+
   .item-icon-left {
     .icon {
       font-size: 20px;
@@ -335,6 +337,21 @@ p.bold {
     }
   }
 }
+.psw-form{
+  @extend .login-form;
+  i{
+    color:$positive;
+  }
+  .item{
+    input {
+      color:$positive;
+      @include placeholder {
+      color:$positive;
+      }
+    }
+  }
+
+}
 .text-right {
   float: right;
 }
@@ -411,4 +428,12 @@ p.bold {
     position: absolute;
     left: 50%;
   }
+}
+.sb-btn {
+.button.button-positive.activated {
+    border-color: transparent !important;
+  }
+}
+.light-grey{
+  color:$light-grey;
 }

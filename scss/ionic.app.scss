@@ -343,6 +343,7 @@ p.bold {
     color:$positive;
   }
   .item{
+        border-bottom: 1px solid #004a9b;
     input {
       color:$positive;
       @include placeholder {
@@ -351,6 +352,9 @@ p.bold {
     }
   }
 
+}
+.color-primary{
+  color:$positive;
 }
 .text-right {
   float: right;

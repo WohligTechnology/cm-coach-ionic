@@ -3,7 +3,7 @@
     <div class="logo mt30">
       <img src="img/logo.png" alt="Coach Mentor" >
     </div>
-    <div class="login-form padding-horizontal">
+    <div class="psw-form padding-horizontal">
       <form action=""  name="formName" ng-submit="submitForm(formData);">
         <div class="list">
           <label class="item item-input ps-relative">
@@ -17,10 +17,10 @@
               <div class="error-msg" ng-show="myForm.password.$error.required && myForm.password.$dirty">Password is required</div>
           </label>
           <div class="text-right pr15">
-            <a href="" class="color-white" ng-click="openModal()">Forgot Password ?</a>
+            <a href="" class="color-primary" ng-click="openModal()">Forgot Password ?</a>
           </div>
           <div class="text-left pl15">
-            <a ui-sref="app.registration" class="color-white">Register Now</a>
+            <a ui-sref="app.registration" class="color-primary">Register Now</a>
           </div>
         </div>
         <div class="text-center mt30 padding-horizontal sb-btn">

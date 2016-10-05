@@ -10091,16 +10091,21 @@ p.bold {
 .psw-form i {
   color: #004a9b; }
 
-.psw-form .item input {
+.psw-form .item {
+  border-bottom: 1px solid #004a9b; }
+  .psw-form .item input {
+    color: #004a9b; }
+    .psw-form .item input::-webkit-input-placeholder {
+      color: #004a9b; }
+    .psw-form .item input::-moz-placeholder {
+      color: #004a9b; }
+    .psw-form .item input:-moz-placeholder {
+      color: #004a9b; }
+    .psw-form .item input:-ms-input-placeholder {
+      color: #004a9b; }
+
+.color-primary {
   color: #004a9b; }
-  .psw-form .item input::-webkit-input-placeholder {
-    color: #004a9b; }
-  .psw-form .item input::-moz-placeholder {
-    color: #004a9b; }
-  .psw-form .item input:-moz-placeholder {
-    color: #004a9b; }
-  .psw-form .item input:-ms-input-placeholder {
-    color: #004a9b; }
 
 .text-right {
   float: right; }

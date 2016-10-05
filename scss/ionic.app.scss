@@ -8,8 +8,16 @@ $assertive: #c70e17 !default;
 $royal: #886aea !default;
 $dark: #444 !default;
 $light-grey: #666 !default;
-$font-family-sans-serif: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
-$font-family-light-sans-serif: "Open Sans", "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default; // The path for our ionicons font files, relative to the built CSS in www/css
+$font-family-sans-serif: "Open Sans",
+"Helvetica Neue",
+"Roboto",
+"Segoe UI",
+sans-serif !default;
+$font-family-light-sans-serif: "Open Sans",
+"HelveticaNeue-Light",
+"Roboto-Light",
+"Segoe UI-Light",
+sans-serif-light !default; // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @font-face {
@@ -17,15 +25,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
   src: url("../fonts/OpenSans-Bold.ttf");
   font-weight: 700;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url("../fonts/OpenSans-Light.ttf");
   font-weight: 300;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url("../fonts/OpenSans-Regular.ttf");
 }
+
 @mixin placeholder {
   $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
   @each $placeholder in $placeholders {
@@ -34,23 +45,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     }
   }
 }
+
 .pb10 {
   padding-bottom: 10px;
 }
-.tag-box {
-  padding: 2px 10px;
-  background: transparent;
-  border-radius: 22px;
-  display: inline-block;
-  margin-bottom: 5px;
-  border: 1px solid;
-}
+
 .right-badge-modal {
   position: absolute;
   right: 15px;
   top: 14px;
   display: inline-block;
 }
+
 .gradient-bg {
   background-color: #09386b;
   background-image: linear-gradient(to top, #2174d0, #09386b);
@@ -81,16 +87,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
       border-left: 2px solid white;
     }
   }
-
   .item-icon-left {
     .icon {
       font-size: 20px;
     }
   }
 }
+
 .ln-fit:before {
   font-size: 24px !important;
 }
+
 .dp {
   height: 100px;
   width: 100px;
@@ -98,6 +105,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
   background-size: cover;
   margin: 0 auto;
 }
+
 .picture-hold {
   padding-top: 30px;
   text-align: center;
@@ -111,11 +119,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     margin: 15px 0 5px;
   }
 }
+
 .pic-edit {
   padding: 30px 0;
   text-align: center;
   background: rgba(231, 231, 231, 0.65);
 }
+
 .main-info {
   text-align: center;
   p {
@@ -128,6 +138,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     margin-bottom: 10px;
   }
 }
+
 .blog-detail {
   .item-body {
     padding: 0;
@@ -157,6 +168,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     }
   }
 }
+
 .tag-box {
   padding: 2px 10px;
   border: 1px solid;
@@ -167,9 +179,33 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     margin-left: 3px;
   }
 }
+
+.tag-box-label {
+  position: relative;
+  display: inline-block;
+  +.tag-box-label {
+    margin-left: 3px;
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  label {
+    @extend .tag-box;
+  }
+  input[type=checkbox]:checked+label {
+    background-color: $positive;
+    border-color: $positive;
+    color: white;
+  }
+}
+
 .text-justified {
   text-align: justify;
 }
+
 .read-more {
   height: 40px;
   overflow: hidden !important;
@@ -177,19 +213,23 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     height: auto;
   }
 }
+
 .text-right {
   text-align: right !important;
 }
+
 p.bold {
   font-size: 12px;
   font-weight: bold;
 }
+
 .share {
   .item {
     padding: 0;
     font-size: 14px;
   }
 }
+
 .right-badge {
   font-size: 20px;
   padding: 7px 20px;
@@ -199,9 +239,11 @@ p.bold {
     top: -1px;
   }
 }
+
 .brd-zero {
   border-color: #fff;
 }
+
 .picture-hold-coach {
   padding-top: 30px;
   padding-bottom: 20px;
@@ -218,12 +260,14 @@ p.bold {
     margin: 15px 0 5px;
   }
 }
+
 .chat-holder {
   padding: 20px 15px;
   .time-stamp {
     font-size: 11px;
   }
 }
+
 .bubble {
   &.me {
     text-align: right;
@@ -242,14 +286,17 @@ p.bold {
     margin-top: 15px;
   }
 }
+
 .item-name {
   h2 {
     margin-top: 10px;
   }
 }
+
 .pb30 {
   padding-bottom: 30px;
 }
+
 .pro-edit {
   .input-label {
     color: #000;
@@ -257,6 +304,7 @@ p.bold {
   }
   .item {
     min-height: 50px;
+    position: relative;
   }
   .item-radio {
     border: none;
@@ -269,12 +317,14 @@ p.bold {
     }
   }
 }
+
 .multi-select {
   .active {
     background: $positive;
     color: #fff;
   }
 }
+
 .ch-relative {
   position: relative;
   .button {
@@ -300,22 +350,28 @@ p.bold {
     opacity: 1 !important;
   }
 }
+
 .m20 {
   margin: 20px 0;
 }
+
 .done-btn {
   border-color: #fff !important;
 }
+
 .bg-login {
   background: url(../img/bg-login.jpg)no-repeat;
   background-size: cover;
 }
+
 .mt30 {
   margin-top: 30%;
 }
+
 .logo {
   text-align: center;
 }
+
 .login-form {
   margin-top: 15%;
   i {
@@ -337,47 +393,51 @@ p.bold {
     }
   }
 }
-.psw-form{
+
+.psw-form {
   @extend .login-form;
-  i{
-    color:$positive;
+  i {
+    color: $positive;
   }
-  .item{
-        border-bottom: 1px solid #004a9b;
+  .item {
+    border-bottom: 1px solid #004a9b;
     input {
-      color:$positive;
+      color: $positive;
       @include placeholder {
-      color:$positive;
+        color: $positive;
       }
     }
   }
+}
 
+.color-primary {
+  color: $positive;
 }
-.color-primary{
-  color:$positive;
-}
-.text-right {
-  float: right;
-}
+
 .pr15 {
   padding-right: 15px;
   padding-top: 10px;
 }
+
 .text-left {
   float: left;
 }
+
 .pl15 {
   padding-left: 15px;
   padding-top: 10px;
 }
+
 .color-white {
   color: #fff;
 }
+
 .ps-relative {
   position: relative;
 }
+
 .error-msg {
-  background-color: #fc483f;
+  background-color: $assertive;
   color: #fff;
   padding: 4px 10px;
   border-radius: 6px;
@@ -391,15 +451,17 @@ p.bold {
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #fc483f;
+    border-top: 5px solid $assertive;
     bottom: -5px;
     content: '';
   }
 }
+
 .sp-reg {
   padding-top: 10px;
   display: block;
 }
+
 .rigistration {
   .input-label {
     color: #000;
@@ -418,9 +480,11 @@ p.bold {
     min-height: 70px;
   }
 }
+
 .mt20 {
   margin-top: 20px;
 }
+
 .error-msg-form {
   @extend .error-msg;
   padding: 2px 6px;
@@ -433,11 +497,13 @@ p.bold {
     left: 50%;
   }
 }
+
 .sb-btn {
-.button.button-positive.activated {
+  .button.button-positive.activated {
     border-color: transparent !important;
   }
 }
-.light-grey{
-  color:$light-grey;
+
+.light-grey {
+  color: $light-grey;
 }

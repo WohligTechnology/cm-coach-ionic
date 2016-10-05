@@ -1,74 +1,137 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['checklist-model'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
-  })
-  .controller('LoginCtrl', function($scope, $ionicModal, $timeout, $ionicModal) {
-    $ionicModal.fromTemplateUrl('templates/modal/forgot-password.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-    $scope.openModal = function() {
-      $scope.modal.show();
-    };
-    $scope.closeModal = function() {
-      $scope.modal.hide();
-    };
-  })
-  .controller('ForgotPasswordCtrl', function($scope, $ionicModal, $timeout) {
+})
 
-  })
+.controller('LoginCtrl', function ($scope, $ionicModal, $timeout) {
+  $ionicModal.fromTemplateUrl('templates/modal/forgot-password.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function () {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+})
 
-.controller('ProfileCtrl', function($scope) {
+.controller('ForgotPasswordCtrl', function ($scope, $ionicModal, $timeout) {
 
-  })
-  .controller('BlogCtrl', function($scope) {
+})
 
-  })
-  .controller('BlogDetailCtrl', function($scope) {
+.controller('ProfileCtrl', function ($scope) {
+  $scope.profileData = {
+    name: 'Sachin',
+    surname: 'Tendulkar',
+    image: 'http://2.bp.blogspot.com/-TgdKBlUGk90/T0PhPlFOf8I/AAAAAAAAAVc/jijEQ8u1uUg/s1600/387430_257363124319593_257347670987805_670782_1318978483_n.jpg',
+    yearsCoaching: 2,
+    email: 'sachin@gmail.com',
+    gender: 'Male',
+    contact: '+919098765324',
+    dob: '24th April, 1973',
+    country: 'UK',
+    credentials: 'Level 4',
+    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
+    coachingFocus: ['Sprinting', 'Hurdles'],
+    specialisations: ['Children in Athletics', 'First aid']
+  };
+})
 
-  })
-  .controller('ChatCtrl', function($scope) {
+.controller('BlogCtrl', function ($scope) {
 
-  })
-  .controller('ChatDetailCtrl', function($scope) {
+})
 
-  })
-  .controller('CompetitionCtrl', function($scope) {
+.controller('BlogDetailCtrl', function ($scope) {
 
-  })
-  .controller('RegistrationCtrl', function($scope) {
+})
 
-  })
-  .controller('EditProfileCtrl', function($scope) {
+.controller('ChatCtrl', function ($scope) {
 
-  })
-  .controller('AthletesCoachedCtrl', function($scope, $ionicModal) {
-    $ionicModal.fromTemplateUrl('templates/modal/modal-coach.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-    $scope.openModal = function() {
-      $scope.modal.show();
-    };
-    $scope.closeModal = function() {
-      $scope.modal.hide();
-    };
-  })
-  .controller('AthletesCoachedDetailCtrl', function($scope, $ionicModal) {
-    $ionicModal.fromTemplateUrl('templates/modal/modal-coach.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-    $scope.openModal = function() {
-      $scope.modal.show();
-    };
-  })
+})
+
+.controller('ChatDetailCtrl', function ($scope) {
+
+})
+
+.controller('CompetitionCtrl', function ($scope) {
+
+})
+
+.controller('RegistrationCtrl', function ($scope) {
+
+  $scope.formData = {};
+  $scope.coachingFocus = [
+    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country'
+  ];
+  $scope.specialisations = [
+    'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
+  ];
+
+  $scope.submit = function (data) {
+    console.log(data);
+    $state.go('app.profile');
+  };
+
+})
+
+.controller('EditProfileCtrl', function ($scope, $state) {
+  $scope.formData = {
+    name: 'Sachin',
+    surname: 'Tendulkar',
+    image: 'http://2.bp.blogspot.com/-TgdKBlUGk90/T0PhPlFOf8I/AAAAAAAAAVc/jijEQ8u1uUg/s1600/387430_257363124319593_257347670987805_670782_1318978483_n.jpg',
+    yearsCoaching: 2,
+    email: 'sachin@gmail.com',
+    gender: 'Male',
+    contact: '+919098765324',
+    dob: new Date(),
+    country: 'UK',
+    credentials: 'Level 4',
+    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
+    coachingFocus: ['Sprinting', 'Hurdles'],
+    specialisations: ['Children in Athletics', 'First aid']
+  };
+  $scope.coachingFocus = [
+    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country'
+  ];
+  $scope.specialisations = [
+    'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
+  ];
+
+  $scope.submit = function (data) {
+    console.log(data);
+    $state.go('app.profile');
+  };
+})
+
+.controller('AthletesCoachedCtrl', function ($scope, $ionicModal) {
+  $ionicModal.fromTemplateUrl('templates/modal/modal-coach.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function () {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+})
+
+.controller('AthletesCoachedDetailCtrl', function ($scope, $ionicModal) {
+  $ionicModal.fromTemplateUrl('templates/modal/modal-coach.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function () {
+    $scope.modal.show();
+  };
+})
 
 ;

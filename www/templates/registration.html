@@ -1,166 +1,79 @@
-<ion-view view-title="Registration">
+<ion-view view-title="Register Now">
   <ion-content>
-    <div class="pro-edit ">
-      <span class="text-center sp-reg padding-horizontal">All the fields below are mandatory.</span>
-      <form action="" name="formName" ng-submit="submitForm(formData);">
-        <div class="list mt20">
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="text" placeholder="Name" name="name">
-
-            </label>
-            <div class="error-msg-form" ng-show="myForm.name.$error.required && myForm.name.$dirty">Name is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="text" placeholder="Surname" name="surname">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.surname.$error.required && myForm.surname.$dirty">surname is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="email" placeholder="Email">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.surname.$error.required && myForm.surname.$dirty">surname is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input item-stacked-label">
-              <input type="tele" placeholder="Contact Number" name="number">
-            </label>
-
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="password" placeholder="Password" name="password">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.password.$error.required && myForm.password.$dirty">password is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input ">
-              <input type="password" placeholder="Password" name="password">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.password.$error.required && myForm.password.$dirty">password mismatch</div>
-          </div>
-
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Gender
-            </div>
-            <select>
-              <option selected>Male</option>
-              <option>Female</option>
-            </select>
+    <form name="formName" ng-submit="submit(formData);">
+      <div class="pro-edit">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Name" name="name" ng-model="formData.name" maxlength="35">
           </label>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="date" name="date">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.date.$error.required && myForm.date.$dirty">date is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input ">
-              <textarea name="text" rows="4" cols="40" placeholder="Street Address" name="address"></textarea>
-            </label>
-            <div class="error-msg-form" ng-show="myForm.address.$error.required && myForm.address.$dirty">address is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="text" placeholder="P.O. Box" name="pobox">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.pobox.$error.required && myForm.pobox.$dirty">pobox is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="text" placeholder="City/Town" name="city">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.city.$error.required && myForm.city.$dirty">city is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="text" placeholder="State/Province" name="state">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.state.$error.required && myForm.state.$dirty">state is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="text" placeholder="Postal Code" name="postal">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.postal.$error.required && myForm.postal.$dirty">postal code is required</div>
-          </div>
-
+          <label class="item item-input">
+            <input type="text" placeholder="Surname" name="surname" ng-model="formData.surname" maxlength="35">
+          </label>
+          <label class="item item-input">
+            <input type="number" placeholder="Years Coaching" name="yearsCoaching" ng-model="formData.yearsCoaching" min="1" max="99">
+          </label>
+          <label class="item item-input">
+            <input type="email" placeholder="Email" name="email" ng-model="formData.email">
+          </label>
           <label class="item item-input item-select">
             <div class="input-label">
               Country
             </div>
-            <select>
-              <option selected>India</option>
+            <select name="country" ng-model="formData.country">
+              <option selected>UK</option>
+              <option>USA</option>
+              <option>Canada</option>
               <option>Australia</option>
-              <option>Japan</option>
+              <option>New Zealand</option>
             </select>
           </label>
           <label class="item item-input item-select">
-            <div class="input-label">
-              Coaching Focus
-            </div>
-            <select>
-              <option selected>India</option>
-              <option>Australia</option>
-              <option>Japan</option>
+            <span class="input-label">Gender</span>
+            <select name="gender" ng-model="formData.gender">
+              <option selected>Male</option>
+              <option>Female</option>
             </select>
           </label>
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Credential/Qualification
-            </div>
-            <select>
-              <option selected>India</option>
-              <option>Australia</option>
-              <option>Japan</option>
-            </select>
+          <label class="item item-input">
+            <input type="tel" placeholder="Contact Number" name="contact" ng-model="formData.contact">
           </label>
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Specialization
-            </div>
-            <select>
-              <option selected>India</option>
-              <option>Australia</option>
-              <option>Japan</option>
-            </select>
+          <label class="item item-input">
+            <input type="date" placeholder="Date of Birth" name="dob" ng-model="formData.dob">
           </label>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <input type="text" placeholder="Years of Coaching" name="year ">
-            </label>
-            <div class="error-msg-form" ng-show="myForm.postal.$error.required && myForm.postal.$dirty">postal code is required</div>
-          </div>
-          <div class="ps-relative">
-            <label class="item item-input">
-              <textarea name="name" rows="4" cols="40" placeholder="About"></textarea>
-            </label>
-            <div class="error-msg-form" ng-show="myForm.name.$error.required && myForm.name.$dirty">about is required</div>
-          </div>
-
-          <div class="padding-horizontal ">
-            <div class="input-label">
-              Upload CV
-            </div>
-            <div class="upload-img mt20">
-              <img src="img/logo.png" alt="">
-            </div>
-            <button class="button button-positive button-small">
-              CHOOSE FILE
-            </button>
-
-          </div>
+          <label class="item item-input">
+            <textarea placeholder="About" name="about" ng-model="formData.about"></textarea>
+          </label>
+          <ion-item class="item-text-wrap multi-select">
+            <h3>Coaching Focus</h3>
+            <p>
+              <div class="tag-box-label" ng-repeat="c in coachingFocus">
+                <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="coachingFocus">
+                <label for="{{c}}">{{c}}</label>
+              </div>
+            </p>
+          </ion-item>
+          <ion-item class="item-text-wrap">
+            <h3>Specialisations</h3>
+            <p>
+              <div class="tag-box-label" ng-repeat="s in specialisations">
+                <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="specialisations">
+                <label for="{{s}}">{{s}}</label>
+              </div>
+              <div class="tag-box-label">
+                <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal">
+                <label for="Others">Others</label>
+              </div>
+            </p>
+          </ion-item>
+          <ion-item ng-if="formData.specialisations.otherVal" class="item-input">
+            <input type="text" placeholder="Please mention others" name="others" ng-model="formData.specialisations.others">
+          </ion-item>
         </div>
-        <div class="text-center m20 padding-horizontal">
-          <button class="button button-positive button-block">
-            Submit
-          </button>
-        </div>
-      </form>
+      </div>
+      <div class="text-center m20 padding-horizontal">
+        <button class="button button-positive button-block" type="submit">Save</button>
+      </div>
+    </form>
 
-    </div>
   </ion-content>
 </ion-view>

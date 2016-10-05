@@ -9816,14 +9816,6 @@ a.button {
 .pb10 {
   padding-bottom: 10px; }
 
-.tag-box {
-  padding: 2px 10px;
-  background: transparent;
-  border-radius: 22px;
-  display: inline-block;
-  margin-bottom: 5px;
-  border: 1px solid; }
-
 .right-badge-modal {
   position: absolute;
   right: 15px;
@@ -9920,14 +9912,29 @@ a.button {
     font-size: 12px;
     padding: 2px 0; }
 
-.tag-box {
+.tag-box, .tag-box-label label {
   padding: 2px 10px;
   border: 1px solid;
   border-radius: 20px;
   display: inline-block;
   margin-top: 5px; }
-  .tag-box + .tag-box {
+  .tag-box + .tag-box, .tag-box-label label + .tag-box, .tag-box-label .tag-box + label, .tag-box-label label + label {
     margin-left: 3px; }
+
+.tag-box-label {
+  position: relative;
+  display: inline-block; }
+  .tag-box-label + .tag-box-label {
+    margin-left: 3px; }
+  .tag-box-label input[type=checkbox] {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 0; }
+  .tag-box-label input[type=checkbox]:checked + label {
+    background-color: #004a9b;
+    border-color: #004a9b;
+    color: white; }
 
 .text-justified {
   text-align: justify; }
@@ -10001,7 +10008,8 @@ p.bold {
   font-size: 14px; }
 
 .pro-edit .item {
-  min-height: 50px; }
+  min-height: 50px;
+  position: relative; }
 
 .pro-edit .item-radio {
   border: none;
@@ -10107,9 +10115,6 @@ p.bold {
 .color-primary {
   color: #004a9b; }
 
-.text-right {
-  float: right; }
-
 .pr15 {
   padding-right: 15px;
   padding-top: 10px; }
@@ -10128,7 +10133,7 @@ p.bold {
   position: relative; }
 
 .error-msg, .error-msg-form {
-  background-color: #fc483f;
+  background-color: #c70e17;
   color: #fff;
   padding: 4px 10px;
   border-radius: 6px;
@@ -10142,7 +10147,7 @@ p.bold {
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #fc483f;
+    border-top: 5px solid #c70e17;
     bottom: -5px;
     content: ''; }
 

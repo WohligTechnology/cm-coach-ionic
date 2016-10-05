@@ -2,26 +2,46 @@
   <ion-content>
     <div class="pro-edit ">
       <span class="text-center sp-reg padding-horizontal">All the fields below are mandatory.</span>
-      <form action="">
+      <form action="" name="formName" ng-submit="submitForm(formData);">
         <div class="list mt20">
-          <label class="item item-input ">
-            <input type="text" placeholder="Name">
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Surname">
-          </label>
-          <label class="item item-input">
-            <input type="email" placeholder="Email">
-          </label>
-          <label class="item item-input item-stacked-label">
-            <input type="tele" placeholder="Contact Number">
-          </label>
-          <label class="item item-input">
-            <input type="password" placeholder="Password">
-          </label>
-          <label class="item item-input ">
-            <input type="password" placeholder="Password">
-          </label>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="text" placeholder="Name" name="name">
+
+            </label>
+            <div class="error-msg-form" ng-show="myForm.name.$error.required && myForm.name.$dirty">Name is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="text" placeholder="Surname" name="surname">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.surname.$error.required && myForm.surname.$dirty">surname is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="email" placeholder="Email">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.surname.$error.required && myForm.surname.$dirty">surname is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input item-stacked-label">
+              <input type="tele" placeholder="Contact Number" name="number">
+            </label>
+
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="password" placeholder="Password" name="password">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.password.$error.required && myForm.password.$dirty">password is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input ">
+              <input type="password" placeholder="Password" name="password">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.password.$error.required && myForm.password.$dirty">password mismatch</div>
+          </div>
+
           <label class="item item-input item-select">
             <div class="input-label">
               Gender
@@ -31,25 +51,43 @@
               <option>Female</option>
             </select>
           </label>
-          <label class="item item-input">
-            <input type="date">
-          </label>
-          <label class="item item-input ">
-            <textarea name="text" rows="4" cols="40" placeholder="Street Address"></textarea>
-          </label>
-          <label class="item item-input">
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="date" name="date">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.date.$error.required && myForm.date.$dirty">date is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input ">
+              <textarea name="text" rows="4" cols="40" placeholder="Street Address" name="address"></textarea>
+            </label>
+            <div class="error-msg-form" ng-show="myForm.address.$error.required && myForm.address.$dirty">address is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="text" placeholder="P.O. Box" name="pobox">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.pobox.$error.required && myForm.pobox.$dirty">pobox is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="text" placeholder="City/Town" name="city">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.city.$error.required && myForm.city.$dirty">city is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="text" placeholder="State/Province" name="state">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.state.$error.required && myForm.state.$dirty">state is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="text" placeholder="Postal Code" name="postal">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.postal.$error.required && myForm.postal.$dirty">postal code is required</div>
+          </div>
 
-            <input type="text" placeholder="P.O. Box">
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="City/Town">
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="State/Province">
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Postal Code">
-          </label>
           <label class="item item-input item-select">
             <div class="input-label">
               Country
@@ -90,16 +128,23 @@
               <option>Japan</option>
             </select>
           </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Years of Coaching">
-          </label>
-          <label class="item item-input">
-            <textarea name="name" rows="4" cols="40" placeholder="About"></textarea>
-          </label>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <input type="text" placeholder="Years of Coaching" name="year ">
+            </label>
+            <div class="error-msg-form" ng-show="myForm.postal.$error.required && myForm.postal.$dirty">postal code is required</div>
+          </div>
+          <div class="ps-relative">
+            <label class="item item-input">
+              <textarea name="name" rows="4" cols="40" placeholder="About"></textarea>
+            </label>
+            <div class="error-msg-form" ng-show="myForm.name.$error.required && myForm.name.$dirty">about is required</div>
+          </div>
+
           <div class="padding-horizontal ">
             <div class="input-label">
-  Upload CV
-</div>
+              Upload CV
+            </div>
             <div class="upload-img mt20">
               <img src="img/logo.png" alt="">
             </div>

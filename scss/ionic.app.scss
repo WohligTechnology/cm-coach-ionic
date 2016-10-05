@@ -395,8 +395,20 @@ p.bold {
   }
   .item-select {
     min-height: 70px;
+  }
 }
+.mt20 {
+  margin-top: 20px;
 }
-.mt20{
-      margin-top: 20px;
+.error-msg-form {
+  @extend .error-msg;
+  padding: 2px 6px;
+  top: -15px;
+  font-size: 9px;
+  z-index: 99;
+  &:after {
+    bottom: -5px;
+    position: absolute;
+    left: 50%;
+  }
 }

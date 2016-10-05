@@ -10108,7 +10108,7 @@ p.bold {
 .ps-relative {
   position: relative; }
 
-.error-msg {
+.error-msg, .error-msg-form {
   background-color: #fc483f;
   color: #fff;
   padding: 4px 10px;
@@ -10118,7 +10118,7 @@ p.bold {
   left: 50%;
   transform: translateX(-50%);
   font-size: 11px; }
-  .error-msg:after {
+  .error-msg:after, .error-msg-form:after {
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
@@ -10154,3 +10154,13 @@ p.bold {
 
 .mt20 {
   margin-top: 20px; }
+
+.error-msg-form {
+  padding: 2px 6px;
+  top: -15px;
+  font-size: 9px;
+  z-index: 99; }
+  .error-msg-form:after {
+    bottom: -5px;
+    position: absolute;
+    left: 50%; }

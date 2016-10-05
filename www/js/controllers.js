@@ -61,7 +61,7 @@ angular.module('starter.controllers', ['checklist-model'])
 
 })
 
-.controller('RegistrationCtrl', function ($scope) {
+.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup) {
 
   $scope.formData = {};
   $scope.coachingFocus = [
@@ -72,10 +72,23 @@ angular.module('starter.controllers', ['checklist-model'])
   ];
 
   $scope.submit = function (data) {
-    console.log(data);
-    $state.go('app.profile');
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
+      title: 'Terms & Conditions',
+      scope: $scope,
+      buttons: [{
+        text: 'No'
+      }, {
+        text: '<b>Yes</b>',
+        type: 'button-positive',
+        onTap: function (e) {
+          console.log(data);
+          $state.go('app.profile');
+        }
+      }]
+    });
   };
-
 })
 
 .controller('EditProfileCtrl', function ($scope, $state) {

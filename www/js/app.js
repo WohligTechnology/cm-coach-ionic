@@ -41,20 +41,25 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+
   .state('login', {
     url: '/login',
-
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
-
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
   })
+
+  .state('registration', {
+    url: '/registration',
+    templateUrl: 'templates/registration.html',
+    controller: 'RegistrationCtrl'
+  })
+
   .state('forgot-password', {
     url: '/forgot-password',
-
-        templateUrl: 'templates/forgot-password.html',
-        controller: 'ForgotPasswordCtrl'
-
+    templateUrl: 'templates/forgot-password.html',
+    controller: 'ForgotPasswordCtrl'
   })
+
   .state('app.edit-profile', {
     url: '/edit-profile',
     views: {
@@ -64,6 +69,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+
   .state('app.blog', {
     url: '/blog',
     views: {
@@ -73,15 +79,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-  .state('app.registration', {
-    url: '/registration',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/registration.html',
-        controller: 'RegistrationCtrl'
-      }
-    }
-  })
+
   .state('app.blogdetail', {
     url: '/blog-detail',
     views: {
@@ -91,6 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+
   .state('app.chat', {
     url: '/chat',
     views: {
@@ -100,6 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+
   .state('app.chatdetail', {
     url: '/chat-detail',
     views: {
@@ -109,36 +109,37 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+
   .state('app.competition', {
-      url: '/competition',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/competition.html',
-          controller: 'CompetitionCtrl'
-        }
+    url: '/competition',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/competition.html',
+        controller: 'CompetitionCtrl'
       }
-    })
+    }
+  })
+
   .state('app.athletes-coached', {
-      url: '/athletes-coached',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/athletes-coach.html',
-          controller: 'AthletesCoachedCtrl'
-        }
+    url: '/athletes-coached',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/athletes-coach.html',
+        controller: 'AthletesCoachedCtrl'
       }
-    })
+    }
+  })
+
   .state('app.athletes-coached-detail', {
-      url: '/athletes-coached-detail',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates//athletes-coach-detail.html',
-          controller: 'AthletesCoachedDetailCtrl'
-        }
+    url: '/athletes-coached-detail',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates//athletes-coach-detail.html',
+        controller: 'AthletesCoachedDetailCtrl'
       }
-    })
+    }
+  });
 
-
-  ;
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/profile');
+  $urlRouterProvider.otherwise('/login');
 });

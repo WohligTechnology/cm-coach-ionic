@@ -1,0 +1,28 @@
+<ion-view view-title="New Competition">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-input">
+                <span class="input-label">Name</span>
+                <input type="text">
+            </ion-item>
+            <ion-item class="item-input">
+                <span class="input-label">Start Date</span>
+                <input type="date">
+            </ion-item>
+            <ion-item class="item-input">
+                <span class="input-label">End Date</span>
+                <input type="date">
+            </ion-item>
+            <ion-toggle toggle-class="toggle-positive">Key Competition</ion-toggle>
+            <div class="item item-divider item-icon-right" ng-click="addAthlete();">Assign Athletes <i class="icon ln-circle-plus ln-fit"></i></div>
+            <ion-item class="item-name item-avatar">
+                <img src="img/img-placeholder.png">
+                <h2>Van Gough</h2>
+                <ion-option-button class="button-assertive">Remove</ion-option-button>
+            </ion-item>
+        </ion-list>
+        <div class="padding-horizontal">
+            <button class="button button-positive button-block">Save</button>
+        </div>
+    </ion-content>
+</ion-view>

@@ -120,6 +120,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.competition-create', {
+    url: '/competition-create',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/competition-create.html',
+        controller: 'CompetitionCreateCtrl'
+      }
+    }
+  })
+
   .state('app.athletes-coaching', {
     url: '/athletes-coaching',
     views: {

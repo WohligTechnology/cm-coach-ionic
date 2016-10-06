@@ -57,9 +57,30 @@ angular.module('starter.controllers', ['checklist-model'])
 
 })
 
-.controller('CompetitionCtrl', function ($scope) {
+.controller('CompetitionCtrl', function ($scope, $ionicModal) {
+
 
 })
+
+.controller('CompetitionCreateCtrl', function ($scope, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+
+  $scope.addAthlete = function () {
+    $scope.modal.show();
+  };
+
+})
+
 
 .controller('RegistrationCtrl', function ($scope, $state, $ionicPopup) {
 

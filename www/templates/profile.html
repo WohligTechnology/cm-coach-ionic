@@ -39,8 +39,8 @@
       </ion-item>
       <ion-item class="item-text-wrap">
         <h3>About</h3>
-        <p class="read-more text-justified">{{profileData.about}}</p>
-        <p class="text-right bold">Read More</p>
+        <p class="read-more text-justified" ng-class="{'auto-height': read==true}">{{profileData.about}}</p>
+        <p class="text-right bold" ng-click="readMore()">Show <span ng-if="!read">More</span><span ng-if="read">Less</span></p>
       </ion-item>
       <ion-item class="item-text-wrap">
         <h3>Coaching Focus</h3>

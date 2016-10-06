@@ -23,7 +23,7 @@ angular.module('starter.controllers', ['checklist-model'])
 
 })
 
-.controller('ProfileCtrl', function ($scope) {
+.controller('ProfileCtrl', function ($scope, $ionicScrollDelegate) {
   $scope.profileData = {
     name: 'Sachin',
     surname: 'Tendulkar',
@@ -39,9 +39,28 @@ angular.module('starter.controllers', ['checklist-model'])
     coachingFocus: ['Sprinting', 'Hurdles'],
     specialisations: ['Children in Athletics', 'First aid']
   };
+
+  $scope.read = false;
+
+  $scope.readMore = function () {
+    $scope.read = !$scope.read;
+    $ionicScrollDelegate.resize();
+  };
+
 })
 
 .controller('BlogCtrl', function ($scope) {
+  $scope.data = [{
+    title: 'The Strongest Woman I’ve Ever Known',
+    image: 'http://d2gd8qsu8uml9u.cloudfront.net/uploads/AP_4657469935821-680x384.jpg',
+    date: '4th October 2015',
+    rating: '4.5'
+  }, {
+    title: 'What You Dont Know About: Being a GM',
+    image: 'http://d2gd8qsu8uml9u.cloudfront.net/uploads/AP_234024109023-680x340.jpg',
+    date: '3rd November 2015',
+    rating: '3.5'
+  }];
 
 })
 

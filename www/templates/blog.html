@@ -1,24 +1,15 @@
-<ion-view view-title="Blog">
-  <ion-content>
-    <div class="blog-detail">
-      <div class="list card" ui-sref="app.blogdetail">
-        <div class="item item-body">
-          <img class="full-image" src="img/blog1.jpg">
-          <div class="item-content">
-            <h4 class="card-title">
-              Nine Inch Nails Live
-            </h4>
-          </div>
-
-        </div>
-      </div>
-      <div class="list card" ui-sref="app.blogdetail">
-        <div class="item item-body">
-          <img class="full-image" src="img/blog1.jpg">
-          <div class="item-content">
-            <h4 class="card-title">
-              Nine Inch Nails Live
-            </h4>
+<ion-view view-title="My Blogs">
+  <ion-content class="blog-detail">
+    <div class="list card" ui-sref="app.blogdetail" ng-repeat="d in data">
+      <div class="item item-body">
+        <img class="full-image" ng-src="{{d.image}}">
+        <div class="item-content">
+          <h4 class="card-title">
+            {{d.title}}
+          </h4>
+          <div class="more-info">
+            <div class="rate-card pull-right">{{d.rating}}</div>
+            <span class="small-text">{{d.date}}</span>
           </div>
         </div>
       </div>

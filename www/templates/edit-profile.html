@@ -13,15 +13,19 @@
       <div class="pro-edit">
         <div class="list">
           <label class="item item-input">
+            <span class="input-label">Name</span>
             <input type="text" placeholder="Name" name="name" ng-model="formData.name" maxlength="35">
           </label>
           <label class="item item-input">
+            <span class="input-label">Surname</span>
             <input type="text" placeholder="Surname" name="surname" ng-model="formData.surname" maxlength="35">
           </label>
           <label class="item item-input">
+            <span class="input-label">Years Coaching</span>
             <input type="number" placeholder="Years Coaching" name="yearsCoaching" ng-model="formData.yearsCoaching" min="1" max="99">
           </label>
           <label class="item item-input">
+            <span class="input-label">Email</span>
             <input type="email" placeholder="Email" name="email" ng-model="formData.email">
           </label>
           <label class="item item-input item-select">
@@ -44,13 +48,15 @@
             </select>
           </label>
           <label class="item item-input">
+            <span class="input-label">Contact</span>
             <input type="tel" placeholder="Contact Number" name="contact" ng-model="formData.contact">
           </label>
           <label class="item item-input">
-            <input type="text" onfocus="(this.type='date')" placeholder="Date of Birth" name="dob" ng-model="formData.dob">
+            <span class="input-label">Date of Birth</span>
+            <input type="date" name="dob" ng-model="formData.dob">
           </label>
           <label class="item item-input">
-            <textarea placeholder="About" name="about" ng-model="formData.about"></textarea>
+            <textarea placeholder="About" rows="5" name="about" ng-model="formData.about"></textarea>
           </label>
           <ion-item class="item-text-wrap multi-select">
             <h3>Coaching Focus</h3>

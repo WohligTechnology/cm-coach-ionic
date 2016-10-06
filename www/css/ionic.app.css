@@ -9860,7 +9860,8 @@ a.button {
   width: 100px;
   border-radius: 100%;
   background-size: cover;
-  margin: 0 auto; }
+  margin: 0 auto;
+  background-image: url(../img/img-placeholder.png); }
 
 .picture-hold {
   padding-top: 30px;
@@ -9868,6 +9869,8 @@ a.button {
   background-image: linear-gradient(to top, #2174d0, #004a9b);
   background-image: -webkit-linear-gradient(to top, #2174d0, #004a9b);
   color: white; }
+  .picture-hold.picture-pad {
+    padding-bottom: 30px; }
   .picture-hold h3 {
     color: white;
     font-size: 18px;
@@ -10197,3 +10200,12 @@ p.bold {
 
 .pull-right {
   float: right; }
+
+.badged {
+  color: #004a9b;
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700; }

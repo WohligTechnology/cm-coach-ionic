@@ -1,0 +1,18 @@
+<ion-view view-title="Athletes Coaching">
+  <ion-nav-buttons side="right">
+    <span class="ln ln-user right-badge ln-fit" ng-click="openModal()">
+    <span class="badge badge-assertive">0</span>
+    </span>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-avatar" ui-sref="app.athletes-coaching-detail" ng-repeat="a in athleteCoaching">
+        <img ng-src="{{a.image}}">
+        <h2>{{a.name}} {{a.surname}}</h2>
+        <p><i class="icon ln-calendar3"></i> {{a.acceptedDate}} - {{a.renewalDate}}</p>
+        <span class="badge badge-positive">{{ a.subscriptionType | limitTo:1 }}</span>
+        <ion-option-button class="button-assertive">Unsubscribe</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

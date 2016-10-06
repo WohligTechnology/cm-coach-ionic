@@ -120,7 +120,7 @@ angular.module('starter.controllers', ['checklist-model'])
   };
 })
 
-.controller('AthletesCoachedCtrl', function ($scope, $ionicModal) {
+.controller('AthletesCoachingCtrl', function ($scope, $ionicModal) {
   $ionicModal.fromTemplateUrl('templates/modal/modal-coach.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -133,18 +133,46 @@ angular.module('starter.controllers', ['checklist-model'])
   $scope.closeModal = function () {
     $scope.modal.hide();
   };
+
+  $scope.athleteCoaching = [{
+    name: 'Matt',
+    surname: 'Smith',
+    image: 'img/img-placeholder.png',
+    acceptedDate: '13 May, 2016',
+    renewalDate: '12 June, 2016',
+    subscriptionType: 'Monthly'
+  }, {
+    name: 'John',
+    surname: 'Damon',
+    image: 'img/img-placeholder.png',
+    acceptedDate: '17 August, 2016',
+    renewalDate: '16 August, 2017',
+    subscriptionType: 'Annual'
+  }];
 })
 
-.controller('AthletesCoachedDetailCtrl', function ($scope, $ionicModal) {
-  $ionicModal.fromTemplateUrl('templates/modal/modal-coach.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modal = modal;
-  });
-  $scope.openModal = function () {
-    $scope.modal.show();
+.controller('AthletesCoachingDetailCtrl', function ($scope, $ionicModal) {
+
+  $scope.athleteCoaching = {
+    name: 'Matt',
+    surname: 'Smith',
+    image: 'img/img-placeholder.png',
+    acceptedDate: '13 May, 2016',
+    renewalDate: '12 June, 2016',
+    subscriptionType: 'Monthly',
+    location: 'UK',
+    age: '22',
+    sports: [
+      'Cycling',
+      'Running'
+    ],
+    events: [
+      'UK Marathon 2016',
+      'Triathlon 2016'
+    ]
   };
+
+
 })
 
 ;

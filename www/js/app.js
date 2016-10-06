@@ -120,22 +120,22 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.athletes-coached', {
-    url: '/athletes-coached',
+  .state('app.athletes-coaching', {
+    url: '/athletes-coaching',
     views: {
       'menuContent': {
-        templateUrl: 'templates/athletes-coach.html',
-        controller: 'AthletesCoachedCtrl'
+        templateUrl: 'templates/athletes-coaching.html',
+        controller: 'AthletesCoachingCtrl'
       }
     }
   })
 
-  .state('app.athletes-coached-detail', {
-    url: '/athletes-coached-detail',
+  .state('app.athletes-coaching-detail', {
+    url: '/athletes-coaching-detail',
     views: {
       'menuContent': {
-        templateUrl: 'templates//athletes-coach-detail.html',
-        controller: 'AthletesCoachedDetailCtrl'
+        templateUrl: 'templates/athletes-coaching-detail.html',
+        controller: 'AthletesCoachingDetailCtrl'
       }
     }
   });

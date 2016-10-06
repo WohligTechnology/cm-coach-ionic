@@ -526,22 +526,18 @@ p.bold {
   font-weight: 700;
 }
 
-.icon-circled {
+.icon.icon-circled {
+  background-color: #c4c4c4;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  font-size: 26px;
+  color: white;
+  padding-left: 4px;
+  top: 17px;
+  left: 7px;
   &.icon-positive {
-    .icon {
-      background-color: $positive;
-    }
-  }
-  .icon {
-    background-color: #c4c4c4;
-    height: 40px;
-    width: 40px;
-    border-radius: 100%;
-    font-size: 26px;
-    color: white;
-    padding-left: 4px;
-    top: 17px;
-    left: 7px;
+    background-color: $positive;
   }
 }
 

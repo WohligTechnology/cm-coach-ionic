@@ -10210,10 +10210,7 @@ p.bold {
   font-size: 12px;
   font-weight: 700; }
 
-.icon-circled.icon-positive .icon {
-  background-color: #004a9b; }
-
-.icon-circled .icon {
+.icon.icon-circled {
   background-color: #c4c4c4;
   height: 40px;
   width: 40px;
@@ -10223,6 +10220,8 @@ p.bold {
   padding-left: 4px;
   top: 17px;
   left: 7px; }
+  .icon.icon-circled.icon-positive {
+    background-color: #004a9b; }
 
 .item.item-checkbox img {
   height: 30px;

@@ -130,6 +130,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.competition-detail', {
+    url: '/competition-detail',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/competition-detail.html',
+        controller: 'CompetitionDetailCtrl'
+      }
+    }
+  })
+
   .state('app.athletes-coaching', {
     url: '/athletes-coaching',
     views: {

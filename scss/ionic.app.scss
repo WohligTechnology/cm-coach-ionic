@@ -593,3 +593,9 @@ p.bold {
   vertical-align: middle;
   border-radius: 100%;
 }
+
+.platform-ios.platform-cordova:not(.fullscreen) {
+  .top-statusbar {
+    top: 20px;
+  }
+}

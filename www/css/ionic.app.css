@@ -10266,3 +10266,7 @@ p.bold {
   margin-right: 15px;
   vertical-align: middle;
   border-radius: 100%; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .top-statusbar {
+  border-top: 20px solid transparent !important;
+  width: 100%; }

@@ -13,11 +13,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      StatusBar.styleBlackTranslucent();
     }
   });
 })
@@ -106,6 +104,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       'menuContent': {
         templateUrl: 'templates/chat-detail.html',
         controller: 'ChatDetailCtrl'
+      }
+    }
+  })
+
+  .state('app.coaches', {
+    url: '/coaches',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/coaches.html',
+        controller: 'CoachesCtrl'
       }
     }
   })

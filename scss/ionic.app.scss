@@ -586,3 +586,10 @@ p.bold {
 .auto-height {
   height: auto;
 }
+
+.small-avatar img {
+  width: 32px;
+  margin-right: 15px;
+  vertical-align: middle;
+  border-radius: 100%;
+}

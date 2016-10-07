@@ -68,8 +68,19 @@ angular.module('starter.controllers', ['checklist-model'])
 
 })
 
-.controller('ChatCtrl', function ($scope) {
-
+.controller('ChatCtrl', function ($scope, $ionicModal) {
+  $ionicModal.fromTemplateUrl('templates/modal/modal-chat.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.newChat = function () {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
 })
 
 .controller('ChatDetailCtrl', function ($scope) {

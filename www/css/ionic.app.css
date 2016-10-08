@@ -10273,7 +10273,7 @@ p.bold {
 .platform-ios.platform-cordova:not(.fullscreen) .top-statusbar {
   top: 20px; }
 
-.chat-badge {
+.badge.chat-badge {
   top: 24px;
   right: 15px; }
 

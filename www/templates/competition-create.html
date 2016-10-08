@@ -1,23 +1,26 @@
-<ion-view view-title="New Competition">
+<ion-view view-title="Competition">
+    <ion-nav-buttons side="right">
+        <a class="button button-clear" ui-sref="app.competition">Save</a>
+    </ion-nav-buttons>
     <ion-content>
         <ion-list>
             <ion-item class="item-input">
                 <span class="input-label">Name</span>
-                <input type="text">
+                <input type="text" ng-model="data.name">
             </ion-item>
             <ion-item class="item-input">
                 <span class="input-label">Start Date</span>
-                <input type="date">
+                <input type="date" ng-model="data.startDate">
             </ion-item>
             <ion-item class="item-input">
                 <span class="input-label">End Date</span>
-                <input type="date">
+                <input type="date" ng-model="data.endDate">
             </ion-item>
-            <ion-toggle toggle-class="toggle-positive">Key Competition</ion-toggle>
+            <ion-toggle toggle-class="toggle-positive" ng-model="data.keyCompetition">Key Competition</ion-toggle>
             <div class="item item-divider item-icon-right" ng-click="addAthlete();">Assign Athletes <i class="icon ln-circle-plus ln-fit"></i></div>
-            <ion-item class="item-name item-avatar">
-                <img src="img/img-placeholder.png">
-                <h2>Van Gough</h2>
+            <ion-item class="item-name item-avatar" ng-repeat="d in data.assignedAthletes" ng-if="data.assignedAthletes">
+                <img ng-src="{{d.img}}">
+                <h2>{{d.name}}</h2>
                 <ion-option-button class="button-assertive">Remove</ion-option-button>
             </ion-item>
         </ion-list>

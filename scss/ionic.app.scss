@@ -510,6 +510,9 @@ p.bold {
   padding-left: 4px;
   top: 17px;
   left: 10px;
+  &.ln-speed-fast {
+    padding-bottom: 10px;
+  }
   &.icon-positive {
     background-color: $positive;
   }
@@ -598,4 +601,9 @@ p.bold {
   .top-statusbar {
     top: 20px;
   }
+}
+
+.chat-badge {
+  top: 24px;
+  right: 15px;
 }

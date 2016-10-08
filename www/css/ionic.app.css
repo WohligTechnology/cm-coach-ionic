@@ -10200,6 +10200,8 @@ p.bold {
   padding-left: 4px;
   top: 17px;
   left: 10px; }
+  .icon.icon-circled.ln-speed-fast {
+    padding-bottom: 10px; }
   .icon.icon-circled.icon-positive {
     background-color: #004a9b; }
 
@@ -10268,5 +10270,8 @@ p.bold {
   border-radius: 100%; }
 
 .platform-ios.platform-cordova:not(.fullscreen) .top-statusbar {
-  border-top: 20px solid transparent !important;
-  width: 100%; }
+  top: 20px; }
+
+.chat-badge {
+  top: 24px;
+  right: 15px; }

@@ -4,16 +4,10 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item class="item-icon-left icon-c-l" ui-sref="app.competition-detail">
-        <i class="icon icon-positive icon-circled ln-trophy"></i>
-        <h2>Nike London Marathon</h2>
-        <p>14, January 2017 - 18 January, 2017</p>
-        <ion-option-button class="button-assertive"><i class="icon ln-trash"></i></ion-option-button>
-      </ion-item>
-      <ion-item class="item-icon-left icon-c-l" ui-sref="app.competition-detail">
-        <i class="icon icon-circled ln-trophy"></i>
-        <h2>Puma Manchester Marathon</h2>
-        <p>23, January 2017 - 24 January, 2017</p>
+      <ion-item class="item-icon-left icon-c-l" ui-sref="app.competition-detail" ng-repeat="d in data">
+        <i class="icon icon-circled ln-trophy" ng-class="{'icon-positive': d.keyCompetition == true}"></i>
+        <h2 data-ng-bind="d.name"></h2>
+        <p>{{d.startDate}} - {{d.endDate}}</p>
         <ion-option-button class="button-assertive"><i class="icon ln-trash"></i></ion-option-button>
       </ion-item>
     </ion-list>

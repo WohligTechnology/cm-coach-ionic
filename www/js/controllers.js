@@ -83,13 +83,68 @@ angular.module('starter.controllers', ['checklist-model'])
   };
 })
 
-.controller('ChatDetailCtrl', function ($scope) {
+.controller('ChatDetailCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
+
+  $scope.hideTime = true;
+
+  $scope.timeStamp = function () {
+    var d = new Date();
+    d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+    return d;
+  };
+
+  $scope.sendMessage = function () {
+
+    $scope.messages.push({
+      userId: 'me',
+      text: $scope.data.message,
+      time: $scope.timeStamp()
+    });
+
+    delete $scope.data.message;
+    $ionicScrollDelegate.scrollBottom(true);
+
+  };
+
+  $scope.chatTap = function (m) {
+    m.showTime = true;
+    $timeout(function () {
+      m.showTime = false;
+    }, 4000);
+  };
+  $scope.closeKeyboard = function () {
+    cordova.plugins.Keyboard.close();
+  };
+
+  $scope.data = {};
+  $scope.messages = [{
+    userId: 'he',
+    text: 'Hello! Welcome to Coach Mentor!',
+    time: $scope.timeStamp()
+  }];
 
 })
 
 .controller('CompetitionCtrl', function ($scope, $ionicModal) {
-
-
+  $scope.data = [{
+    name: 'Nike Marathon London',
+    startDate: '14 January, 2017',
+    endDate: '15 January, 2017',
+    keyCompetition: true,
+    assignedAthletes: [{
+      name: 'Van Gough',
+      img: 'img/img-placeholder.png'
+    }]
+  }, {
+    name: 'Puma Marathon Manchester',
+    startDate: '14 January, 2017',
+    endDate: '15 January, 2017',
+    keyCompetition: false,
+    assignedAthletes: [{
+      name: 'Van Gough',
+      img: 'img/img-placeholder.png'
+    }]
+  }];
 })
 
 .controller('CompetitionCreateCtrl', function ($scope, $ionicModal) {
@@ -126,6 +181,96 @@ angular.module('starter.controllers', ['checklist-model'])
 
   $scope.addAthlete = function () {
     $scope.modal.show();
+  };
+
+  $scope.data = {
+    name: 'Nike Marathon London',
+    startDate: new Date("January 14, 2017 11:13:00"),
+    endDate: new Date("January 15, 2017 11:13:00"),
+    keyCompetition: true,
+    assignedAthletes: [{
+      name: 'Van Gough',
+      img: 'img/img-placeholder.png'
+    }, {
+      name: 'Samuel Trump',
+      img: 'img/img-placeholder.png'
+    }],
+  };
+
+})
+
+
+.controller('TestingCtrl', function ($scope, $ionicModal) {
+  $scope.data = [{
+    name: '800M Running',
+    startDate: '14 January, 2017',
+    endDate: '15 January, 2017',
+    details: '',
+    assignedAthletes: [{
+      name: 'Van Gough',
+      img: 'img/img-placeholder.png'
+    }],
+  }, {
+    name: '5KM Cycling',
+    startDate: '14 January, 2017',
+    endDate: '15 January, 2017',
+    details: '',
+    assignedAthletes: [{
+      name: 'Van Gough',
+      img: 'img/img-placeholder.png'
+    }],
+  }];
+
+})
+
+.controller('TestingCreateCtrl', function ($scope, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+
+  $scope.addAthlete = function () {
+    $scope.modal.show();
+  };
+
+})
+
+.controller('TestingDetailCtrl', function ($scope, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+
+  $scope.addAthlete = function () {
+    $scope.modal.show();
+  };
+
+  $scope.data = {
+    name: '300M Running',
+    startDate: new Date("January 14, 2017 11:13:00"),
+    endDate: new Date("January 15, 2017 11:13:00"),
+    details: '300M Running on Ronal Ground',
+    assignedAthletes: [{
+      name: 'Van Gough',
+      img: 'img/img-placeholder.png'
+    }, {
+      name: 'Samuel Trump',
+      img: 'img/img-placeholder.png'
+    }],
   };
 
 })

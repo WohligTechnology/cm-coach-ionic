@@ -142,11 +142,43 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/competition-detail',
     views: {
       'menuContent': {
-        templateUrl: 'templates/competition-detail.html',
+        templateUrl: 'templates/competition-create.html',
         controller: 'CompetitionDetailCtrl'
       }
     }
   })
+
+  .state('app.testing', {
+    url: '/testing',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/testing.html',
+        controller: 'TestingCtrl'
+      }
+    }
+  })
+
+
+  .state('app.testing-create', {
+    url: '/testing-create',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/testing-create.html',
+        controller: 'TestingCreateCtrl'
+      }
+    }
+  })
+
+  .state('app.testing-detail', {
+    url: '/testing-detail',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/testing-create.html',
+        controller: 'TestingDetailCtrl'
+      }
+    }
+  })
+
 
   .state('app.athletes-coaching', {
     url: '/athletes-coaching',

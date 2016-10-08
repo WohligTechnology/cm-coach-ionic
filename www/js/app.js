@@ -128,6 +128,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.charts', {
+    url: '/charts',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/charts.html',
+        controller: 'ChartsCtrl'
+      }
+    }
+  })
+
   .state('app.competition-create', {
     url: '/competition-create',
     views: {

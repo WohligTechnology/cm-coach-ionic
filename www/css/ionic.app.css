@@ -9966,7 +9966,8 @@ p.bold {
   text-align: right; }
   .bubble.me .msg {
     background-color: #004a9b;
-    color: white; }
+    color: white;
+    text-align: left; }
 
 .bubble .msg {
   padding: 8px;
@@ -10275,3 +10276,6 @@ p.bold {
 .chat-badge {
   top: 24px;
   right: 15px; }
+
+.button.input-label {
+  width: auto; }

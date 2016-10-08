@@ -248,6 +248,7 @@ p.bold {
     .msg {
       background-color: $positive;
       color: white;
+      text-align: left;
     }
   }
   .msg {
@@ -606,4 +607,8 @@ p.bold {
 .chat-badge {
   top: 24px;
   right: 15px;
+}
+
+.button.input-label {
+  width: auto;
 }

@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['checklist-model'])
+angular.module('starter.controllers', ['checklist-model', 'chart.js'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
@@ -95,14 +95,17 @@ angular.module('starter.controllers', ['checklist-model'])
 
   $scope.sendMessage = function () {
 
-    $scope.messages.push({
-      userId: 'me',
-      text: $scope.data.message,
-      time: $scope.timeStamp()
-    });
+    if ($scope.data.message !== '' && $scope.data.message) {
+      console.log($scope.data.message);
+      $scope.messages.push({
+        userId: 'me',
+        text: $scope.data.message,
+        time: $scope.timeStamp()
+      });
 
-    delete $scope.data.message;
-    $ionicScrollDelegate.scrollBottom(true);
+      delete $scope.data.message;
+      $ionicScrollDelegate.scrollBottom(true);
+    }
 
   };
 
@@ -112,8 +115,8 @@ angular.module('starter.controllers', ['checklist-model'])
       m.showTime = false;
     }, 4000);
   };
-  $scope.closeKeyboard = function () {
-    cordova.plugins.Keyboard.close();
+  $scope.openKb = function () {
+    cordova.plugins.Keyboard.open();
   };
 
   $scope.data = {};
@@ -223,23 +226,13 @@ angular.module('starter.controllers', ['checklist-model'])
 
 })
 
-.controller('TestingCreateCtrl', function ($scope, $ionicModal) {
-
-  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.closeModal = function () {
-    $scope.modal.hide();
-  };
-
-  $scope.addAthlete = function () {
-    $scope.modal.show();
-  };
-
+.controller('ChartsCtrl', function ($scope, $ionicModal) {
+  $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+  $scope.series = ['Series A', 'Series B'];
+  $scope.data = [
+    [65, 59, 80, 81, 56, 55, 40],
+    [28, 48, 40, 19, 86, 27, 90]
+  ];
 })
 
 .controller('TestingDetailCtrl', function ($scope, $ionicModal) {

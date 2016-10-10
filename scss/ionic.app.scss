@@ -612,3 +612,8 @@ p.bold {
 .button.input-label {
   width: auto;
 }
+
+.calendar-event-inner,
+.monthview-primary-with-event {
+  background-color: $positive;
+}

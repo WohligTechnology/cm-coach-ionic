@@ -208,6 +208,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'AthletesCoachingDetailCtrl'
       }
     }
+  })
+
+  .state('app.training-diary', {
+    url: '/training-diary',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/training-diary.html',
+        controller: 'TrainingDiaryCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

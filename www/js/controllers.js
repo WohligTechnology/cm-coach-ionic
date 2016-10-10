@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['checklist-model', 'chart.js'])
+angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalendar'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
@@ -233,6 +233,43 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js'])
     [65, 59, 80, 81, 56, 55, 40],
     [28, 48, 40, 19, 86, 27, 90]
   ];
+})
+
+.controller('TrainingDiaryCtrl', function ($scope, $ionicModal) {
+
+  $scope.calendar = {};
+  $scope.changeMode = function (mode) {
+    $scope.calendar.mode = mode;
+  };
+
+  $scope.calendar.eventSource = [{
+    title: 'Running',
+    startTime: new Date(),
+    endTime: new Date(),
+    allDay: true
+  }];
+
+  $scope.onEventSelected = function (event) {
+    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+  };
+
+  $scope.onViewTitleChanged = function (title) {
+    $scope.viewTitle = title;
+  };
+
+  $scope.today = function () {
+    $scope.calendar.currentDate = new Date();
+  };
+
+  $scope.isToday = function () {
+    var today = new Date(),
+      currentCalendarDate = new Date($scope.calendar.currentDate);
+
+    today.setHours(0, 0, 0, 0);
+    currentCalendarDate.setHours(0, 0, 0, 0);
+    return today.getTime() === currentCalendarDate.getTime();
+  };
+
 })
 
 .controller('TestingDetailCtrl', function ($scope, $ionicModal) {

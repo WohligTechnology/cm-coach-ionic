@@ -3,7 +3,6 @@
         <a class="tab-item" ng-click="changeMode('day')" ng-class="{'active': calendar.mode == 'day'}">Day</a>
         <a class="tab-item" ng-click="changeMode('week')" ng-class="{'active': calendar.mode == 'week'}">Week</a>
         <a class="tab-item" ng-click="changeMode('month')" ng-class="{'active': calendar.mode == 'month'}">Month</a>
-        <a class="tab-item" ng-click="loadEvents()">Random</a>
     </div>
     <ion-content class="has-tabs">
         <calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode" event-source="calendar.eventSource" range-changed="reloadSource(startTime, endTime)"

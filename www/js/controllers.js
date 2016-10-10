@@ -243,10 +243,15 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalen
   };
 
   $scope.calendar.eventSource = [{
-    title: 'Running',
-    startTime: new Date(),
-    endTime: new Date(),
-    allDay: true
+    title: 'Run Happy Marathon',
+    startTime: new Date("October 14, 2016 11:00:00"),
+    endTime: new Date("October 14, 2016 23:15:00"),
+    allDay: false
+  }, {
+    title: 'London Cycling Tour',
+    startTime: new Date("October 16, 2016 11:13:00"),
+    endTime: new Date("October 16, 2016 14:13:00"),
+    allDay: false
   }];
 
   $scope.onEventSelected = function (event) {

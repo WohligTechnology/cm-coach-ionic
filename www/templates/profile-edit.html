@@ -10,10 +10,10 @@
           <a class="button button-icon icon ln-pencil ln-fit"></a>
         </div>
       </div>
-      <div class="pro-edit">
+      <div class="pro-edit text-rite">
         <div class="list">
           <label class="item item-input">
-            <span class="input-label">Name</span>
+            <span class="input-label">Forename</span>
             <input type="text" placeholder="Name" name="name" ng-model="formData.name" maxlength="35">
           </label>
           <label class="item item-input">
@@ -25,7 +25,7 @@
             <input type="number" placeholder="Years Coaching" name="yearsCoaching" ng-model="formData.yearsCoaching" min="1" max="99">
           </label>
           <label class="item item-input">
-            <span class="input-label">Email</span>
+            <span class="input-label">Email Address</span>
             <input type="email" placeholder="Email" name="email" ng-model="formData.email">
           </label>
           <label class="item item-input item-select">
@@ -33,8 +33,8 @@
               Country
             </div>
             <select name="country" ng-model="formData.country">
-              <option selected>UK</option>
-              <option>USA</option>
+              <option selected>United Kingdom</option>
+              <option>United States</option>
               <option>Canada</option>
               <option>Australia</option>
               <option>New Zealand</option>
@@ -48,7 +48,7 @@
             </select>
           </label>
           <label class="item item-input">
-            <span class="input-label">Contact</span>
+            <span class="input-label">Phone Number</span>
             <input type="tel" placeholder="Contact Number" name="contact" ng-model="formData.contact">
           </label>
           <label class="item item-input">
@@ -56,7 +56,8 @@
             <input type="date" name="dob" ng-model="formData.dob">
           </label>
           <label class="item item-input">
-            <textarea placeholder="About" rows="5" name="about" ng-model="formData.about"></textarea>
+            <span class="input-label">About</span>
+            <textarea rows="6" name="about" ng-model="formData.about"></textarea>
           </label>
           <ion-item class="item-text-wrap multi-select">
             <h3>Coaching Focus</h3>

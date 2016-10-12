@@ -4,10 +4,11 @@
   </ion-nav-bar>
   <ion-content>
     <form name="formName" ng-submit="submit(formData);">
-      <div class="pro-edit">
+      <div class="pro-edit text-rite">
         <div class="list">
+          <div class="item item-divider">All the fields below are mandatory</div>
           <label class="item item-input">
-            <span class="input-label">Name</span>
+            <span class="input-label">Forename</span>
             <input type="text" name="name" ng-model="formData.name" maxlength="35">
           </label>
           <label class="item item-input">
@@ -19,7 +20,7 @@
             <input type="password" name="password" ng-model="formData.password">
             </label>
           <label class="item item-input">
-            <span class="input-label">Re-enter Password</span>
+            <span class="input-label">Confirm Password</span>
             <input type="password" name="repassword" ng-model="formData.repassword">
           </label>
           <label class="item item-input">
@@ -27,33 +28,29 @@
             <input type="number" name="yearsCoaching" ng-model="formData.yearsCoaching" min="1" max="99">
           </label>
           <label class="item item-input">
-            <span class="input-label">Email</span>            
+            <span class="input-label">Email Address</span>            
             <input type="email" name="email" ng-model="formData.email">
           </label>
           <label class="item item-input item-select">
-            <div class="input-label">
-              Country
-            </div>
+            <span class="input-label">Country</span>
             <select name="country" ng-model="formData.country">
-              <option selected>UK</option>
-              <option>USA</option>
-              <option>Canada</option>
-              <option>Australia</option>
-              <option>New Zealand</option>
+              <option value="" selected>Select</option>
+              <option value="{{c.name}}" ng-repeat="c in countries">{{c.name}}</option>
             </select>
           </label>
           <label class="item item-input item-select">
             <span class="input-label">Gender</span>
             <select name="gender" ng-model="formData.gender">
-              <option selected>Male</option>
-              <option>Female</option>
+              <option value="{{g.value}}" ng-repeat="g in gender">{{g.name}}</option>
             </select>
           </label>
           <label class="item item-input">
-            <input type="tel" placeholder="Contact Number" name="contact" ng-model="formData.contact">
+            <span class="input-label">Phone Number</span>
+            <input type="tel" name="contact" ng-model="formData.contact">
           </label>
           <label class="item item-input">
-            <input type="text" onfocus="(this.type='date')" placeholder="Date of Birth" name="dob" ng-model="formData.dob">
+            <span class="input-label">Date of Birth</span>
+            <input type="date" name="dob" ng-model="formData.dob">
           </label>
           <ion-item class="item-text-wrap multi-select">
             <h3>Coaching Focus</h3>
@@ -82,17 +79,15 @@
           </ion-item>
           <label class="item item-input item-select">
             <div class="input-label">
-              Credentials
+              Credentials/Qualifications
             </div>
             <select name="country" ng-model="formData.credentials">
-              <option value="Level 1">Level 1</option>
-              <option value="Level 2">Level 2</option>
-              <option value="Level 3">Level 3</option>
-              <option value="Level 4">Level 4</option>
+                <option value="{{c.value}}" ng-repeat="c in credentials">{{c.name}}</option>
             </select>
           </label>
           <label class="item item-input">
-            <textarea placeholder="About" name="about" ng-model="formData.about"></textarea>
+            <span class="input-label">About</span>
+            <textarea name="about" rows="6" ng-model="formData.about"></textarea>
           </label>
           <ion-item>
             <h3>Upload your CV</h3>

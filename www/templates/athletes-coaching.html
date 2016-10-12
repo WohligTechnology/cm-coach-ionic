@@ -4,8 +4,12 @@
     <span class="badge badge-assertive">1</span>
     </span>
   </ion-nav-buttons>
-  <ion-content>
+  <ion-content start-y="53">
     <ion-list>
+      <ion-item class="item-input-inset">
+        <label class="item-input-wrapper"><input type="text" placeholder="Athlete Name"></label>
+        <button class="button button-small icon ln-magnifier"></button>
+      </ion-item>
       <ion-item class="item-avatar" ui-sref="app.athletes-coaching-detail" ng-repeat="a in athleteCoaching">
         <img ng-src="{{a.image}}">
         <h2>{{a.name}} {{a.surname}}</h2>

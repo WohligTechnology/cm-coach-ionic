@@ -9984,12 +9984,21 @@ p.bold {
 .pb30 {
   padding-bottom: 30px; }
 
+.pro-edit.text-rite .item-input input {
+  text-align: right; }
+
 .pro-edit .input-label {
   color: #000;
-  font-size: 14px; }
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+  display: block; }
+
+.pro-edit .item-select select {
+  width: 100%;
+  max-width: 100%; }
 
 .pro-edit .item {
-  min-height: 50px;
   position: relative; }
 
 .pro-edit .item-radio {

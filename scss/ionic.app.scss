@@ -273,12 +273,23 @@ p.bold {
 }
 
 .pro-edit {
+  &.text-rite {
+    .item-input input {
+      text-align: right;
+    }
+  }
   .input-label {
     color: #000;
     font-size: 14px;
+    position: relative;
+    z-index: 1;
+    display: block;
+  }
+  .item-select select {
+    width: 100%;
+    max-width: 100%;
   }
   .item {
-    min-height: 50px;
     position: relative;
   }
   .item-radio {

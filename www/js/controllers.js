@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalendar'])
+angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.rCalendar'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
@@ -33,7 +33,7 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalen
     gender: 'Male',
     contact: '+919098765324',
     dob: '24th April, 1973',
-    country: 'UK',
+    country: 'United Kingdom',
     credentials: 'Level 4',
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
     coachingFocus: ['Sprinting', 'Hurdles'],
@@ -68,7 +68,7 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalen
 
 })
 
-.controller('ChatCtrl', function ($scope, $ionicModal) {
+.controller('ChatCtrl', function ($scope, $ionicModal, $state) {
   $ionicModal.fromTemplateUrl('templates/modal/modal-chat.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -79,6 +79,10 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalen
     $scope.modal.show();
   };
   $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+  $scope.startChat = function () {
+    $state.go('app.chatdetail');
     $scope.modal.hide();
   };
 })
@@ -311,7 +315,7 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalen
 })
 
 
-.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup) {
+.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices) {
 
   $scope.formData = {};
   $scope.coachingFocus = [
@@ -339,6 +343,37 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalen
       }]
     });
   };
+
+  $scope.gender = [{
+    name: 'Select',
+    value: ''
+  }, {
+    name: 'Male',
+    value: 'Male'
+  }, {
+    name: 'Female',
+    value: 'Female'
+  }];
+
+  $scope.credentials = [{
+    name: 'Select',
+    value: ''
+  }, {
+    name: 'Level 1',
+    value: 'Level 1'
+  }, {
+    name: 'Level 2',
+    value: 'Level 2'
+  }, {
+    name: 'Level 3',
+    value: 'Level 3'
+  }, {
+    name: 'Level 4',
+    value: 'Level 4'
+  }];
+
+  $scope.countries = MyServices.getCountries();
+
 })
 
 .controller('EditProfileCtrl', function ($scope, $state) {
@@ -351,7 +386,7 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalen
     gender: 'Male',
     contact: '+919098765324',
     dob: new Date(),
-    country: 'UK',
+    country: 'United Kingdom',
     credentials: 'Level 4',
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
     coachingFocus: ['Sprinting', 'Hurdles'],
@@ -410,14 +445,14 @@ angular.module('starter.controllers', ['checklist-model', 'chart.js', 'ui.rCalen
     acceptedDate: '13 May, 2016',
     renewalDate: '12 June, 2016',
     subscriptionType: 'Monthly',
-    location: 'UK',
+    location: 'United Kingdom',
     age: '22',
     sports: [
       'Cycling',
       'Running'
     ],
     events: [
-      'UK Marathon 2016',
+      'United Kingdom Marathon 2016',
       'Triathlon 2016'
     ]
   };

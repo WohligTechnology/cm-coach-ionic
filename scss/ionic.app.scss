@@ -50,6 +50,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
   padding-bottom: 10px;
 }
 
+.bar-header {
+  border: 0;
+}
+
 .right-badge-modal {
   position: absolute;
   right: 15px;

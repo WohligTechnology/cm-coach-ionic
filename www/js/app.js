@@ -108,6 +108,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.chat-group', {
+    url: '/chat-group',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/chat-group.html',
+        controller: 'ChatGroupCtrl'
+      }
+    }
+  })
+
   .state('app.coaches', {
     url: '/coaches',
     views: {

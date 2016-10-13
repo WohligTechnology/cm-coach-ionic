@@ -250,16 +250,19 @@ p.bold {
   &.me {
     text-align: right;
     .msg {
-      background-color: $positive;
-      color: white;
       text-align: left;
     }
   }
   .msg {
-    padding: 8px;
-    background-color: #e2e2e2;
+    padding: 10px;
+    background-color: #e5e5e5;
     display: inline-block;
     border-radius: 10px;
+    h6 {
+      margin: 0 0 5px;
+      font-size: 14px;
+      font-weight: bold;
+    }
   }
   +.bubble {
     margin-top: 15px;
@@ -640,9 +643,31 @@ p.bold {
   width: auto;
 }
 
-.calendar-event-inner,
-.monthview-primary-with-event {
-  background-color: $positive;
+.err>* {
+  color: $assertive !important;
+}
+
+.fs-12 {
+  font-size: 12px !important;
+}
+
+.th {
+  padding: 3px 5px;
+  color: white;
+  border-radius: 7px;
+  &.up {
+    background-color: #32ca32;
+  }
+  &.dn {
+    background-color: #f35353;
+    i {
+      top: 3px;
+      position: relative;
+    }
+  }
+  i {
+    font-size: 20px;
+  }
 }
 
 @import "www/lib/ionic-calendar/dist/css/calendar.min";
@@ -655,12 +680,4 @@ p.bold {
 .monthview-primary-with-event {
   background-color: $positive;
   color: #fff;
-}
-
-.err>* {
-  color: $assertive !important;
-}
-
-.fs-12 {
-  font-size: 12px !important;
 }

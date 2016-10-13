@@ -66,26 +66,55 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('BlogDetailCtrl', function ($scope) {
-
-})
-
-.controller('ChatCtrl', function ($scope, $ionicModal, $state) {
-  $ionicModal.fromTemplateUrl('templates/modal/modal-chat.html', {
+.controller('BlogDetailCtrl', function ($scope, $ionicModal) {
+  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.modal = modal;
   });
-  $scope.newChat = function () {
-    $scope.modal.show();
-  };
+
   $scope.closeModal = function () {
     $scope.modal.hide();
   };
+
+  $scope.shareAthlete = function () {
+    $scope.modal.show();
+  };
+
+})
+
+.controller('ChatCtrl', function ($scope, $ionicModal, $state) {
+  $ionicModal.fromTemplateUrl('templates/modal/modal-chat.html', {
+    id: 1,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalChat = modal;
+  });
+  $scope.newChat = function () {
+    $scope.modalChat.show();
+  };
+
+  $ionicModal.fromTemplateUrl('templates/modal/modal-group-chat.html', {
+    id: 2,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalGroup = modal;
+  });
+  $scope.newGroupChat = function () {
+    $scope.modalGroup.show();
+  };
+
+  $scope.closeModal = function () {
+    $scope.modalGroup.hide();
+    $scope.modalChat.hide();
+  };
+
   $scope.startChat = function () {
     $state.go('app.chatdetail');
-    $scope.modal.hide();
+    $scope.modalChat.hide();
   };
 })
 
@@ -128,6 +157,53 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.data = {};
   $scope.messages = [{
     userId: 'he',
+    text: 'Hello! Welcome to Coach Mentor!',
+    time: $scope.timeStamp()
+  }];
+
+})
+
+.controller('ChatGroupCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
+
+  $scope.hideTime = true;
+
+  $scope.timeStamp = function () {
+    var d = new Date();
+    d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+    return d;
+  };
+
+  $scope.sendMessage = function () {
+
+    if ($scope.data.message !== '' && $scope.data.message) {
+      console.log($scope.data.message);
+      $scope.messages.push({
+        userId: 'me',
+        text: $scope.data.message,
+        time: $scope.timeStamp()
+      });
+
+      delete $scope.data.message;
+      $ionicScrollDelegate.scrollBottom(true);
+    }
+
+  };
+
+  $scope.chatTap = function (m) {
+    m.showTime = true;
+    $timeout(function () {
+      m.showTime = false;
+    }, 4000);
+  };
+  $scope.openKb = function () {
+    cordova.plugins.Keyboard.open();
+  };
+
+  $scope.data = {};
+  $scope.messages = [{
+    userId: 'he',
+    name: 'Sachin',
+    surname: 'Sachin',
     text: 'Hello! Welcome to Coach Mentor!',
     time: $scope.timeStamp()
   }];
@@ -249,11 +325,15 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 
   $scope.calendar.eventSource = [{
+    id: 1,
+    type: 'competition',
     title: 'Run Happy Marathon',
     startTime: new Date("October 14, 2016 11:00:00"),
     endTime: new Date("October 14, 2016 23:15:00"),
     allDay: false
   }, {
+    id: 1,
+    type: 'testing',
     title: 'London Cycling Tour',
     startTime: new Date("October 16, 2016 11:13:00"),
     endTime: new Date("October 16, 2016 14:13:00"),
@@ -261,7 +341,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   }];
 
   $scope.onEventSelected = function (event) {
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+    // console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+    console.log(event);
   };
 
   $scope.onViewTitleChanged = function (title) {
@@ -526,7 +607,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       'Triathlon 2016'
     ]
   };
-
 
 })
 

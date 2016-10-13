@@ -1,0 +1,21 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive bar bar-header">
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeModal()">Share</button>
+        </div>
+        <h1 class="title">Athletes</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeModal()">Cancel</button>
+        </div>
+    </ion-header-bar>
+    <ion-content start-y="53">
+        <ion-list>
+            <ion-item class="item-input-inset">
+                <label class="item-input-wrapper"><input type="text" placeholder="Athlete Name"></label>
+                <button class="button button-small icon ln-magnifier"></button>
+            </ion-item>
+            <ion-checkbox ng-model="athletes"><img src="img/img-placeholder.png">Johannah Deakin</ion-checkbox>
+            <ion-checkbox ng-model="athletes1"><img src="img/img-placeholder.png">Jack White</ion-checkbox>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

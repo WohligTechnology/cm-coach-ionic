@@ -1,0 +1,26 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive bar bar-header">
+        <h1 class="title">Update Coaching Limit</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeModal()">Cancel</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form name="formName" ng-submit="submit(formData.coachingLimit);">
+            <ion-list class="pro-edit text-rite">
+                <label class="item item-input" ng-class="{'err': formName.coachingLimit.$touched && formName.coachingLimit.$invalid }">
+            <span class="input-label">Coaching Limit</span>
+            <input type="number" name="coachingLimit" ng-model="formData.coachingLimit" ng-change="rangeLimit(formData.coachingLimit);" min="1" max="200" required readonly>
+            </label>
+            </ion-list>
+            <div class="item range range-positive">
+                <i class="icon ion-ios-minus-empty" ng-click="rangeLimit(formData.coachingLimit-1)"></i>
+                <input type="range" name="rangeLimit" min="1" max="200" ng-change="rangeLimit(formData.coachingLimit);" ng-model="formData.coachingLimit">
+                <i class="icon ion-ios-plus-empty" ng-click="rangeLimit(formData.coachingLimit+1)"></i>
+            </div>
+            <div class="padding-horizontal">
+                <button class="button button-positive button-block" type="submit" ng-click="closeModal()">Update</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

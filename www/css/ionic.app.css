@@ -9816,6 +9816,9 @@ a.button {
 .pb10 {
   padding-bottom: 10px; }
 
+.bar-header {
+  border: 0; }
+
 .right-badge-modal {
   position: absolute;
   right: 15px;
@@ -9994,6 +9997,10 @@ p.bold {
   z-index: 1;
   display: block; }
 
+.pro-edit .item.item-toggle {
+  color: #000;
+  font-size: 14px; }
+
 .pro-edit .item-select select {
   width: 100%;
   max-width: 100%; }
@@ -10004,6 +10011,14 @@ p.bold {
 .pro-edit .item-radio {
   border: none;
   font-size: 14px; }
+
+.pro-edit input[disabled],
+.pro-edit select[disabled],
+.pro-edit textarea[disabled],
+.pro-edit input[readonly]:not(.cloned-text-input),
+.pro-edit textarea[readonly]:not(.cloned-text-input),
+.pro-edit select[readonly] {
+  background-color: transparent; }
 
 .pro-edit input::-webkit-input-placeholder,
 .pro-edit textarea::-webkit-input-placeholder {
@@ -10484,3 +10499,9 @@ p.bold {
 .monthview-primary-with-event {
   background-color: #004a9b;
   color: #fff; }
+
+.err > * {
+  color: #c70e17 !important; }
+
+.fs-12 {
+  font-size: 12px !important; }

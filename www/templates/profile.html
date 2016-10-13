@@ -10,17 +10,25 @@
       <div class="main-info">
         <div class="row">
           <div class="col">
-            <h3>{{profileData.yearsCoaching}} years</h3>
-            <p>Years of Coaching</p>
+            <h3>{{profileData.askingPrice}}£</h3>
+            <p>Asking Price</p>
           </div>
           <div class="col">
-            <h3>{{profileData.country}}</h3>
-            <p>Country</p>
+            <h3>{{profileData.coachingLimit}}</h3>
+            <p>Coaching Limit</p>
           </div>
         </div>
       </div>
     </div>
     <ion-list>
+      <ion-item class="item-text-wrap">
+        <h3>Years of Coaching</h3>
+        <p>{{profileData.yearsCoaching}} years</p>
+      </ion-item>
+      <ion-item class="item-text-wrap">
+        <h3>Country</h3>
+        <p>{{profileData.country}}</p>
+      </ion-item>
       <ion-item class="item-text-wrap">
         <h3>Contact</h3>
         <p>{{profileData.contact}}</p>

@@ -289,6 +289,10 @@ p.bold {
     z-index: 1;
     display: block;
   }
+  .item.item-toggle {
+    color: #000;
+    font-size: 14px;
+  }
   .item-select select {
     width: 100%;
     max-width: 100%;
@@ -299,6 +303,14 @@ p.bold {
   .item-radio {
     border: none;
     font-size: 14px;
+  }
+  input[disabled],
+  select[disabled],
+  textarea[disabled],
+  input[readonly]:not(.cloned-text-input),
+  textarea[readonly]:not(.cloned-text-input),
+  select[readonly] {
+    background-color: transparent;
   }
   input,
   textarea {
@@ -643,4 +655,12 @@ p.bold {
 .monthview-primary-with-event {
   background-color: $positive;
   color: #fff;
+}
+
+.err>* {
+  color: $assertive !important;
+}
+
+.fs-12 {
+  font-size: 12px !important;
 }

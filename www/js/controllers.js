@@ -34,6 +34,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     contact: '+919098765324',
     dob: '24th April, 1973',
     country: 'United Kingdom',
+    coachingLimit: 50,
+    askingPrice: 100,
     credentials: 'Level 4',
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
     coachingFocus: ['Sprinting', 'Hurdles'],
@@ -281,7 +283,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('TestingDetailCtrl', function ($scope, $ionicModal) {
+.controller('TestingCreateCtrl', function ($scope, $ionicModal) {
 
   $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
     scope: $scope,
@@ -376,7 +378,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('EditProfileCtrl', function ($scope, $state) {
+.controller('EditProfileCtrl', function ($scope, $state, MyServices, $ionicModal, $filter) {
   $scope.formData = {
     name: 'Sachin',
     surname: 'Tendulkar',
@@ -387,6 +389,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     contact: '+919098765324',
     dob: new Date(),
     country: 'United Kingdom',
+    coachingLimit: 50,
+    askingPrice: 100,
     credentials: 'Level 4',
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
     coachingFocus: ['Sprinting', 'Hurdles'],
@@ -399,10 +403,76 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
   ];
 
+  $scope.dummyPassword = '12345678';
+
   $scope.submit = function (data) {
     console.log(data);
     $state.go('app.profile');
   };
+
+  $scope.gender = [{
+    name: 'Select',
+    value: ''
+  }, {
+    name: 'Male',
+    value: 'Male'
+  }, {
+    name: 'Female',
+    value: 'Female'
+  }];
+
+  $scope.countries = MyServices.getCountries();
+
+  $ionicModal.fromTemplateUrl('templates/modal/modal-password.html', {
+    id: 1,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalPassword = modal;
+  });
+  $ionicModal.fromTemplateUrl('templates/modal/modal-price.html', {
+    id: 2,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalPrice = modal;
+  });
+  $ionicModal.fromTemplateUrl('templates/modal/modal-coaching-limit.html', {
+    id: 3,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalLimit = modal;
+  });
+  $scope.changePassword = function () {
+    $scope.modalPassword.show();
+  };
+  $scope.changePrice = function () {
+    $scope.modalPrice.show();
+  };
+  $scope.changeLimit = function () {
+    $scope.modalLimit.show();
+  };
+  $scope.closeModal = function () {
+    $scope.modalPassword.hide();
+    $scope.modalPrice.hide();
+    $scope.modalLimit.hide();
+  };
+
+  $scope.rangePrice = function (val) {
+    var intVal = parseInt(val);
+    if (intVal >= 1 && intVal <= 500) {
+      $scope.formData.askingPrice = intVal;
+    }
+  };
+
+  $scope.rangeLimit = function (val) {
+    var intVal = parseInt(val);
+    if (intVal >= 1 && intVal <= 200) {
+      $scope.formData.coachingLimit = intVal;
+    }
+  };
+
 })
 
 .controller('AthletesCoachingCtrl', function ($scope, $ionicModal) {

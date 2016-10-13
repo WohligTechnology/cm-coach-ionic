@@ -1,0 +1,26 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive bar bar-header">
+        <h1 class="title">Update Price</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeModal()">Cancel</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form name="formName" ng-submit="submit(formData.askingPrice);">
+            <ion-list class="pro-edit text-rite">
+                <label class="item item-input" ng-class="{'err': formName.askingPrice.$touched && formName.askingPrice.$invalid }">
+            <span class="input-label">Coach Asking Price</span>
+            <input type="number" name="askingPrice" ng-model="formData.askingPrice" ng-change="rangePrice(formData.askingPrice);" min="1" max="500" required readonly>
+            </label>
+            </ion-list>
+            <div class="item range range-positive">
+                <i class="icon ion-ios-minus-empty" ng-click="rangePrice(formData.askingPrice-1)"></i>
+                <input type="range" name="rangePrice" min="1" max="500" ng-change="rangePrice(formData.askingPrice);" ng-model="formData.askingPrice">
+                <i class="icon ion-ios-plus-empty" ng-click="rangePrice(formData.askingPrice+1)"></i>
+            </div>
+            <div class="padding-horizontal">
+                <button class="button button-positive button-block" type="submit" ng-click="closeModal()">Request update</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

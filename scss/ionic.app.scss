@@ -1,6 +1,8 @@
 $light: #fff !default;
 $stable: #f8f8f8 !default;
 $positive: #004a9b !default;
+$positiveTo: #2174d0 !default;
+$darkPositive: darken($positive, 10%) !default;
 $calm: #11c1f3 !default;
 $balanced: #369e57 !default;
 $energized: #f29c2c !default;
@@ -62,9 +64,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
 }
 
 .gradient-bg {
-  background-color: #09386b;
-  background-image: linear-gradient(to top, #2174d0, #09386b);
-  background-image: -webkit-linear-gradient(to top, #2174d0, #09386b);
+  background-color: $darkPositive;
+  background-image: linear-gradient(to top, $positiveTo, $darkPositive);
+  background-image: -webkit-linear-gradient(to top, $positiveTo, $darkPositive);
   .item,
   .item-complex .item-content,
   .item-radio .item-content {
@@ -114,8 +116,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
 .picture-hold {
   padding-top: 30px;
   text-align: center;
-  background-image: linear-gradient(to top, #2174d0, #004a9b);
-  background-image: -webkit-linear-gradient(to top, #2174d0, #004a9b);
+  background-image: linear-gradient(to top, $positiveTo, $positive);
+  background-image: -webkit-linear-gradient(to top, $positiveTo, $positive);
   color: white;
   &.picture-pad {
     padding-bottom: 30px;
@@ -405,7 +407,7 @@ p.bold {
     color: $positive;
   }
   .item {
-    border-bottom: 1px solid #004a9b;
+    border-bottom: 1px solid $positive;
     input {
       color: $positive;
       @include placeholder {

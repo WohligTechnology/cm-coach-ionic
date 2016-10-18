@@ -10,12 +10,12 @@ $assertive: #c70e17 !default;
 $royal: #886aea !default;
 $dark: #444 !default;
 $light-grey: #666 !default;
-$font-family-sans-serif: "Open Sans",
+$font-family-sans-serif: "Oxygen",
 "Helvetica Neue",
 "Roboto",
 "Segoe UI",
 sans-serif !default;
-$font-family-light-sans-serif: "Open Sans",
+$font-family-light-sans-serif: "Oxygen",
 "HelveticaNeue-Light",
 "Roboto-Light",
 "Segoe UI-Light",
@@ -23,20 +23,20 @@ sans-serif-light !default; // The path for our ionicons font files, relative to 
 $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @font-face {
-  font-family: 'Open Sans';
-  src: url("../fonts/OpenSans-Bold.ttf");
+  font-family: 'Oxygen';
+  src: url("../fonts/Oxygen-Bold.ttf");
   font-weight: 700;
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url("../fonts/OpenSans-Light.ttf");
+  font-family: 'Oxygen';
+  src: url("../fonts/Oxygen-Light.ttf");
   font-weight: 300;
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url("../fonts/OpenSans-Regular.ttf");
+  font-family: 'Oxygen';
+  src: url("../fonts/Oxygen-Regular.ttf");
 }
 
 @mixin placeholder {
@@ -158,6 +158,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
         text-align: justify;
       }
     }
+    .item-content {
+      padding: 0;
+    }
     h3 {
       float: left;
       line-height: 20px;
@@ -185,7 +188,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     font-size: 12px;
   }
   h3 {
-    font-weight: 400;
+    font-weight: 300;
     margin-bottom: 10px;
   }
 }
@@ -352,6 +355,7 @@ p.bold {
   textarea[readonly]:not(.cloned-text-input),
   select[readonly] {
     background-color: transparent;
+    opacity: 1 !important;
   }
   input,
   textarea {
@@ -561,7 +565,7 @@ p.bold {
 }
 
 .badged {
-  color: $positive;
+  color: white;
   display: inline-block;
   padding: 6px 10px;
   margin: 0;

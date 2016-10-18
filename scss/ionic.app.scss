@@ -116,17 +116,58 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
 .picture-hold {
   padding-top: 30px;
   text-align: center;
-  background-image: linear-gradient(to top, $positiveTo, $positive);
-  background-image: -webkit-linear-gradient(to top, $positiveTo, $positive);
-  color: white;
+  background-image: url(../img/admin-bg.jpg);
+  background-size: cover;
+  color: #000;
+  position: relative;
+  &::before {
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, .7) 0, #fff 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, .7) 0, #fff 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
   &.picture-pad {
     padding-bottom: 30px;
   }
   h3 {
-    color: white;
+    color: #000;
     font-size: 18px;
     font-weight: 700;
     margin: 15px 0 5px;
+  }
+}
+
+.white-profile {
+  .list {
+    padding: 0;
+  }
+  .item {
+    border: none;
+    padding: 14px 16px;
+    &.item-long {
+      h3 {
+        margin: 0 0 10px;
+        float: none;
+      }
+      p {
+        text-align: justify;
+      }
+    }
+    h3 {
+      float: left;
+      line-height: 20px;
+      margin: 0;
+      font-weight: 700;
+    }
+    p {
+      text-align: right;
+      color: #000;
+    }
   }
 }
 
@@ -229,11 +270,6 @@ p.bold {
   padding-bottom: 20px;
   text-align: center;
   background: #fff;
-  // &.bg-white {
-  //   background: #fff;
-  //   color:#000;
-  //
-  // }
   h3 {
     font-size: 18px;
     font-weight: 700;
@@ -322,6 +358,11 @@ p.bold {
     @include placeholder {
       color: #000;
     }
+  }
+  textarea,
+  input,
+  .item-select select {
+    color: #666;
   }
 }
 
@@ -560,6 +601,18 @@ p.bold {
 
 .blog-detail {
   background-color: #f1f1f1;
+  margin-top: -1px;
+  .author {
+    margin: 0 !important;
+    padding: 5px 0;
+    img {
+      vertical-align: middle;
+      height: 30px;
+      width: 30px;
+      border-radius: 100%;
+      margin-right: 5px;
+    }
+  }
   .card {
     margin: 0;
     +.card {
@@ -657,19 +710,118 @@ p.bold {
   padding: 3px 5px;
   color: white;
   border-radius: 7px;
+  font-size: 14px;
+  background-color: #ddd;
   &.up {
     background-color: #32ca32;
   }
+  i.ion-thumbsdown {
+    top: 3px;
+    position: relative;
+  }
   &.dn {
     background-color: #f35353;
-    i {
-      top: 3px;
-      position: relative;
-    }
   }
   i {
     font-size: 20px;
   }
+}
+
+.item.item-block {
+  display: block;
+}
+
+.item-input-inset .item-input-wrapper input {
+  width: 100%;
+}
+
+.full {
+  color: $assertive;
+  background-color: #f7f6f6;
+  padding: 5px 6px;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  position: absolute;
+  top: 21px;
+  right: 10px;
+  border-radius: 3px;
+  &.sm {
+    font-size: 10px;
+    top: 5px;
+  }
+}
+
+.full-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  top: 44px;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .full-content {
+  top: 64px;
+}
+
+.part {
+  .in {
+    font-weight: bold;
+  }
+  .item {
+    font-size: 12px;
+    padding: 13px 10px;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    &.item-checkbox {
+      padding-left: 55px;
+    }
+  }
+  &.p1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 145px;
+    border-right: 1px solid #ddd;
+    background-color: #f3f3f3;
+  }
+  &.p2 {
+    padding-left: 145px;
+    .item {
+      font-size: 14px;
+    }
+  }
+}
+
+.bar-footer.sm {
+  height: 34px;
+  .title {
+    height: auto;
+    line-height: 34px;
+    font-size: 14px;
+    color: $positive;
+  }
+}
+
+.profile-list {
+  h3 {
+    font-size: 12px;
+    color: $positive;
+  }
+  p {
+    color: #111;
+  }
+}
+
+.zd {
+  z-index: 1;
+  position: relative;
 }
 
 @import "www/lib/ionic-calendar/dist/css/calendar.min";

@@ -3323,7 +3323,7 @@ body,
   word-wrap: break-word;
   font-size: 14px;
   font-family: -apple-system;
-  font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "Oxygen", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 20px;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
@@ -3579,7 +3579,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 500;
-  font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "Oxygen", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 1.2; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
   .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
@@ -5104,7 +5104,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   white-space: nowrap;
   font-weight: 400;
   font-size: 14px;
-  font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "Oxygen", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   opacity: 0.7; }
   .tab-item:hover {
     cursor: pointer; }
@@ -7534,7 +7534,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
+  font-family: "Oxygen", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
 
 .item-input {
   display: -webkit-box;
@@ -9800,18 +9800,18 @@ a.button {
   transition-duration: 0s; }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url("../fonts/OpenSans-Bold.ttf");
+  font-family: 'Oxygen';
+  src: url("../fonts/Oxygen-Bold.ttf");
   font-weight: 700; }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url("../fonts/OpenSans-Light.ttf");
+  font-family: 'Oxygen';
+  src: url("../fonts/Oxygen-Light.ttf");
   font-weight: 300; }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url("../fonts/OpenSans-Regular.ttf"); }
+  font-family: 'Oxygen';
+  src: url("../fonts/Oxygen-Regular.ttf"); }
 
 .pb10 {
   padding-bottom: 10px; }
@@ -9902,6 +9902,8 @@ a.button {
     float: none; }
   .white-profile .item.item-long p {
     text-align: justify; }
+  .white-profile .item .item-content {
+    padding: 0; }
   .white-profile .item h3 {
     float: left;
     line-height: 20px;
@@ -9923,7 +9925,7 @@ a.button {
     font-weight: 700;
     font-size: 12px; }
   .main-info h3 {
-    font-weight: 400;
+    font-weight: 300;
     margin-bottom: 10px; }
 
 .tag-box, .tag-box-label label {
@@ -10051,7 +10053,8 @@ p.bold {
 .pro-edit input[readonly]:not(.cloned-text-input),
 .pro-edit textarea[readonly]:not(.cloned-text-input),
 .pro-edit select[readonly] {
-  background-color: transparent; }
+  background-color: transparent;
+  opacity: 1 !important; }
 
 .pro-edit input::-webkit-input-placeholder,
 .pro-edit textarea::-webkit-input-placeholder {
@@ -10242,7 +10245,7 @@ p.bold {
   float: right; }
 
 .badged {
-  color: #004a9b;
+  color: white;
   display: inline-block;
   padding: 6px 10px;
   margin: 0;
@@ -10351,6 +10354,18 @@ p.bold {
 
 .button.input-label {
   width: auto; }
+
+.err input::-webkit-input-placeholder {
+  color: #c70e17 !important; }
+
+.err input::-moz-placeholder {
+  color: #c70e17 !important; }
+
+.err input:-moz-placeholder {
+  color: #c70e17 !important; }
+
+.err input:-ms-input-placeholder {
+  color: #c70e17 !important; }
 
 .err > * {
   color: #c70e17 !important; }

@@ -6,15 +6,13 @@
     <div class="psw-form padding-horizontal">
       <form name="formName" ng-submit="submitForm(formData);">
         <div class="list">
-          <label class="item item-input ps-relative">
+          <label class="item item-input ps-relative" ng-class="{'err':formName.email.$invalid && formName.email.$touched}">
             <i class="ln-envelope"></i>
-            <input type="email" placeholder="Email Address" name="email" required>
-            <div class="error-msg" ng-show="formName.email.$error.required && formName.email.$dirty">Email Address is required</div>
+            <input type="email" placeholder="Email Address" name="email" ng-model="formData.email" required>
           </label>
-          <label class="item item-input ps-relative">
+          <label class="item item-input ps-relative" ng-class="{'err':formName.password.$invalid && formName.password.$touched}">
             <i class="ln-lock"></i>
-            <input type="password" placeholder="Password" name="password" required>
-              <div class="error-msg" ng-show="formName.password.$error.required && formName.password.$dirty">Password is required</div>
+            <input type="password" placeholder="Password" name="password" ng-model="formData.password" required>
           </label>
           <div class="pull-right pr15">
             <a href="" class="color-primary" ng-click="openModal()">Forgot Password ?</a>

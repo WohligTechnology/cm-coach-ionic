@@ -702,8 +702,15 @@ p.bold {
   width: auto;
 }
 
-.err>* {
-  color: $assertive !important;
+.err {
+  input {
+    @include placeholder {
+      color: $assertive !important;
+    }
+  }
+  >* {
+    color: $assertive !important;
+  }
 }
 
 .fs-12 {

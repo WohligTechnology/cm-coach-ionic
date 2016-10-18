@@ -2,8 +2,12 @@
   <ion-nav-buttons side="right">
     <a class="button button-clear icon ln-circle-plus ln-fit" ui-sref="app.competition-create"></a>
   </ion-nav-buttons>
-  <ion-content>
+  <ion-content start-y="53">
     <ion-list>
+      <ion-item class="item-input-inset">
+        <label class="item-input-wrapper"><input type="text" placeholder="Competition Name"></label>
+        <button class="button button-small icon ln-magnifier"></button>
+      </ion-item>
       <ion-item class="item-icon-left icon-c-l" ui-sref="app.competition-detail" ng-repeat="d in data">
         <i class="icon icon-circled ln-trophy" ng-class="{'icon-positive': d.keyCompetition == true}"></i>
         <h2 data-ng-bind="d.name"></h2>

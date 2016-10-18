@@ -67,7 +67,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('BlogDetailCtrl', function ($scope, $ionicModal) {
-  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
@@ -85,7 +85,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('ChatCtrl', function ($scope, $ionicModal, $state) {
-  $ionicModal.fromTemplateUrl('templates/modal/modal-chat.html', {
+  $ionicModal.fromTemplateUrl('templates/modal/chat.html', {
     id: 1,
     scope: $scope,
     animation: 'slide-in-up'
@@ -96,7 +96,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     $scope.modalChat.show();
   };
 
-  $ionicModal.fromTemplateUrl('templates/modal/modal-group-chat.html', {
+  $ionicModal.fromTemplateUrl('templates/modal/group-chat.html', {
     id: 2,
     scope: $scope,
     animation: 'slide-in-up'
@@ -234,7 +234,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('CompetitionCreateCtrl', function ($scope, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
+  $scope.title = 'Add Competition';
+
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
@@ -253,7 +255,10 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('CompetitionDetailCtrl', function ($scope, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
+  $scope.title = 'Edit Competition';
+
+
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
@@ -273,6 +278,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     startDate: new Date("January 14, 2017 11:13:00"),
     endDate: new Date("January 15, 2017 11:13:00"),
     keyCompetition: true,
+    details: 'Lorem ipsum facilisis',
     assignedAthletes: [{
       name: 'Van Gough',
       img: 'img/img-placeholder.png'
@@ -366,7 +372,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('TestingCreateCtrl', function ($scope, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('templates/modal/modal-add-athlete.html', {
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
@@ -504,21 +510,21 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   $scope.countries = MyServices.getCountries();
 
-  $ionicModal.fromTemplateUrl('templates/modal/modal-password.html', {
+  $ionicModal.fromTemplateUrl('templates/modal/password.html', {
     id: 1,
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.modalPassword = modal;
   });
-  $ionicModal.fromTemplateUrl('templates/modal/modal-price.html', {
+  $ionicModal.fromTemplateUrl('templates/modal/price.html', {
     id: 2,
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.modalPrice = modal;
   });
-  $ionicModal.fromTemplateUrl('templates/modal/modal-coaching-limit.html', {
+  $ionicModal.fromTemplateUrl('templates/modal/coaching-limit.html', {
     id: 3,
     scope: $scope,
     animation: 'slide-in-up'
@@ -557,7 +563,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('AthletesCoachingCtrl', function ($scope, $ionicModal) {
-  $ionicModal.fromTemplateUrl('templates/modal/modal-coach.html', {
+  $ionicModal.fromTemplateUrl('templates/modal/coach.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {

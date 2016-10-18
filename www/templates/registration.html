@@ -9,54 +9,54 @@
           <div class="item item-divider">All the fields below are mandatory</div>
           <label class="item item-input">
             <span class="input-label">Forename</span>
-            <input type="text" name="name" ng-model="formData.name" maxlength="35">
+            <input type="text" name="name" ng-model="formData.name" maxlength="35" required>
           </label>
           <label class="item item-input">
             <span class="input-label">Surname</span>
-            <input type="text" name="surname" ng-model="formData.surname" maxlength="35">
+            <input type="text" name="surname" ng-model="formData.surname" maxlength="35" required>
           </label>
           <label class="item item-input">
             <span class="input-label">Password</span>
-            <input type="password" name="password" ng-model="formData.password">
+            <input type="password" name="password" ng-model="formData.password" required>
             </label>
           <label class="item item-input">
             <span class="input-label">Confirm Password</span>
-            <input type="password" name="repassword" ng-model="formData.repassword">
+            <input type="password" name="repassword" ng-model="formData.repassword" required>
           </label>
           <label class="item item-input">
             <span class="input-label">Years Coaching</span>            
-            <input type="number" name="yearsCoaching" ng-model="formData.yearsCoaching" min="1" max="99">
+            <input type="number" name="yearsCoaching" ng-model="formData.yearsCoaching" min="1" max="99" required>
           </label>
           <label class="item item-input">
             <span class="input-label">Email Address</span>            
-            <input type="email" name="email" ng-model="formData.email">
+            <input type="email" name="email" ng-model="formData.email" required>
           </label>
           <label class="item item-input item-select">
             <span class="input-label">Country</span>
-            <select name="country" ng-model="formData.country">
+            <select name="country" ng-model="formData.country" required>
               <option value="" selected>Select</option>
               <option value="{{c.name}}" ng-repeat="c in countries">{{c.name}}</option>
             </select>
           </label>
           <label class="item item-input item-select">
             <span class="input-label">Gender</span>
-            <select name="gender" ng-model="formData.gender">
+            <select name="gender" ng-model="formData.gender" required>
               <option value="{{g.value}}" ng-repeat="g in gender">{{g.name}}</option>
             </select>
           </label>
           <label class="item item-input">
             <span class="input-label">Phone Number</span>
-            <input type="tel" name="contact" ng-model="formData.contact">
+            <input type="tel" name="contact" ng-model="formData.contact" required>
           </label>
           <label class="item item-input">
             <span class="input-label">Date of Birth</span>
-            <input type="date" name="dob" ng-model="formData.dob">
+            <input type="date" name="dob" ng-model="formData.dob" required>
           </label>
           <ion-item class="item-text-wrap multi-select">
             <h3>Coaching Focus</h3>
             <p>
               <div class="tag-box-label" ng-repeat="c in coachingFocus">
-                <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="coachingFocus">
+                <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="coachingFocus" required>
                 <label for="{{c}}">{{c}}</label>
               </div>
             </p>
@@ -65,33 +65,33 @@
             <h3>Specialisations</h3>
             <p>
               <div class="tag-box-label" ng-repeat="s in specialisations">
-                <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="specialisations">
+                <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="specialisations" required>
                 <label for="{{s}}">{{s}}</label>
               </div>
               <div class="tag-box-label">
-                <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal">
+                <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal" required>
                 <label for="Others">Others</label>
               </div>
             </p>
           </ion-item>
           <ion-item ng-if="formData.specialisations.otherVal" class="item-input">
-            <input type="text" placeholder="Please mention others" name="others" ng-model="formData.specialisations.others">
+            <input type="text" placeholder="Please mention others" name="others" ng-model="formData.specialisations.others" required>
           </ion-item>
           <label class="item item-input item-select">
             <div class="input-label">
               Credentials/Qualifications
             </div>
-            <select name="country" ng-model="formData.credentials">
+            <select name="country" ng-model="formData.credentials" required>
                 <option value="{{c.value}}" ng-repeat="c in credentials">{{c.name}}</option>
             </select>
           </label>
-          <label class="item item-input">
-            <span class="input-label">About</span>
-            <textarea name="about" rows="6" ng-model="formData.about"></textarea>
+          <label class="item item-input item-block">
+            <span class="input-label">Free Text CV</span>
+            <textarea name="textCV" rows="6" ng-model="formData.textCV" required></textarea>
           </label>
           <ion-item class="item-text-wrap">
             <h3>Upload your CV</h3>
-            <p class="fs-12">Please login to Coach Mentor Desktop Version to upload your CV.</p>
+            <p class="fs-12">Please login to Coach Mentor Web Version to upload your CV.</p>
           </ion-item>
         </div>
       </div>

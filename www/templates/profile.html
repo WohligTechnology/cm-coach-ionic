@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col">
               <h3>{{profileData.askingPrice}}£</h3>
-              <p>Asking Price</p>
+              <p>Coach Asking Price</p>
             </div>
             <div class="col">
               <h3>{{profileData.coachingLimit}}</h3>
@@ -46,11 +46,6 @@
       <ion-item class="item-text-wrap">
         <h3>Gender</h3>
         <p>{{profileData.gender}}</p>
-      </ion-item>
-      <ion-item class="item-text-wrap item-long">
-        <h3>About</h3>
-        <p class="read-more text-justified" ng-class="{'auto-height': read==true}">{{profileData.about}}</p>
-        <p class="text-right bold" ng-click="readMore()">Show <span ng-if="!read">More</span><span ng-if="read">Less</span></p>
       </ion-item>
       <ion-item class="item-text-wrap item-long">
         <h3>Coaching Focus</h3>

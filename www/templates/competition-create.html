@@ -1,4 +1,4 @@
-<ion-view view-title="Competition">
+<ion-view view-title="{{title}}">
     <ion-nav-buttons side="right">
         <a class="button button-clear" ui-sref="app.competition">Save</a>
     </ion-nav-buttons>
@@ -6,17 +6,21 @@
         <ion-list class="pro-edit text-rite">
             <ion-item class="item-input">
                 <span class="input-label">Name</span>
-                <input type="text" ng-model="data.name">
+                <input type="text" ng-model="data.name" required>
             </ion-item>
             <ion-item class="item-input">
                 <span class="input-label">Start Date</span>
-                <input type="date" ng-model="data.startDate">
+                <input type="date" ng-model="data.startDate" required>
             </ion-item>
             <ion-item class="item-input">
                 <span class="input-label">End Date</span>
-                <input type="date" ng-model="data.endDate">
+                <input type="date" ng-model="data.endDate" required>
             </ion-item>
             <ion-toggle toggle-class="toggle-positive" ng-model="data.keyCompetition">Key Competition</ion-toggle>
+            <ion-item class="item-input item-block">
+                <span class="input-label">Competition Details</span>
+                <textarea type="details" ng-model="data.details" required></textarea>
+            </ion-item>
             <div class="item item-divider item-icon-right" ng-click="addAthlete();">Assign Athletes <i class="icon ln-circle-plus ln-fit"></i></div>
             <ion-item class="item-name item-avatar" ng-repeat="d in data.assignedAthletes" ng-if="data.assignedAthletes">
                 <img ng-src="{{d.img}}">

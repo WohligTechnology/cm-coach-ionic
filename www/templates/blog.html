@@ -1,5 +1,11 @@
 <ion-view view-title="My Blogs">
-  <ion-content class="blog-detail">
+  <ion-content class="blog-detail" start-y="53">
+
+    <ion-item class="item-input-inset">
+      <label class="item-input-wrapper"><input type="text" placeholder="Search Blog"></label>
+      <button class="button button-small icon ln-magnifier"></button>
+    </ion-item>
+
     <div class="list card" ui-sref="app.blogdetail" ng-repeat="d in data">
       <div class="item item-body">
         <img class="full-image" ng-src="{{d.image}}">

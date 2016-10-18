@@ -9826,9 +9826,9 @@ a.button {
   display: inline-block; }
 
 .gradient-bg {
-  background-color: #09386b;
-  background-image: linear-gradient(to top, #2174d0, #09386b);
-  background-image: -webkit-linear-gradient(to top, #2174d0, #09386b); }
+  background-color: #003268;
+  background-image: linear-gradient(to top, #2174d0, #003268);
+  background-image: -webkit-linear-gradient(to top, #2174d0, #003268); }
   .gradient-bg .item,
   .gradient-bg .item-complex .item-content,
   .gradient-bg .item-radio .item-content {
@@ -9869,16 +9869,47 @@ a.button {
 .picture-hold {
   padding-top: 30px;
   text-align: center;
-  background-image: linear-gradient(to top, #2174d0, #004a9b);
-  background-image: -webkit-linear-gradient(to top, #2174d0, #004a9b);
-  color: white; }
+  background-image: url(../img/admin-bg.jpg);
+  background-size: cover;
+  color: #000;
+  position: relative; }
+  .picture-hold::before {
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.7) 0, #fff 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0, #fff 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0; }
   .picture-hold.picture-pad {
     padding-bottom: 30px; }
   .picture-hold h3 {
-    color: white;
+    color: #000;
     font-size: 18px;
     font-weight: 700;
     margin: 15px 0 5px; }
+
+.white-profile .list {
+  padding: 0; }
+
+.white-profile .item {
+  border: none;
+  padding: 14px 16px; }
+  .white-profile .item.item-long h3 {
+    margin: 0 0 10px;
+    float: none; }
+  .white-profile .item.item-long p {
+    text-align: justify; }
+  .white-profile .item h3 {
+    float: left;
+    line-height: 20px;
+    margin: 0;
+    font-weight: 700; }
+  .white-profile .item p {
+    text-align: right;
+    color: #000; }
 
 .pic-edit {
   padding: 30px 0;
@@ -10037,6 +10068,11 @@ p.bold {
 .pro-edit input:-ms-input-placeholder,
 .pro-edit textarea:-ms-input-placeholder {
   color: #000; }
+
+.pro-edit textarea,
+.pro-edit input,
+.pro-edit .item-select select {
+  color: #666; }
 
 .multi-select .active {
   background: #004a9b;
@@ -10239,7 +10275,17 @@ p.bold {
   margin-right: 10px; }
 
 .blog-detail {
-  background-color: #f1f1f1; }
+  background-color: #f1f1f1;
+  margin-top: -1px; }
+  .blog-detail .author {
+    margin: 0 !important;
+    padding: 5px 0; }
+    .blog-detail .author img {
+      vertical-align: middle;
+      height: 30px;
+      width: 30px;
+      border-radius: 100%;
+      margin-right: 5px; }
   .blog-detail .card {
     margin: 0; }
     .blog-detail .card + .card {
@@ -10315,16 +10361,98 @@ p.bold {
 .th {
   padding: 3px 5px;
   color: white;
-  border-radius: 7px; }
+  border-radius: 7px;
+  font-size: 14px;
+  background-color: #ddd; }
   .th.up {
     background-color: #32ca32; }
+  .th i.ion-thumbsdown {
+    top: 3px;
+    position: relative; }
   .th.dn {
     background-color: #f35353; }
-    .th.dn i {
-      top: 3px;
-      position: relative; }
   .th i {
     font-size: 20px; }
+
+.item.item-block {
+  display: block; }
+
+.item-input-inset .item-input-wrapper input {
+  width: 100%; }
+
+.full {
+  color: #c70e17;
+  background-color: #f7f6f6;
+  padding: 5px 6px;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  position: absolute;
+  top: 21px;
+  right: 10px;
+  border-radius: 3px; }
+  .full.sm {
+    font-size: 10px;
+    top: 5px; }
+
+.full-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  top: 44px; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .full-content {
+  top: 64px; }
+
+.part .in {
+  font-weight: bold; }
+
+.part .item {
+  font-size: 12px;
+  padding: 13px 10px;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  margin: 0; }
+  .part .item.item-checkbox {
+    padding-left: 55px; }
+
+.part.p1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 145px;
+  border-right: 1px solid #ddd;
+  background-color: #f3f3f3; }
+
+.part.p2 {
+  padding-left: 145px; }
+  .part.p2 .item {
+    font-size: 14px; }
+
+.bar-footer.sm {
+  height: 34px; }
+  .bar-footer.sm .title {
+    height: auto;
+    line-height: 34px;
+    font-size: 14px;
+    color: #004a9b; }
+
+.profile-list h3 {
+  font-size: 12px;
+  color: #004a9b; }
+
+.profile-list p {
+  color: #111; }
+
+.zd {
+  z-index: 1;
+  position: relative; }
 
 .nav-left {
   text-align: left; }

@@ -2,20 +2,22 @@
   <ion-nav-buttons side="right">
     <a class="button button-icon icon ln-pencil ln-fit" ui-sref="app.edit-profile"></a>
   </ion-nav-buttons>
-  <ion-content>
+  <ion-content class="white-profile">
     <div class="picture-hold">
-      <div class="dp" style="background-image: url({{profileData.image}});"></div>
-      <h3>{{profileData.name}} {{profileData.surname}}</h3>
-      <p>{{profileData.credentials}}</p>
-      <div class="main-info">
-        <div class="row">
-          <div class="col">
-            <h3>{{profileData.askingPrice}}£</h3>
-            <p>Asking Price</p>
-          </div>
-          <div class="col">
-            <h3>{{profileData.coachingLimit}}</h3>
-            <p>Coaching Limit</p>
+      <div class="zd">
+        <div class="dp" style="background-image: url({{profileData.image}});"></div>
+        <h3>{{profileData.name}} {{profileData.surname}}</h3>
+        <p>{{profileData.credentials}}</p>
+        <div class="main-info">
+          <div class="row">
+            <div class="col">
+              <h3>{{profileData.askingPrice}}£</h3>
+              <p>Asking Price</p>
+            </div>
+            <div class="col">
+              <h3>{{profileData.coachingLimit}}</h3>
+              <p>Coaching Limit</p>
+            </div>
           </div>
         </div>
       </div>
@@ -45,18 +47,18 @@
         <h3>Gender</h3>
         <p>{{profileData.gender}}</p>
       </ion-item>
-      <ion-item class="item-text-wrap">
+      <ion-item class="item-text-wrap item-long">
         <h3>About</h3>
         <p class="read-more text-justified" ng-class="{'auto-height': read==true}">{{profileData.about}}</p>
         <p class="text-right bold" ng-click="readMore()">Show <span ng-if="!read">More</span><span ng-if="read">Less</span></p>
       </ion-item>
-      <ion-item class="item-text-wrap">
+      <ion-item class="item-text-wrap item-long">
         <h3>Coaching Focus</h3>
         <p>
           <span class="tag-box" ng-repeat="c in profileData.coachingFocus">{{c}}</span>
         </p>
       </ion-item>
-      <ion-item class="item-text-wrap">
+      <ion-item class="item-text-wrap item-long">
         <h3>Specialisations</h3>
         <p>
           <span class="tag-box" ng-repeat="s in profileData.specialisations">{{s}}</span>

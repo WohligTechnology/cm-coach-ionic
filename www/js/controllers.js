@@ -19,9 +19,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 })
 
-.controller('ForgotPasswordCtrl', function ($scope, $ionicModal, $timeout) {
-
-})
 
 .controller('ProfileCtrl', function ($scope, $ionicScrollDelegate) {
   $scope.profileData = {

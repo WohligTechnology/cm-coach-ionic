@@ -52,12 +52,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'RegistrationCtrl'
   })
 
-  .state('forgot-password', {
-    url: '/forgot-password',
-    templateUrl: 'templates/forgot-password.html',
-    controller: 'ForgotPasswordCtrl'
-  })
-
   .state('app.edit-profile', {
     url: '/edit-profile',
     views: {

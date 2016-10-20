@@ -231,11 +231,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
 }
 
 .read-more {
-  height: 40px;
-  overflow: hidden !important;
-  &.read-full {
-    height: auto;
-  }
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: right;
+  color: #000;
+  font-size: 12px;
 }
 
 .text-right {
@@ -288,10 +289,30 @@ p.bold {
 }
 
 .bubble {
+  position: relative;
+  .tick {
+    visibility: hidden;
+    position: absolute;
+    right: -10px;
+    bottom: -12px;
+    background-color: #f8f8f8;
+    height: 22px;
+    width: 22px;
+    text-align: center;
+    border-radius: 100%;
+    border: 2px solid white;
+    font-size: 12px;
+    &.positive-bg {
+      background-color: $positive;
+    }
+  }
   &.me {
     text-align: right;
     .msg {
       text-align: left;
+    }
+    .tick {
+      visibility: visible;
     }
   }
   .msg {
@@ -833,6 +854,20 @@ p.bold {
 .zd {
   z-index: 1;
   position: relative;
+}
+
+.item.item-big-image {
+  img {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    height: 38px;
+    width: 38px;
+    border-radius: 100%;
+  }
+  .item-content {
+    padding: 16px;
+  }
 }
 
 @import "www/lib/ionic-calendar/dist/css/calendar.min";

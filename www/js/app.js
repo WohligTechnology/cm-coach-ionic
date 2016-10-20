@@ -214,6 +214,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.athlete-detail', {
+    url: '/athlete-detail',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/athlete-detail.html',
+        controller: 'AthleteDetailCtrl'
+      }
+    }
+  })
+
+  .state('app.athletes-request', {
+    url: '/athletes-request',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/athletes-request.html',
+        controller: 'AthletesRequestCtrl'
+      }
+    }
+  })
+
   .state('app.training-diary', {
     url: '/training-diary',
     views: {
@@ -227,7 +247,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 })
-
 
 .filter('ageConvert', function () {
   function calculateAge(birthday) { // birthday is a date
@@ -248,6 +267,61 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     if (age === 0)
       return monthDiff(birthdate, new Date()) + ' months';
     return age + ' years';
+  };
+})
+
+
+.filter('truncate', function () {
+  return function (text, length, end) {
+    if (isNaN(length)) {
+      length = 10;
+    }
+
+    if (end === undefined) {
+      end = '...';
+    }
+
+    if (text.length <= length || text.length - end.length <= length) {
+      return text;
+    } else {
+      return String(text).substring(0, length - end.length) + end;
+    }
+  };
+})
+
+.directive('readMore', function ($filter, $ionicScrollDelegate) {
+  return {
+    restrict: 'A',
+    scope: {
+      text: '=readMore',
+      labelExpand: '@readMoreLabelExpand',
+      labelCollapse: '@readMoreLabelCollapse',
+      limit: '@readMoreLimit'
+    },
+    transclude: true,
+    template: '<span ng-transclude ng-bind-html="text"></span><a href="javascript:;" class="read-more" ng-click="toggleReadMore()" ng-bind="label"></a>',
+    link: function (scope /*, element, attrs */ ) {
+
+      var originalText = scope.text;
+
+      scope.label = scope.labelExpand;
+
+      scope.$watch('expanded', function (expandedNew) {
+        if (expandedNew) {
+          scope.text = originalText;
+          scope.label = scope.labelCollapse;
+        } else {
+          scope.text = $filter('truncate')(originalText, scope.limit, '...');
+          scope.label = scope.labelExpand;
+        }
+      });
+
+      scope.toggleReadMore = function () {
+        scope.expanded = !scope.expanded;
+        $ionicScrollDelegate.resize();
+      };
+
+    }
   };
 })
 

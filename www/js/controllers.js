@@ -19,7 +19,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 })
 
-
 .controller('ProfileCtrl', function ($scope, $ionicScrollDelegate) {
   $scope.profileData = {
     name: 'Sachin',
@@ -40,13 +39,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     experience: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
     expertise: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
     coachingAchievements: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod'
-  };
-
-  $scope.read = false;
-
-  $scope.readMore = function () {
-    $scope.read = !$scope.read;
-    $ionicScrollDelegate.resize();
   };
 
 })
@@ -586,19 +578,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('AthletesCoachingCtrl', function ($scope, $ionicModal) {
-  $ionicModal.fromTemplateUrl('templates/modal/coach.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modal = modal;
-  });
-  $scope.openModal = function () {
-    $scope.modal.show();
-  };
-  $scope.closeModal = function () {
-    $scope.modal.hide();
-  };
-
   $scope.athleteCoaching = [{
     name: 'Matt',
     surname: 'Smith',
@@ -616,21 +595,51 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   }];
 })
 
-.controller('AthletesCoachingDetailCtrl', function ($scope, $ionicModal) {
-
-  $scope.athleteCoaching = {
+.controller('AthletesRequestCtrl', function ($scope, $ionicModal) {
+  $scope.athleteRequests = [{
     name: 'Matt',
     surname: 'Smith',
     image: 'img/img-placeholder.png',
-    acceptedDate: '13 May, 2016',
-    renewalDate: '12 June, 2016',
-    subscriptionType: 'Monthly',
-    location: 'United Kingdom',
-    age: '22',
-    sports: 'Cycling, Running',
-    events: 'United Kingdom Marathon 2016, Triathlon 2016'
-  };
-
+    sports: 'Running, Cycling',
+    message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maiores, cupiditate rerum facere ex velit dignissimos expedita totam dicta saepe, ad sint inventore blanditiis consequuntur possimus dolorem at nisi dolore!',
+  }, {
+    name: 'Matt',
+    surname: 'Smith',
+    image: 'img/img-placeholder.png',
+    sports: 'Running, Cycling',
+    message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maiores, cupiditate rerum facere ex velit dignissimos expedita totam dicta saepe, ad sint inventore blanditiis consequuntur possimus dolorem at nisi dolore!',
+  }, ];
 })
+
+.controller('AthletesCoachingDetailCtrl', function ($scope, $ionicModal) {
+
+    $scope.athleteCoaching = {
+      name: 'Matt',
+      surname: 'Smith',
+      image: 'img/img-placeholder.png',
+      acceptedDate: '13 May, 2016',
+      renewalDate: '12 June, 2016',
+      subscriptionType: 'Monthly',
+      location: 'United Kingdom',
+      age: '22',
+      sports: 'Cycling, Running',
+      events: 'United Kingdom Marathon 2016, Triathlon 2016'
+    };
+
+  })
+  .controller('AthleteDetailCtrl', function ($scope, $ionicModal) {
+
+    $scope.athlete = {
+      name: 'Matt',
+      surname: 'Smith',
+      image: 'img/img-placeholder.png',
+      message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maiores, cupiditate rerum facere ex velit dignissimos expedita totam dicta saepe, ad sint inventore blanditiis consequuntur possimus dolorem at nisi dolore!',
+      location: 'United Kingdom',
+      age: '22',
+      sports: 'Cycling, Running',
+      events: 'United Kingdom Marathon 2016, Triathlon 2016'
+    };
+
+  })
 
 ;

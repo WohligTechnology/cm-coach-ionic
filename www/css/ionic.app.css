@@ -9956,10 +9956,12 @@ a.button {
   text-align: justify; }
 
 .read-more {
-  height: 40px;
-  overflow: hidden !important; }
-  .read-more.read-full {
-    height: auto; }
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: right;
+  color: #000;
+  font-size: 12px; }
 
 .text-right {
   text-align: right !important; }
@@ -9998,23 +10000,39 @@ p.bold {
   .chat-holder .time-stamp {
     font-size: 11px; }
 
-.bubble.me {
-  text-align: right; }
-  .bubble.me .msg {
-    text-align: left; }
-
-.bubble .msg {
-  padding: 10px;
-  background-color: #e5e5e5;
-  display: inline-block;
-  border-radius: 10px; }
-  .bubble .msg h6 {
-    margin: 0 0 5px;
-    font-size: 14px;
-    font-weight: bold; }
-
-.bubble + .bubble {
-  margin-top: 15px; }
+.bubble {
+  position: relative; }
+  .bubble .tick {
+    visibility: hidden;
+    position: absolute;
+    right: -10px;
+    bottom: -12px;
+    background-color: #f8f8f8;
+    height: 22px;
+    width: 22px;
+    text-align: center;
+    border-radius: 100%;
+    border: 2px solid white;
+    font-size: 12px; }
+    .bubble .tick.positive-bg {
+      background-color: #004a9b; }
+  .bubble.me {
+    text-align: right; }
+    .bubble.me .msg {
+      text-align: left; }
+    .bubble.me .tick {
+      visibility: visible; }
+  .bubble .msg {
+    padding: 10px;
+    background-color: #e5e5e5;
+    display: inline-block;
+    border-radius: 10px; }
+    .bubble .msg h6 {
+      margin: 0 0 5px;
+      font-size: 14px;
+      font-weight: bold; }
+  .bubble + .bubble {
+    margin-top: 15px; }
 
 .item-name h2 {
   margin-top: 10px; }
@@ -10468,6 +10486,17 @@ p.bold {
 .zd {
   z-index: 1;
   position: relative; }
+
+.item.item-big-image img {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  height: 38px;
+  width: 38px;
+  border-radius: 100%; }
+
+.item.item-big-image .item-content {
+  padding: 16px; }
 
 .nav-left {
   text-align: left; }

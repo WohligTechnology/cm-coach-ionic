@@ -1,0 +1,14 @@
+<ion-view view-title="Athlete Requests">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-big-image item-text-wrap" ng-repeat="a in athleteRequests" ui-sref="app.athlete-detail">
+                <img src="img/img-placeholder.png">
+                <h2>{{a.name}} {{a.surname}}</h2>
+                <p>Sports: {{a.sports}}</p>
+                <p class="text-justified">{{a.message|truncate:70:'...'}} <a class="read-more">Read More</a></p>
+                <ion-option-button class="button-assertive">Reject</ion-option-button>
+                <ion-option-button class="button-balanced">Accept</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

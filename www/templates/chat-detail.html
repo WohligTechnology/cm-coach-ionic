@@ -3,9 +3,15 @@
         <div class="chat-holder">
             <div class="bubble" ng-class="{'me': m.userId == 'me'}" ng-repeat="m in messages" on-tap="chatTap(m);">
                 <div class="msg">{{m.text}}</div>
+                <div class="tick" ng-class="{'positive-bg stable': read==true}"><i class="icon ion-android-done" ng-class="{'ion-android-done-all': delivered==true}"></i></div>
                 <div class="time-stamp" ng-show="m.showTime">{{m.time}}</div>
             </div>
         </div>
+        <div ng-show="messages.length>1">
+            <button class="button button-block" ng-click="delivered=true">Delivered</button>
+            <button class="button button-block" ng-click="read=true">Read</button>
+        </div>
+
     </ion-content>
     <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
         <label class="item-input-wrapper">

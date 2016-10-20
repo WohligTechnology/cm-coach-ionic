@@ -36,7 +36,10 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     credentials: 'Level 4',
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
     coachingFocus: ['Sprinting', 'Hurdles'],
-    specialisations: ['Children in Athletics', 'First aid']
+    specialisations: ['Children in Athletics', 'First aid'],
+    experience: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
+    expertise: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
+    coachingAchievements: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod'
   };
 
   $scope.read = false;
@@ -369,6 +372,29 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('TestingCreateCtrl', function ($scope, $ionicModal) {
 
+  $scope.title = 'Create';
+
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+
+  $scope.addAthlete = function () {
+    $scope.modal.show();
+  };
+
+
+})
+
+.controller('TestingDetailCtrl', function ($scope, $ionicModal) {
+
+  $scope.title = 'Edit';
   $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -601,14 +627,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     subscriptionType: 'Monthly',
     location: 'United Kingdom',
     age: '22',
-    sports: [
-      'Cycling',
-      'Running'
-    ],
-    events: [
-      'United Kingdom Marathon 2016',
-      'Triathlon 2016'
-    ]
+    sports: 'Cycling, Running',
+    events: 'United Kingdom Marathon 2016, Triathlon 2016'
   };
 
 })

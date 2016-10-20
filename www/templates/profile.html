@@ -11,7 +11,7 @@
         <div class="main-info">
           <div class="row">
             <div class="col">
-              <h3>{{profileData.askingPrice}}£</h3>
+              <h3>{{profileData.askingPrice | currency: '£' : 0}}</h3>
               <p>Coach Asking Price</p>
             </div>
             <div class="col">
@@ -25,7 +25,7 @@
     <ion-list>
       <ion-item class="item-text-wrap">
         <h3>Years of Coaching</h3>
-        <p>{{profileData.yearsCoaching}} years</p>
+        <p>{{profileData.yearsCoaching}}</p>
       </ion-item>
       <ion-item class="item-text-wrap">
         <h3>Country</h3>
@@ -58,6 +58,19 @@
         <p>
           <span class="tag-box" ng-repeat="s in profileData.specialisations">{{s}}</span>
         </p>
+      </ion-item>
+
+      <ion-item class="item-text-wrap item-long">
+        <h3>Experience</h3>
+        <p>{{profileData.experience}}</p>
+      </ion-item>
+      <ion-item class="item-text-wrap item-long">
+        <h3>Expertise</h3>
+        <p>{{profileData.expertise}}</p>
+      </ion-item>
+      <ion-item class="item-text-wrap item-long">
+        <h3>Coaching Achievements</h3>
+        <p>{{profileData.coachingAchievements}}</p>
       </ion-item>
     </ion-list>
   </ion-content>

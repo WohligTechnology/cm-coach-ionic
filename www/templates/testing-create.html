@@ -1,4 +1,4 @@
-<ion-view view-title="Testing">
+<ion-view view-title="{{title}} Test">
     <ion-nav-buttons side="right">
         <a class="button button-clear" ui-sref="app.testing">Save</a>
     </ion-nav-buttons>
@@ -16,7 +16,8 @@
                 <span class="input-label">End Date</span>
                 <input type="date" ng-model="data.endDate">
             </ion-item>
-            <ion-item class="item-input">
+            <ion-item class="item-input item-block">
+                <span class="input-label">Testing Details</span>
                 <textarea ng-model="data.details" rows="4" placeholder="Details"></textarea>
             </ion-item>
             <div class="item item-divider item-icon-right" ng-click="addAthlete();">Assign Athletes <i class="icon ln-circle-plus ln-fit"></i></div>

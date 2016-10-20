@@ -1,10 +1,12 @@
 <ion-view view-title="{{athleteCoaching.name}}">
-  <ion-content>
+  <ion-content class="white-profile">
     <div class="picture-hold picture-pad">
-      <div class="dp" style="background-image: url('{{athleteCoaching.image}}');"></div>
-      <h3>{{athleteCoaching.name}} {{athleteCoaching.surname}}</h3>
-      <p>{{athleteCoaching.age}} years, {{athleteCoaching.location}}</p>
-      <p class="badged stable-bg">{{athleteCoaching.subscriptionType}}</p>
+      <div class="zd">
+        <div class="dp" style="background-image: url('{{athleteCoaching.image}}');"></div>
+        <h3>{{athleteCoaching.name}} {{athleteCoaching.surname}}</h3>
+        <p>{{athleteCoaching.age}} years, {{athleteCoaching.location}}</p>
+        <p class="badged stable-bg">{{athleteCoaching.subscriptionType}}</p>
+      </div>
     </div>
     <ion-list>
       <ion-item class="item-text-wrap">
@@ -15,17 +17,13 @@
         <h3>Next Renewal</h3>
         <p>{{athleteCoaching.renewalDate}}</p>
       </ion-item>
-      <ion-item class="item-text-wrap">
+      <ion-item class="item-text-wrap item-long">
         <h3>Sports</h3>
-        <p>
-          <span class="tag-box" ng-repeat="s in athleteCoaching.sports">{{s}}</span>
-        </p>
+        <p>{{athleteCoaching.sports}}</p>
       </ion-item>
-      <ion-item class="item-text-wrap">
+      <ion-item class="item-text-wrap item-long">
         <h3>Events</h3>
-        <p>
-          <span class="tag-box" ng-repeat="e in athleteCoaching.events">{{e}}</span>
-        </p>
+        <p>{{athleteCoaching.events}}</p>
       </ion-item>
     </ion-list>
     <div class="padding-horizontal">

@@ -100,7 +100,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
   }
 }
 
-.ln-fit:before {
+.ln-fit::before {
   font-size: 24px !important;
 }
 
@@ -151,7 +151,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     padding: 14px 16px;
     &.item-long {
       h3 {
-        margin: 0 0 10px;
+        margin: 0 0 5px;
         float: none;
       }
       p {

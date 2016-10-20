@@ -9855,7 +9855,7 @@ a.button {
   .gradient-bg .item-icon-left .icon {
     font-size: 20px; }
 
-.ln-fit:before {
+.ln-fit::before {
   font-size: 24px !important; }
 
 .dp {
@@ -9898,7 +9898,7 @@ a.button {
   border: none;
   padding: 14px 16px; }
   .white-profile .item.item-long h3 {
-    margin: 0 0 10px;
+    margin: 0 0 5px;
     float: none; }
   .white-profile .item.item-long p {
     text-align: justify; }

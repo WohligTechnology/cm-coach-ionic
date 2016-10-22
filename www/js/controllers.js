@@ -613,33 +613,65 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('AthletesCoachingDetailCtrl', function ($scope, $ionicModal) {
 
-    $scope.athleteCoaching = {
-      name: 'Matt',
-      surname: 'Smith',
-      image: 'img/img-placeholder.png',
-      acceptedDate: '13 May, 2016',
-      renewalDate: '12 June, 2016',
-      subscriptionType: 'Monthly',
-      location: 'United Kingdom',
-      age: '22',
-      sports: 'Cycling, Running',
-      events: 'United Kingdom Marathon 2016, Triathlon 2016'
-    };
+  $scope.athleteCoaching = {
+    name: 'Matt',
+    surname: 'Smith',
+    image: 'img/img-placeholder.png',
+    acceptedDate: '13 May, 2016',
+    renewalDate: '12 June, 2016',
+    subscriptionType: 'Monthly',
+    location: 'United Kingdom',
+    age: '22',
+    sports: 'Cycling, Running',
+    events: 'United Kingdom Marathon 2016, Triathlon 2016'
+  };
 
-  })
-  .controller('AthleteDetailCtrl', function ($scope, $ionicModal) {
+})
 
-    $scope.athlete = {
-      name: 'Matt',
-      surname: 'Smith',
-      image: 'img/img-placeholder.png',
-      message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maiores, cupiditate rerum facere ex velit dignissimos expedita totam dicta saepe, ad sint inventore blanditiis consequuntur possimus dolorem at nisi dolore!',
-      location: 'United Kingdom',
-      age: '22',
-      sports: 'Cycling, Running',
-      events: 'United Kingdom Marathon 2016, Triathlon 2016'
-    };
+.controller('AthleteDetailCtrl', function ($scope, $ionicModal) {
 
-  })
+  $scope.athlete = {
+    name: 'Matt',
+    surname: 'Smith',
+    image: 'img/img-placeholder.png',
+    message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maiores, cupiditate rerum facere ex velit dignissimos expedita totam dicta saepe, ad sint inventore blanditiis consequuntur possimus dolorem at nisi dolore!',
+    location: 'United Kingdom',
+    age: '22',
+    sports: 'Cycling, Running',
+    events: 'United Kingdom Marathon 2016, Triathlon 2016'
+  };
+
+})
+
+.controller('NotificationsCtrl', function ($scope, $ionicModal, $ionicScrollDelegate, $ionicPopup) {
+  $scope.notifications = [{
+    name: 'Mathew',
+    surname: 'Dodge',
+    type: 'athleteUnsubscribe'
+  }, {
+    name: 'Mathew',
+    surname: 'Dodge',
+    type: 'competition'
+  }];
+
+  $scope.reason = function () {
+    $scope.data = {};
+    var myPopup = $ionicPopup.show({
+      template: '<textarea auto-grow type="password" ng-model="data.message"><textarea>',
+      title: '<h4>Reject Unsubscription!</h4>',
+      subTitle: 'Please enter some reason',
+      scope: $scope,
+      buttons: [{
+        text: 'Cancel'
+      }, {
+        text: '<b>Reject</b>',
+        type: 'button-assertive',
+        onTap: function (e) {
+          console.log($scope.data.message);
+        }
+      }, ]
+    });
+  };
+})
 
 ;

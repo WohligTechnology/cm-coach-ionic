@@ -1,0 +1,21 @@
+<ion-view view-title="Notifications">
+    <ion-content>
+        <ion-list class="no-pad-list">
+            <ion-item class="item-text-wrap" ng-repeat="d in notifications">
+
+                <!-- Unsbuscribe -->
+                <div ng-if="d.type == 'athleteUnsubscribe'">
+                    <p>{{d.name}} {{d.surname}} wants to unsubsribe from your coaching service.</p>
+                    <button class="button button-small button-positive">Accept</button>
+                    <button class="button button-small button-assertive" ng-click="reason()">Reject</button>
+                </div>
+
+                <!-- Coach Accept/Reject -->
+                <div ng-if="d.type == 'competition'">
+                    <p>{{d.name}} {{d.surname}} rejected your competition.</p>
+                </div>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -870,6 +870,12 @@ p.bold {
   }
 }
 
+.no-pad-list {
+  .item-content {
+    padding: 16px;
+  }
+}
+
 @import "www/lib/ionic-calendar/dist/css/calendar.min";
 .monthview-selected {
   background-color: $balanced;

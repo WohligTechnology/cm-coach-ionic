@@ -303,6 +303,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     link: function (scope /*, element, attrs */ ) {
 
       var originalText = scope.text;
+      scope.applyLimit = false;
+      if (scope.text.length >= scope.limit) {
+        scope.applyLimit = true;
+      }
 
       scope.label = scope.labelExpand;
 

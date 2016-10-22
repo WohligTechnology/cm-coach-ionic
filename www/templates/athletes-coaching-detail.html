@@ -20,11 +20,11 @@
       <ion-item class="item-text-wrap item-long">
         <h3>Sports</h3>
         <p>{{athleteCoaching.sports}}</p>
-      </ion-item>
-      <ion-item class="item-text-wrap item-long">
-        <h3>Events</h3>
-        <p>{{athleteCoaching.events}}</p>
-      </ion-item>
+        <p class="text-justified" read-more="athleteCoaching.sports" read-more-limit="140" read-more-label-expand="Read More" </ion-item>
+          <ion-item class="item-text-wrap item-long">
+            <h3>Events</h3>
+            <p class="text-justified" read-more="athleteCoaching.events" read-more-limit="140" read-more-label-expand="Read More" </ion-item>
+          </ion-item>
     </ion-list>
     <div class="padding-horizontal">
       <button class="button button-assertive button-block">Unsubscribe</button>

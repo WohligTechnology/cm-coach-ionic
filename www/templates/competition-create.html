@@ -19,7 +19,7 @@
             <ion-toggle toggle-class="toggle-positive" ng-model="data.keyCompetition">Key Competition</ion-toggle>
             <ion-item class="item-input item-block">
                 <span class="input-label">Competition Details</span>
-                <textarea type="details" ng-model="data.details" required></textarea>
+                <textarea auto-grow type="details" ng-model="data.details" required></textarea>
             </ion-item>
             <div class="item item-divider item-icon-right" ng-click="addAthlete();">Add Athletes <i class="icon ln-circle-plus ln-fit"></i></div>
             <ion-item class="item-name item-avatar" ng-repeat="d in data.assignedAthletes" ng-if="data.assignedAthletes">

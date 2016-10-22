@@ -18,7 +18,7 @@
             </ion-item>
             <ion-item class="item-input item-block">
                 <span class="input-label">Testing Details</span>
-                <textarea ng-model="data.details" rows="4" placeholder="Details"></textarea>
+                <textarea auto-grow ng-model="data.details" rows="4" placeholder="Details"></textarea>
             </ion-item>
             <div class="item item-divider item-icon-right" ng-click="addAthlete();">Add Athletes <i class="icon ln-circle-plus ln-fit"></i></div>
             <ion-item class="item-name item-avatar" ng-repeat="d in data.assignedAthletes" ng-if="data.assignedAthletes">

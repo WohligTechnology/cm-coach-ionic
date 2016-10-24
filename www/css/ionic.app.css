@@ -10498,6 +10498,9 @@ p.bold {
 .item.item-big-image .item-content {
   padding: 16px; }
 
+.no-pad-list .item-content {
+  padding: 16px; }
+
 .nav-left {
   text-align: left; }
 

@@ -280,7 +280,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   };
 })
 
-
 .filter('truncate', function () {
   return function (text, length, end) {
     if (isNaN(length)) {
@@ -309,7 +308,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       limit: '@readMoreLimit'
     },
     transclude: true,
-    template: '<span ng-transclude ng-bind-html="text"></span><a href="javascript:;" class="read-more" ng-click="toggleReadMore()" ng-bind="label"></a>',
+    template: '<span ng-transclude ng-bind-html="text"></span><a href="javascript:;" class="read-more" ng-click="toggleReadMore()" ng-if="applyLimit" ng-bind="label"></a>',
     link: function (scope /*, element, attrs */ ) {
 
       var originalText = scope.text;

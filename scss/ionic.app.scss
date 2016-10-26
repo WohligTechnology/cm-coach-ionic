@@ -597,6 +597,11 @@ p.bold {
 
 .item.icon-c-l .item-content {
   padding-left: 60px;
+  .ln-first-aid {
+    &:before {
+      margin-top: -6px;
+    }
+  }
 }
 
 .icon.icon-circled {
@@ -871,9 +876,25 @@ p.bold {
 }
 
 .no-pad-list {
-  .item-content {
+  .item .item-content {
     padding: 16px;
   }
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.badge-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 100%;
+  bottom: -9px;
+  right: 1px;
+  text-align: center;
 }
 
 @import "www/lib/ionic-calendar/dist/css/calendar.min";

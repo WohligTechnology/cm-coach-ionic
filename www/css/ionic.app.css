@@ -10273,6 +10273,8 @@ p.bold {
 
 .item.icon-c-l .item-content {
   padding-left: 60px; }
+  .item.icon-c-l .item-content .ln-first-aid:before {
+    margin-top: -6px; }
 
 .icon.icon-circled {
   background-color: #c4c4c4;
@@ -10498,8 +10500,22 @@ p.bold {
 .item.item-big-image .item-content {
   padding: 16px; }
 
-.no-pad-list .item-content {
+.no-pad-list .item .item-content {
   padding: 16px; }
+
+.strong {
+  font-weight: 700; }
+
+.badge-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 100%;
+  bottom: -9px;
+  right: 1px;
+  text-align: center; }
 
 .nav-left {
   text-align: left; }

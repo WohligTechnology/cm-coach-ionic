@@ -33,15 +33,14 @@
           </label>
           <label class="item item-input item-select">
             <span class="input-label">Country</span>
-            <select name="country" ng-model="formData.country" required>
+            <select name="country" ng-model="formData.country"  ng-options="c.name as c.name for c in countries" required>
               <option value="" selected>Select</option>
-              <option value="{{c.name}}" ng-repeat="c in countries">{{c.name}}</option>
             </select>
           </label>
           <label class="item item-input item-select">
             <span class="input-label">Gender</span>
-            <select name="gender" ng-model="formData.gender" required>
-              <option value="{{g.value}}" ng-repeat="g in gender">{{g.name}}</option>
+            <select name="gender" ng-model="formData.gender" ng-options="g.value as g.name for g in gender" required>
+              <option value="">Select</option>
             </select>
           </label>
           <label class="item item-input">
@@ -81,8 +80,8 @@
             <div class="input-label">
               Credentials/Qualifications
             </div>
-            <select name="country" ng-model="formData.credentials" required>
-                <option value="{{c.value}}" ng-repeat="c in credentials">{{c.name}}</option>
+            <select name="country" ng-model="formData.credentials"  ng-options="c.value as c.name for c in credentials" required>
+                <option value="">Select</option>
             </select>
           </label>
           <label class="item item-input item-block">
@@ -99,6 +98,5 @@
         <button class="button button-positive button-block" type="submit">Register Now</button>
       </div>
     </form>
-
   </ion-content>
 </ion-view>

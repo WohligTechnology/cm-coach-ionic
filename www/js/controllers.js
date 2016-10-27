@@ -449,9 +449,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 
   $scope.gender = [{
-    name: 'Select',
-    value: ''
-  }, {
     name: 'Male',
     value: 'Male'
   }, {
@@ -460,9 +457,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   }];
 
   $scope.credentials = [{
-    name: 'Select',
-    value: ''
-  }, {
     name: 'Level 1',
     value: 'Level 1'
   }, {
@@ -513,9 +507,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 
   $scope.gender = [{
-    name: 'Select',
-    value: ''
-  }, {
     name: 'Male',
     value: 'Male'
   }, {

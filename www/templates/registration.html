@@ -55,7 +55,7 @@
             <h3>Coaching Focus</h3>
             <p>
               <div class="tag-box-label" ng-repeat="c in coachingFocus">
-                <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="coachingFocus" required>
+                <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="coachingFocus">
                 <label for="{{c}}">{{c}}</label>
               </div>
             </p>
@@ -64,7 +64,7 @@
             <h3>Specialisations</h3>
             <p>
               <div class="tag-box-label" ng-repeat="s in specialisations">
-                <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="specialisations" required>
+                <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="specialisations">
                 <label for="{{s}}">{{s}}</label>
               </div>
               <div class="tag-box-label">
@@ -74,7 +74,8 @@
             </p>
           </ion-item>
           <ion-item ng-if="formData.specialisations.otherVal" class="item-input">
-            <input type="text" placeholder="Please mention others" name="others" ng-model="formData.specialisations.others" required>
+            <span class="input-label">Others Specialisations</span>
+            <input type="text" name="others" ng-model="formData.specialisations.others" required>
           </ion-item>
           <label class="item item-input item-select">
             <div class="input-label">

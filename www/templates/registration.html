@@ -3,7 +3,7 @@
     <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
-    <form name="formName" ng-submit="submit(formData);">
+    <form name="formName" ng-submit="registrationSubmit(formData);" novalidate>
       <div class="pro-edit text-rite">
         <div class="list">
           <div class="item item-divider">All the fields below are mandatory</div>
@@ -55,22 +55,21 @@
             <h3>Coaching Focus</h3>
             <p>
               <div class="tag-box-label" ng-repeat="c in coachingFocus">
-                <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="coachingFocus">
-                <label for="{{c}}">{{c}}</label>
+                <input type="checkbox" id="{{c._id}}" checklist-model="formData.coachingFocus" checklist-value="c._id" name="coachingFocus">
+                <label for="{{c._id}}">{{c.name}}</label>
               </div>
             </p>
           </ion-item>
           <ion-item class="item-text-wrap">
             <h3>Specialisations</h3>
-            <p>
-              <div class="tag-box-label" ng-repeat="s in specialisations">
-                <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="specialisations">
-                <label for="{{s}}">{{s}}</label>
-              </div>
-              <div class="tag-box-label">
-                <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal" required>
-                <label for="Others">Others</label>
-              </div>
+            <div class="tag-box-label" ng-repeat="s in specialisations">
+              <input type="checkbox" id="{{s._id}}" checklist-model="formData.specialisations" checklist-value="s._id" name="specialisations">
+              <label for="{{s._id}}">{{s.name}}</label>
+            </div>
+            <div class="tag-box-label">
+              <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal" required>
+              <label for="Others">Others</label>
+            </div>
             </p>
           </ion-item>
           <ion-item ng-if="formData.specialisations.otherVal" class="item-input">
@@ -96,7 +95,7 @@
         </div>
       </div>
       <div class="text-center m20 padding-horizontal">
-        <button class="button button-positive button-block" type="submit">Register Now</button>
+        <button class="button button-positive button-block" ng-click="registerationSubmit();">Register Now</button>
       </div>
     </form>
   </ion-content>

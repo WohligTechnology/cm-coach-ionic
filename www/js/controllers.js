@@ -422,31 +422,62 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 .controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices) {
 
   $scope.formData = {};
-  $scope.coachingFocus = [
-    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country'
-  ];
-  $scope.specialisations = [
-    'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
-  ];
+  // $scope.coachingFocus = [
+  //   'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country'
+  // ];
 
-  $scope.submit = function (data) {
-    // An elaborate, custom popup
-    var myPopup = $ionicPopup.show({
-      template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
-      title: 'Terms & Conditions',
-      scope: $scope,
-      buttons: [{
-        text: 'No'
-      }, {
-        text: '<b>Yes</b>',
-        type: 'button-positive',
-        onTap: function (e) {
-          console.log(data);
-          $state.go('app.profile');
-        }
-      }]
+  MyServices.getspecialisations(function (data) {
+    $scope.specialisations = data.data.results;
+  })
+
+  MyServices.getCoachingFocus(function (data) {
+    $scope.coachingFocus = data.data.results;
+  })
+  $scope.formData = {};
+  $scope.registrationSubmit = function (formData) {
+    $scope.formData = formData;
+    MyServices.registrationSubmit($scope.formData, function (data) {
+      if (data.value == true) {
+        console.log(data);
+        var myPopup = $ionicPopup.show({
+          template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
+          title: 'Terms & Conditions',
+          scope: $scope,
+          buttons: [{
+            text: 'No'
+          }, {
+            text: '<b>Yes</b>',
+            type: 'button-positive',
+            onTap: function (e) {
+              console.log(data);
+              $state.go('app.profile');
+            }
+          }]
+        });
+        $scope.formData = {};
+      } else {
+        console.log("There is an error");
+      }
     });
   };
+  // $scope.submit = function (data) {
+  //   // An elaborate, custom popup
+  //   var myPopup = $ionicPopup.show({
+  //     template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
+  //     title: 'Terms & Conditions',
+  //     scope: $scope,
+  //     buttons: [{
+  //       text: 'No'
+  //     }, {
+  //       text: '<b>Yes</b>',
+  //       type: 'button-positive',
+  //       onTap: function (e) {
+  //         console.log(data);
+  //         $state.go('app.profile');
+  //       }
+  //     }]
+  //   });
+  // };
 
   $scope.gender = [{
     name: 'Male',

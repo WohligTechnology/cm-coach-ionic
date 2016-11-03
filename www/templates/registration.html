@@ -3,90 +3,90 @@
     <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
-    <form name="formName" ng-submit="registrationSubmit(formData);" novalidate>
+    <form name="formName" ng-submit="termsPopup(formData);">
       <div class="pro-edit text-rite">
         <div class="list">
           <div class="item item-divider">All the fields below are mandatory</div>
-          <label class="item item-input">
+          <label class="item item-input" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
             <span class="input-label">Forename</span>
             <input type="text" name="name" ng-model="formData.name" maxlength="35" required>
           </label>
-          <label class="item item-input">
+          <label class="item item-input" ng-class="{'err':formName.surname.$invalid && formName.surname.$touched}">
             <span class="input-label">Surname</span>
             <input type="text" name="surname" ng-model="formData.surname" maxlength="35" required>
           </label>
-          <label class="item item-input">
+          <label class="item item-input" ng-class="{'err':formName.password.$invalid && formName.password.$touched}">
             <span class="input-label">Password</span>
             <input type="password" name="password" ng-model="formData.password" required>
             </label>
-          <label class="item item-input">
+          <label class="item item-input" ng-class="{'err':formData.repassword !== formData.password}">
             <span class="input-label">Confirm Password</span>
-            <input type="password" name="repassword" ng-model="formData.repassword" required>
+            <input type="password" name="repassword" ng-model="formData.repassword">
           </label>
-          <label class="item item-input">
-            <span class="input-label">Years Coaching</span>            
-            <input type="number" name="yearsCoaching" ng-model="formData.yearsCoaching" min="1" max="99" required>
+          <label class="item item-input" ng-class="{'err':formName.yearsOfCoaching.$invalid && formName.yearsOfCoaching.$touched}">
+            <span class="input-label">Years of Coaching</span>            
+            <input type="number" name="yearsOfCoaching" ng-model="formData.yearsOfCoaching" min="1" max="99" required>
           </label>
-          <label class="item item-input">
+          <label class="item item-input" ng-class="{'err':formName.email.$invalid && formName.email.$touched}">
             <span class="input-label">Email Address</span>            
             <input type="email" name="email" ng-model="formData.email" required>
           </label>
-          <label class="item item-input item-select">
+          <label class="item item-input item-select" ng-class="{'err':formName.country.$invalid && formName.country.$touched}">
             <span class="input-label">Country</span>
             <select name="country" ng-model="formData.country"  ng-options="c.name as c.name for c in countries" required>
               <option value="" selected>Select</option>
             </select>
           </label>
-          <label class="item item-input item-select">
+          <label class="item item-input item-select" ng-class="{'err':formName.gender.$invalid && formName.gender.$touched}">
             <span class="input-label">Gender</span>
             <select name="gender" ng-model="formData.gender" ng-options="g.value as g.name for g in gender" required>
               <option value="">Select</option>
             </select>
           </label>
-          <label class="item item-input">
+          <label class="item item-input" ng-class="{'err':formName.contact.$invalid && formName.contact.$touched}">
             <span class="input-label">Phone Number</span>
             <input type="tel" name="contact" ng-model="formData.contact" required>
           </label>
-          <label class="item item-input">
+          <label class="item item-input" ng-class="{'err':formName.dob.$invalid && formName.dob.$touched}">
             <span class="input-label">Date of Birth</span>
             <input type="date" name="dob" ng-model="formData.dob" required>
           </label>
-          <ion-item class="item-text-wrap multi-select">
+          <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.coachingFocus == ''}">
             <h3>Coaching Focus</h3>
             <p>
               <div class="tag-box-label" ng-repeat="c in coachingFocus">
-                <input type="checkbox" id="{{c._id}}" checklist-model="formData.coachingFocus" checklist-value="c._id" name="coachingFocus">
-                <label for="{{c._id}}">{{c.name}}</label>
+                <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="{{c}}">
+                <label for="{{c}}">{{c}}</label>
               </div>
             </p>
           </ion-item>
-          <ion-item class="item-text-wrap">
+          <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.specialisations == ''}">
             <h3>Specialisations</h3>
             <div class="tag-box-label" ng-repeat="s in specialisations">
-              <input type="checkbox" id="{{s._id}}" checklist-model="formData.specialisations" checklist-value="s._id" name="specialisations">
-              <label for="{{s._id}}">{{s.name}}</label>
+              <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="{{s}}">
+              <label for="{{s}}">{{s}}</label>
             </div>
             <div class="tag-box-label">
-              <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal" required>
+              <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal">
               <label for="Others">Others</label>
             </div>
             </p>
           </ion-item>
-          <ion-item ng-if="formData.specialisations.otherVal" class="item-input">
+          <label ng-if="formData.specialisations.otherVal" class="item item-input item-block" ng-class="{'err':formName.specialisationOther.$invalid && formName.specialisationOther.$touched}">
             <span class="input-label">Others Specialisations</span>
-            <input type="text" name="others" ng-model="formData.specialisations.others" required>
-          </ion-item>
-          <label class="item item-input item-select">
+            <textarea auto-grow name="specialisationOther" rows="3" ng-model="formData.specialisationOther" required></textarea>
+          </label>
+          <label class="item item-input item-select" ng-class="{'err':formName.credentials.$invalid && formName.credentials.$touched}">
             <div class="input-label">
               Credentials/Qualifications
             </div>
-            <select name="country" ng-model="formData.credentials"  ng-options="c.value as c.name for c in credentials" required>
+            <select name="credentials" ng-model="formData.credentials"  ng-options="c.value as c.name for c in credentials" required>
                 <option value="">Select</option>
             </select>
           </label>
-          <label class="item item-input item-block">
+          <label class="item item-input item-block" ng-class="{'err':formName.freeTextCV.$invalid && formName.freeTextCV.$touched}">
             <span class="input-label">Free Text CV</span>
-            <textarea auto-grow name="textCV" rows="6" ng-model="formData.textCV" required></textarea>
+            <textarea auto-grow name="freeTextCV" rows="6" ng-model="formData.freeTextCV" required></textarea>
           </label>
           <ion-item class="item-text-wrap">
             <h3>Upload your CV</h3>
@@ -95,7 +95,7 @@
         </div>
       </div>
       <div class="text-center m20 padding-horizontal">
-        <button class="button button-positive button-block" ng-click="registerationSubmit();">Register Now</button>
+        <button class="button button-positive button-block" type="submit">Register Now</button>
       </div>
     </form>
   </ion-content>

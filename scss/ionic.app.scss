@@ -777,7 +777,7 @@ p.bold {
   background-color: #f7f6f6;
   padding: 5px 6px;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 8px;
   font-weight: bold;
   position: absolute;
   top: 21px;
@@ -841,7 +841,8 @@ p.bold {
   .title {
     height: auto;
     line-height: 34px;
-    font-size: 14px;
+    font-size: 16px;
+    text-align: center;
     color: $positive;
   }
 }
@@ -895,6 +896,14 @@ p.bold {
   bottom: -9px;
   right: 1px;
   text-align: center;
+}
+
+.stripped {
+  .item {
+    &:nth-child(odd) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
 }
 
 @import "www/lib/ionic-calendar/dist/css/calendar.min";

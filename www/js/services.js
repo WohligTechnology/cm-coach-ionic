@@ -744,34 +744,21 @@ angular.module('starter.services', [])
         return countries;
       },
 
-      registrationSubmit: function (formData, callback) {
+      registerCoach: function (formData, callback) {
         $http({
           url: adminurl + 'Coach/save',
           method: 'POST',
-          data: {
-            'name': formData.name,
-            'surname': formData.surname,
-            'password': formData.password,
-            'yearsCoaching': formData.yearsCoaching,
-            'email': formData.email,
-            'country': formData.country,
-            'password': formData.password,
-            'gender': formData.gender,
-            'contact': formData.contact,
-            'dob': formData.dob,
-            'specialisations': formData.specialisations._id,
-            'coachingFocus': formData.coachingFocus._id,
-            'credentials': formData.credentials,
-            'textCV': formData.textCV,
-          }
+          data: formData
         }).success(callback);
       },
+
       getspecialisations: function (callback) {
         $http({
           url: adminurl + 'specialisations/search',
           method: 'POST'
         }).success(callback);
       },
+
       getCoachingFocus: function (callback) {
         $http({
           url: adminurl + 'CoachingFocus/search',

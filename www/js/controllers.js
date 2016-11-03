@@ -4,6 +4,89 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
+
+
+.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices, $ionicLoading) {
+
+  $scope.formData = {};
+
+  $scope.coachingFocus = [
+    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country'
+  ];
+
+  $scope.specialisations = [
+    'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
+  ];
+
+  $scope.showLoading = function (val, time) {
+    $ionicLoading.show({
+      template: val,
+      duration: time
+    });
+  };
+
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Loading...', 10000);
+    MyServices.registerCoach(formData, function (data) {
+      if (data.value === true) {
+        $scope.formData = {};
+        $scope.hideLoading();
+        $state.go('login');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Registration Error!', 3000);
+      }
+    });
+  };
+
+  $scope.termsPopup = function (formData) {
+    var myPopup = $ionicPopup.show({
+      template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
+      title: 'Terms of Service',
+      scope: $scope,
+      buttons: [{
+        text: 'No'
+      }, {
+        text: '<b>Yes</b>',
+        type: 'button-positive',
+        onTap: function (e) {
+          console.log(formData);
+          $scope.submitData(formData);
+        }
+      }]
+    });
+  };
+
+  $scope.gender = [{
+    name: 'Male',
+    value: 'Male'
+  }, {
+    name: 'Female',
+    value: 'Female'
+  }];
+
+  $scope.credentials = [{
+    name: 'Level 1',
+    value: 'Level 1'
+  }, {
+    name: 'Level 2',
+    value: 'Level 2'
+  }, {
+    name: 'Level 3',
+    value: 'Level 3'
+  }, {
+    name: 'Level 4',
+    value: 'Level 4'
+  }];
+
+  $scope.countries = MyServices.getCountries();
+
+})
+
 .controller('LoginCtrl', function ($scope, $ionicModal, $timeout) {
   $ionicModal.fromTemplateUrl('templates/modal/forgot-password.html', {
     scope: $scope,
@@ -415,93 +498,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       img: 'img/img-placeholder.png'
     }],
   };
-
-})
-
-
-.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices) {
-
-  $scope.formData = {};
-  // $scope.coachingFocus = [
-  //   'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country'
-  // ];
-
-  MyServices.getspecialisations(function (data) {
-    $scope.specialisations = data.data.results;
-  })
-
-  MyServices.getCoachingFocus(function (data) {
-    $scope.coachingFocus = data.data.results;
-  })
-  $scope.formData = {};
-  $scope.registrationSubmit = function (formData) {
-    $scope.formData = formData;
-    MyServices.registrationSubmit($scope.formData, function (data) {
-      if (data.value == true) {
-        console.log(data);
-        var myPopup = $ionicPopup.show({
-          template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
-          title: 'Terms & Conditions',
-          scope: $scope,
-          buttons: [{
-            text: 'No'
-          }, {
-            text: '<b>Yes</b>',
-            type: 'button-positive',
-            onTap: function (e) {
-              console.log(data);
-              $state.go('app.profile');
-            }
-          }]
-        });
-        $scope.formData = {};
-      } else {
-        console.log("There is an error");
-      }
-    });
-  };
-  // $scope.submit = function (data) {
-  //   // An elaborate, custom popup
-  //   var myPopup = $ionicPopup.show({
-  //     template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
-  //     title: 'Terms & Conditions',
-  //     scope: $scope,
-  //     buttons: [{
-  //       text: 'No'
-  //     }, {
-  //       text: '<b>Yes</b>',
-  //       type: 'button-positive',
-  //       onTap: function (e) {
-  //         console.log(data);
-  //         $state.go('app.profile');
-  //       }
-  //     }]
-  //   });
-  // };
-
-  $scope.gender = [{
-    name: 'Male',
-    value: 'Male'
-  }, {
-    name: 'Female',
-    value: 'Female'
-  }];
-
-  $scope.credentials = [{
-    name: 'Level 1',
-    value: 'Level 1'
-  }, {
-    name: 'Level 2',
-    value: 'Level 2'
-  }, {
-    name: 'Level 3',
-    value: 'Level 3'
-  }, {
-    name: 'Level 4',
-    value: 'Level 4'
-  }];
-
-  $scope.countries = MyServices.getCountries();
 
 })
 

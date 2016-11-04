@@ -4,7 +4,7 @@
       <img src="img/logo.png" alt="Coach Mentor">
     </div>
     <div class="psw-form padding-horizontal">
-      <form name="formName" ng-submit="submitForm(formData);">
+      <form name="formName" ng-submit="submitData(formData);" class="err-icon-right">
         <div class="list">
           <label class="item item-input ps-relative" ng-class="{'err':formName.email.$invalid && formName.email.$touched}">
             <i class="ln-envelope"></i>
@@ -15,16 +15,14 @@
             <input type="password" placeholder="Password" name="password" ng-model="formData.password" required>
           </label>
           <div class="pull-right pr15">
-            <a href="" class="color-primary" ng-click="openModal()">Forgot Password ?</a>
+            <a class="color-primary" ng-click="openModal()">Forgot Password?</a>
           </div>
           <div class="pl15">
             <a ui-sref="registration" class="color-primary">Register Now</a>
           </div>
         </div>
         <div class="text-center mt30 padding-horizontal sb-btn">
-          <button class="button button-positive button-block" ui-sref="app.profile">
-            Login
-          </button>
+          <button class="button button-positive button-block" type="submit">Login</button>
         </div>
       </form>
     </div>

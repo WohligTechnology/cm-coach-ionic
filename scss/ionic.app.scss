@@ -474,12 +474,17 @@ p.bold {
   }
   .item {
     border-bottom: 1px solid $positive;
+    margin: 10px 15px;
+    padding: 5px 0px;
     input {
       color: $positive;
       @include placeholder {
         color: $positive;
       }
     }
+  }
+  a {
+    text-decoration: underline;
   }
 }
 
@@ -738,6 +743,15 @@ p.bold {
   left: 3px;
   z-index: 1;
   font-size: 12px;
+}
+
+.err-icon-right {
+  .err {
+    &::before {
+      left: auto;
+      right: 3px;
+    }
+  }
 }
 
 .err {

@@ -746,23 +746,17 @@ angular.module('starter.services', [])
 
       registerCoach: function (formData, callback) {
         $http({
-          url: adminurl + 'Coach/save',
+          url: adminurl + 'Coach/registerCoach',
           method: 'POST',
           data: formData
         }).success(callback);
       },
 
-      getspecialisations: function (callback) {
+      login: function (formData, callback) {
         $http({
-          url: adminurl + 'specialisations/search',
-          method: 'POST'
-        }).success(callback);
-      },
-
-      getCoachingFocus: function (callback) {
-        $http({
-          url: adminurl + 'CoachingFocus/search',
-          method: 'POST'
+          url: adminurl + 'Coach/coachLogin',
+          method: 'POST',
+          data: formData
         }).success(callback);
       },
     };

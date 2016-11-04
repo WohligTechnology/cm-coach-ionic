@@ -14,79 +14,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
   ];
 
-  $scope.showLoading = function (value, time) {
-    $ionicLoading.show({
-      template: value,
-      duration: time
-    });
-  };
-
-  //Password Validator
-  $scope.valid1 = false;
-  $scope.valid2 = false;
-  $scope.passwordValidator = function (password) {
-    $scope.passwordValidate = true;
-    console.log(password);
-    console.log(/^[a-zA-Z0-9]$/.test(password));
-
-    if (password.length >= 8) {
-      $scope.valid1 = true;
-    } else {
-      $scope.valid1 = false;
-    }
-
-    if (/^[a-zA-Z0-9]$/.test(password)) {
-      $scope.valid2 = true;
-    } else {
-      $scope.valid2 = false;
-    }
-
-    if ($scope.valid1 && $scope.valid2) {
-      $scope.passwordValidate = false;
-    } else {
-      $scope.passwordValidate = true;
-    }
-  };
-
-  $scope.hideLoading = function () {
-    $ionicLoading.hide();
-  };
-
-  $scope.submitData = function (formData) {
-    $scope.showLoading('Please wait...', 10000);
-    MyServices.registerCoach(formData, function (data) {
-      if (data.value === true) {
-        console.log(data);
-        $scope.formData = {};
-        $scope.hideLoading();
-        $scope.showLoading('Registration Successful!', 2000);
-        $state.go('login');
-      } else {
-        console.log(data);
-        $scope.hideLoading();
-        $scope.showLoading('Registration Failed!', 2000);
-      }
-    });
-  };
-
-  $scope.termsPopup = function (formData) {
-    var myPopup = $ionicPopup.show({
-      template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
-      title: 'Terms of Service',
-      scope: $scope,
-      buttons: [{
-        text: 'No'
-      }, {
-        text: '<b>Yes</b>',
-        type: 'button-positive',
-        onTap: function (e) {
-          console.log(formData);
-          $scope.submitData(formData);
-        }
-      }]
-    });
-  };
-
   $scope.gender = [{
     name: 'Male',
     value: 'Male'
@@ -111,9 +38,75 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   $scope.countries = MyServices.getCountries();
 
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  //Password Validator
+  $scope.valid1 = false;
+  $scope.valid2 = false;
+  $scope.passwordValidator = function (password) {
+    $scope.passwordValidate = true;
+    if (password && password.length >= 8) {
+      $scope.valid1 = true;
+    } else {
+      $scope.valid1 = false;
+    }
+    if (/([a-zA-Z])/.test(password) && /([0-9])/.test(password)) {
+      $scope.valid2 = true;
+    } else {
+      $scope.valid2 = false;
+    }
+    if ($scope.valid1 && $scope.valid2) {
+      $scope.passwordValidate = false;
+    } else {
+      $scope.passwordValidate = true;
+    }
+  };
+
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 10000);
+    MyServices.registerCoach(formData, function (data) {
+      if (data.value === true) {
+        $scope.formData = {};
+        $scope.hideLoading();
+        $scope.showLoading('Registration Successful!', 2000);
+        $state.go('login');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Registration Failed!', 2000);
+      }
+    });
+  };
+
+  //Terms Popup
+  $scope.termsPopup = function (formData) {
+    var myPopup = $ionicPopup.show({
+      template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
+      title: 'Terms of Service',
+      scope: $scope,
+      buttons: [{
+        text: 'No'
+      }, {
+        text: '<b>Yes</b>',
+        type: 'button-positive',
+        onTap: function (e) {
+          $scope.submitData(formData);
+        }
+      }]
+    });
+  };
 })
 
-.controller('LoginCtrl', function ($scope, $ionicModal, $timeout) {
+.controller('LoginCtrl', function ($scope, $ionicModal, $timeout, $ionicLoading, MyServices, $state) {
   $ionicModal.fromTemplateUrl('templates/modal/forgot-password.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -125,6 +118,34 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   $scope.closeModal = function () {
     $scope.modal.hide();
+  };
+
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 10000);
+    MyServices.login(formData, function (data) {
+      console.log(data);
+      if (data.value === true) {
+        $scope.formData = {};
+        $scope.hideLoading();
+        $scope.showLoading('Login Successful!', 2000);
+        $state.go('app.profile');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading(data.data.message, 2000);
+      }
+    });
   };
 })
 
@@ -391,7 +412,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-
 .controller('TestingCtrl', function ($scope, $ionicModal) {
   $scope.data = [{
     name: '800M Running',
@@ -425,7 +445,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('TrainingDiaryCtrl', function ($scope, $ionicModal) {
-
   $scope.calendar = {};
   $scope.changeMode = function (mode) {
     $scope.calendar.mode = mode;

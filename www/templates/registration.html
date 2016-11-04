@@ -15,11 +15,15 @@
             <span class="input-label">Surname</span>
             <input type="text" name="surname" ng-model="formData.surname" maxlength="35" required>
           </label>
+          <label class="item item-input" ng-class="{'err':formName.email.$invalid && formName.email.$touched}">
+            <span class="input-label">Email Address</span>            
+            <input type="email" name="email" ng-model="formData.email" required>
+          </label>
           <ion-item class="item-divider item-text-wrap small-text">
             Password must contain: <br>
             <span> <i class="icon ion-alert-circled assertive" ng-class="{'ion-checkmark balanced': valid1}"></i> Atleast 8 characters</span>
             <br>
-            <span><i class="icon ion-alert-circled assertive" ng-class="{'ion-checkmark balanced': valid2}"></i> Alphanumeric</span>
+            <span><i class="icon ion-alert-circled assertive" ng-class="{'ion-checkmark balanced': valid2}"></i> Alphanumeric characters</span>
           </ion-item>
           <label class="item item-input" ng-class="{'err': passwordValidate}">
             <span class="input-label">Password</span>
@@ -32,10 +36,6 @@
           <label class="item item-input" ng-class="{'err':formName.yearsOfCoaching.$invalid && formName.yearsOfCoaching.$touched}">
             <span class="input-label">Years of Coaching</span>            
             <input type="number" name="yearsOfCoaching" ng-model="formData.yearsOfCoaching" min="1" max="99" required>
-          </label>
-          <label class="item item-input" ng-class="{'err':formName.email.$invalid && formName.email.$touched}">
-            <span class="input-label">Email Address</span>            
-            <input type="email" name="email" ng-model="formData.email" required>
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.country.$invalid && formName.country.$touched}">
             <span class="input-label">Country</span>
@@ -51,7 +51,7 @@
           </label>
           <label class="item item-input" ng-class="{'err':formName.contact.$invalid && formName.contact.$touched}">
             <span class="input-label">Phone Number</span>
-            <input type="tel" name="contact" ng-model="formData.contact" required>
+            <input type="tel" name="contact" ng-model="formData.mobile" required>
           </label>
           <label class="item item-input" ng-class="{'err':formName.dob.$invalid && formName.dob.$touched}">
             <span class="input-label">Date of Birth</span>
@@ -59,12 +59,11 @@
           </label>
           <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.coachingFocus == ''}">
             <h3>Coaching Focus</h3>
-            <p>
-              <div class="tag-box-label" ng-repeat="c in coachingFocus">
-                <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="{{c}}">
-                <label for="{{c}}">{{c}}</label>
-              </div>
-            </p>
+            <div class="tag-box-label" ng-repeat="c in coachingFocus">
+              <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="{{c}}">
+              <label for="{{c}}">{{c}}</label>
+            </div>
+            <input type="hidden" name="coachingFocus" ng-model="formData.coachingFocus[0]" required>
           </ion-item>
           <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.specialisations == ''}">
             <h3>Specialisations</h3>
@@ -76,7 +75,7 @@
               <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal">
               <label for="Others">Others</label>
             </div>
-            </p>
+            <input type="hidden" name="specialisations" ng-model="formData.specialisations[0]" required>
           </ion-item>
           <label ng-if="formData.specialisations.otherVal" class="item item-input item-block" ng-class="{'err':formName.specialisationOther.$invalid && formName.specialisationOther.$touched}">
             <span class="input-label">Others Specialisations</span>
@@ -101,9 +100,9 @@
         </div>
       </div>
       <div class="text-center m20 padding-horizontal">
-        <button class="button button-positive button-block" type="submit" ng-disabled="formName.$invalid">
-          <span ng-if="formName.$invalid">Please enter mandatory fields</span>
-          <span ng-if="formName.$valid">Register Now</span>
+        <button class="button button-positive button-block" type="submit" ng-disabled="formName.$invalid || formValidate">
+          <span ng-if="formName.$invalid || formValidate">Please enter mandatory fields</span>
+          <span ng-if="formName.$valid || formValidate">Register Now</span>
           </button>
       </div>
     </form>

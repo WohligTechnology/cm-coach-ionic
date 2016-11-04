@@ -1,28 +1,51 @@
 angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.rCalendar'])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
-
-})
-
-
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {})
 
 .controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices, $ionicLoading) {
 
   $scope.formData = {};
 
   $scope.coachingFocus = [
-    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country'
+    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
   ];
 
   $scope.specialisations = [
     'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
   ];
 
-  $scope.showLoading = function (val, time) {
+  $scope.showLoading = function (value, time) {
     $ionicLoading.show({
-      template: val,
+      template: value,
       duration: time
     });
+  };
+
+  //Password Validator
+  $scope.valid1 = false;
+  $scope.valid2 = false;
+  $scope.passwordValidator = function (password) {
+    $scope.passwordValidate = true;
+    console.log(password);
+    console.log(/^[a-zA-Z0-9]$/.test(password));
+
+    if (password.length >= 8) {
+      $scope.valid1 = true;
+    } else {
+      $scope.valid1 = false;
+    }
+
+    if (/^[a-zA-Z0-9]$/.test(password)) {
+      $scope.valid2 = true;
+    } else {
+      $scope.valid2 = false;
+    }
+
+    if ($scope.valid1 && $scope.valid2) {
+      $scope.passwordValidate = false;
+    } else {
+      $scope.passwordValidate = true;
+    }
   };
 
   $scope.hideLoading = function () {
@@ -30,15 +53,18 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 
   $scope.submitData = function (formData) {
-    $scope.showLoading('Loading...', 10000);
+    $scope.showLoading('Please wait...', 10000);
     MyServices.registerCoach(formData, function (data) {
       if (data.value === true) {
+        console.log(data);
         $scope.formData = {};
         $scope.hideLoading();
+        $scope.showLoading('Registration Successful!', 2000);
         $state.go('login');
       } else {
+        console.log(data);
         $scope.hideLoading();
-        $scope.showLoading('Registration Error!', 3000);
+        $scope.showLoading('Registration Failed!', 2000);
       }
     });
   };

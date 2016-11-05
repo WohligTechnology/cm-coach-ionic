@@ -60,7 +60,7 @@
           </label>
           <label class="item item-input" ng-click="changePrice()">
             <span class="input-label">Coach Asking Price (monthly)</span>
-            <input type="text" name="askingPrice" ng-model="formData.askingPrice" readonly>
+            <input type="text" name="coachAskingPrice" ng-model="formData.coachAskingPrice" readonly>
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
             <span class="input-label">Free Text CV </span>
@@ -102,7 +102,7 @@
           </label>
           <label class="item item-input item-block">
             <span class="input-label">Coaching Achievements</span>
-            <textarea auto-grow rows="2" name="coachingAchievements" ng-model="formData.coachingAchievements"></textarea>
+            <textarea auto-grow rows="2" name="achievements" ng-model="formData.achievements"></textarea>
           </label>
         </div>
       </div>

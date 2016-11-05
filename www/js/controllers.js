@@ -157,60 +157,18 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('ProfileCtrl', function ($scope, $ionicScrollDelegate) {
-  // $scope.profileData = {
-  //   name: 'Sachin',
-  //   surname: 'Tendulkar',
-  //   image: 'http://2.bp.blogspot.com/-TgdKBlUGk90/T0PhPlFOf8I/AAAAAAAAAVc/jijEQ8u1uUg/s1600/387430_257363124319593_257347670987805_670782_1318978483_n.jpg',
-  //   yearsCoaching: 2,
-  //   email: 'sachin@gmail.com',
-  //   gender: 'Male',
-  //   contact: '+919098765324',
-  //   dob: '24th April, 1973',
-  //   country: 'United Kingdom',
-  //   coachingLimit: 50,
-  //   askingPrice: 100,
-  //   credentials: 'Level 4',
-  //   about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
-  //   coachingFocus: ['Sprinting', 'Hurdles'],
-  //   specialisations: ['Children in Athletics', 'First aid'],
-  //   experience: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
-  //   expertise: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
-  //   coachingAchievements: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod'
-  // };
-
   $scope.profileData = $.jStorage.get('user');
-
 })
 
 
 .controller('EditProfileCtrl', function ($scope, $state, MyServices, $ionicModal, $filter, $ionicLoading) {
-  // $scope.formData = {
-  //   name: 'Sachin',
-  //   surname: 'Tendulkar',
-  //   image: 'http://2.bp.blogspot.com/-TgdKBlUGk90/T0PhPlFOf8I/AAAAAAAAAVc/jijEQ8u1uUg/s1600/387430_257363124319593_257347670987805_670782_1318978483_n.jpg',
-  //   yearsCoaching: 2,
-  //   email: 'sachin@gmail.com',
-  //   gender: 'Male',
-  //   contact: '+919098765324',
-  //   dob: new Date(),
-  //   country: 'United Kingdom',
-  //   coachingLimit: 50,
-  //   askingPrice: 100,
-  //   credentials: 'Level 4',
-  //   about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
-  //   coachingFocus: ['Sprinting', 'Hurdles'],
-  //   specialisations: ['Children in Athletics', 'First aid']
-  // };
-
   $scope.formData = $.jStorage.get('user');
+  $scope.formData.dob = new Date($scope.formData.dob);
+  $scope.dummyPassword = '12345678';
 
   if ($scope.formData.specialisationOther) {
     $scope.formData.specialisations.otherVal = true;
   }
-
-  $scope.formData.dob = new Date($scope.formData.dob);
-
-  $scope.dummyPassword = '12345678';
 
   $scope.coachingFocus = [
     'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
@@ -285,8 +243,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       if (data.value === true) {
         $scope.hideLoading();
         $.jStorage.set('user', data.data);
-        $scope.formData = $.jStorage.get('user');
         $scope.showLoading('Profile Updated!', 2000);
+        $state.go('app.profile');
+        $scope.closeModal();
       } else {
         $scope.hideLoading();
         $scope.showLoading('Please Try Again!', 2000);
@@ -324,33 +283,46 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     $scope.modalPassword.show();
   };
 
-  $scope.changePrice = function () {
-    $scope.modalPrice.show();
-  };
-
-  $scope.changeLimit = function () {
-    $scope.modalLimit.show();
-  };
-
   $scope.closeModal = function () {
     $scope.modalPassword.hide();
     $scope.modalPrice.hide();
     $scope.modalLimit.hide();
   };
 
-  //Price Ranger
+  //Update Price
+  $scope.priceData = {};
+  $scope.changePrice = function () {
+    $scope.priceData.coachAskingPrice = $scope.formData.coachAskingPrice;
+    $scope.modalPrice.show();
+  };
   $scope.rangePrice = function (val) {
     var intVal = parseInt(val);
     if (intVal >= 1 && intVal <= 500) {
-      $scope.formData.askingPrice = intVal;
+      $scope.priceData.coachAskingPrice = intVal;
     }
+  };
+  $scope.submitPrice = function () {
+    $scope.formData.coachAskingPrice = $scope.priceData.coachAskingPrice;
+    $scope.submitData($scope.formData);
+  };
+
+  //Update Coaching Limit
+  $scope.limitData = {};
+  $scope.changeLimit = function () {
+    $scope.limitData.coachingLimit = $scope.formData.coachingLimit;
+    $scope.modalLimit.show();
   };
   $scope.rangeLimit = function (val) {
     var intVal = parseInt(val);
     if (intVal >= 1 && intVal <= 200) {
-      $scope.formData.coachingLimit = intVal;
+      $scope.limitData.coachingLimit = intVal;
     }
   };
+  $scope.submitLimit = function () {
+    $scope.formData.coachingLimit = $scope.limitData.coachingLimit;
+    $scope.submitData($scope.formData);
+  };
+
 })
 
 .controller('BlogCtrl', function ($scope) {

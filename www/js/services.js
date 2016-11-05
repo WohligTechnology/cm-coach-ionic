@@ -759,5 +759,13 @@ angular.module('starter.services', [])
           data: formData
         }).success(callback);
       },
+
+      editProfile: function (formData, callback) {
+        $http({
+          url: adminurl + 'Coach/updateCoachProfile',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
     };
   });

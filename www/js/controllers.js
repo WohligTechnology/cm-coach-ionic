@@ -245,7 +245,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         $.jStorage.set('user', data.data);
         $scope.showLoading('Profile Updated!', 2000);
         $state.go('app.profile');
-        $scope.closeModal();
       } else {
         $scope.hideLoading();
         $scope.showLoading('Please Try Again!', 2000);
@@ -279,8 +278,26 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     $scope.modalLimit = modal;
   });
 
+  // Update Password
+  $scope.passwordData = {};
   $scope.changePassword = function () {
+    $scope.passwordData.accessToken = $scope.formData.accessToken;
     $scope.modalPassword.show();
+  };
+  $scope.submitPassword = function (formData) {
+    $scope.showLoading('Please wait...', 10000);
+    MyServices.changePassword(formData, function (data) {
+      if (data.value === true) {
+        $scope.passwordData = {};
+        $scope.hideLoading();
+        $scope.showLoading('Password Updated!', 2000);
+        $state.go('app.profile');
+        $scope.closeModal();
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Please Try Again!', 2000);
+      }
+    });
   };
 
   $scope.closeModal = function () {

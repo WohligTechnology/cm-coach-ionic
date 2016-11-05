@@ -767,5 +767,13 @@ angular.module('starter.services', [])
           data: formData
         }).success(callback);
       },
+
+      changePassword: function (formData, callback) {
+        $http({
+          url: adminurl + 'Coach/resetPasswordCoach',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
     };
   });

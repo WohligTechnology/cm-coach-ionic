@@ -281,12 +281,12 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   //Submit Form
   $scope.submitData = function (formData) {
     $scope.showLoading('Please wait...', 10000);
-    MyServices.registerCoach(formData, function (data) {
+    MyServices.editProfile(formData, function (data) {
       if (data.value === true) {
-        $scope.formData = {};
         $scope.hideLoading();
+        $.jStorage.set('user', data.data);
+        $scope.formData = $.jStorage.get('user');
         $scope.showLoading('Profile Updated!', 2000);
-        $state.go('login');
       } else {
         $scope.hideLoading();
         $scope.showLoading('Please Try Again!', 2000);

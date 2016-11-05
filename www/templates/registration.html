@@ -39,7 +39,7 @@
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.country.$invalid && formName.country.$touched}">
             <span class="input-label">Country</span>
-            <select name="country" ng-model="formData.country"  ng-options="c.name as c.name for c in countries" required>
+            <select name="country" ng-model="formData.country" ng-options="c.name as c.name for c in countries" required>
               <option value="" selected>Select</option>
             </select>
           </label>
@@ -85,7 +85,7 @@
             <div class="input-label">
               Credentials/Qualifications
             </div>
-            <select name="credentials" ng-model="formData.credentials"  ng-options="c.value as c.name for c in credentials" required>
+            <select name="credentials" ng-model="formData.credentials" ng-options="c.value as c.name for c in credentials" required>
                 <option value="">Select</option>
             </select>
           </label>
@@ -100,9 +100,9 @@
         </div>
       </div>
       <div class="text-center m20 padding-horizontal">
-        <button class="button button-positive button-block" type="submit" ng-disabled="formName.$invalid || formValidate">
-          <span ng-if="formName.$invalid || formValidate">Please enter mandatory fields</span>
-          <span ng-if="formName.$valid || formValidate">Register Now</span>
+        <button class="button button-positive button-block" type="submit" ng-disabled="formName.$invalid || passwordValidate">
+          <span ng-if="formName.$invalid || passwordValidate">Please enter mandatory fields</span>
+          <span ng-if="formName.$valid || passwordValidate">Register Now</span>
           </button>
       </div>
     </form>

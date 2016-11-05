@@ -1,6 +1,13 @@
 angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.rCalendar'])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {})
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $state) {
+  $scope.profileData = $.jStorage.get('user');
+
+  $scope.logout = function () {
+    $.jStorage.flush();
+    $state.go('login');
+  };
+})
 
 .controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices, $ionicLoading) {
 
@@ -37,7 +44,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   }];
 
   $scope.countries = MyServices.getCountries();
-
   //Loading
   $scope.showLoading = function (value, time) {
     $ionicLoading.show({
@@ -140,6 +146,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         $scope.formData = {};
         $scope.hideLoading();
         $scope.showLoading('Login Successful!', 2000);
+        $.jStorage.set('user', data.data);
         $state.go('app.profile');
       } else {
         $scope.hideLoading();
@@ -150,27 +157,200 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('ProfileCtrl', function ($scope, $ionicScrollDelegate) {
-  $scope.profileData = {
-    name: 'Sachin',
-    surname: 'Tendulkar',
-    image: 'http://2.bp.blogspot.com/-TgdKBlUGk90/T0PhPlFOf8I/AAAAAAAAAVc/jijEQ8u1uUg/s1600/387430_257363124319593_257347670987805_670782_1318978483_n.jpg',
-    yearsCoaching: 2,
-    email: 'sachin@gmail.com',
-    gender: 'Male',
-    contact: '+919098765324',
-    dob: '24th April, 1973',
-    country: 'United Kingdom',
-    coachingLimit: 50,
-    askingPrice: 100,
-    credentials: 'Level 4',
-    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
-    coachingFocus: ['Sprinting', 'Hurdles'],
-    specialisations: ['Children in Athletics', 'First aid'],
-    experience: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
-    expertise: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
-    coachingAchievements: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod'
+  // $scope.profileData = {
+  //   name: 'Sachin',
+  //   surname: 'Tendulkar',
+  //   image: 'http://2.bp.blogspot.com/-TgdKBlUGk90/T0PhPlFOf8I/AAAAAAAAAVc/jijEQ8u1uUg/s1600/387430_257363124319593_257347670987805_670782_1318978483_n.jpg',
+  //   yearsCoaching: 2,
+  //   email: 'sachin@gmail.com',
+  //   gender: 'Male',
+  //   contact: '+919098765324',
+  //   dob: '24th April, 1973',
+  //   country: 'United Kingdom',
+  //   coachingLimit: 50,
+  //   askingPrice: 100,
+  //   credentials: 'Level 4',
+  //   about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
+  //   coachingFocus: ['Sprinting', 'Hurdles'],
+  //   specialisations: ['Children in Athletics', 'First aid'],
+  //   experience: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
+  //   expertise: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod',
+  //   coachingAchievements: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod'
+  // };
+
+  $scope.profileData = $.jStorage.get('user');
+
+})
+
+
+.controller('EditProfileCtrl', function ($scope, $state, MyServices, $ionicModal, $filter, $ionicLoading) {
+  // $scope.formData = {
+  //   name: 'Sachin',
+  //   surname: 'Tendulkar',
+  //   image: 'http://2.bp.blogspot.com/-TgdKBlUGk90/T0PhPlFOf8I/AAAAAAAAAVc/jijEQ8u1uUg/s1600/387430_257363124319593_257347670987805_670782_1318978483_n.jpg',
+  //   yearsCoaching: 2,
+  //   email: 'sachin@gmail.com',
+  //   gender: 'Male',
+  //   contact: '+919098765324',
+  //   dob: new Date(),
+  //   country: 'United Kingdom',
+  //   coachingLimit: 50,
+  //   askingPrice: 100,
+  //   credentials: 'Level 4',
+  //   about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
+  //   coachingFocus: ['Sprinting', 'Hurdles'],
+  //   specialisations: ['Children in Athletics', 'First aid']
+  // };
+
+  $scope.formData = $.jStorage.get('user');
+
+  if ($scope.formData.specialisationOther) {
+    $scope.formData.specialisations.otherVal = true;
+  }
+
+  $scope.formData.dob = new Date($scope.formData.dob);
+
+  $scope.dummyPassword = '12345678';
+
+  $scope.coachingFocus = [
+    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
+  ];
+
+  $scope.specialisations = [
+    'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
+  ];
+
+  $scope.gender = [{
+    name: 'Male',
+    value: 'Male'
+  }, {
+    name: 'Female',
+    value: 'Female'
+  }];
+
+  $scope.credentials = [{
+    name: 'Level 1',
+    value: 'Level 1'
+  }, {
+    name: 'Level 2',
+    value: 'Level 2'
+  }, {
+    name: 'Level 3',
+    value: 'Level 3'
+  }, {
+    name: 'Level 4',
+    value: 'Level 4'
+  }];
+
+  $scope.countries = MyServices.getCountries();
+
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
   };
 
+  //Password Validator
+  $scope.passwordData = {};
+  $scope.valid1 = false;
+  $scope.valid2 = false;
+  $scope.passwordValidator = function (password) {
+    $scope.passwordValidate = true;
+    if (password && password.length >= 8) {
+      $scope.valid1 = true;
+    } else {
+      $scope.valid1 = false;
+    }
+    if (/([a-zA-Z])/.test(password) && /([0-9])/.test(password)) {
+      $scope.valid2 = true;
+    } else {
+      $scope.valid2 = false;
+    }
+    if ($scope.valid1 && $scope.valid2) {
+      $scope.passwordValidate = false;
+    } else {
+      $scope.passwordValidate = true;
+    }
+  };
+
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 10000);
+    MyServices.registerCoach(formData, function (data) {
+      if (data.value === true) {
+        $scope.formData = {};
+        $scope.hideLoading();
+        $scope.showLoading('Profile Updated!', 2000);
+        $state.go('login');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Please Try Again!', 2000);
+      }
+    });
+  };
+
+  $scope.countries = MyServices.getCountries();
+
+  $ionicModal.fromTemplateUrl('templates/modal/password.html', {
+    id: 1,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalPassword = modal;
+  });
+
+  $ionicModal.fromTemplateUrl('templates/modal/price.html', {
+    id: 2,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalPrice = modal;
+  });
+
+  $ionicModal.fromTemplateUrl('templates/modal/coaching-limit.html', {
+    id: 3,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalLimit = modal;
+  });
+
+  $scope.changePassword = function () {
+    $scope.modalPassword.show();
+  };
+
+  $scope.changePrice = function () {
+    $scope.modalPrice.show();
+  };
+
+  $scope.changeLimit = function () {
+    $scope.modalLimit.show();
+  };
+
+  $scope.closeModal = function () {
+    $scope.modalPassword.hide();
+    $scope.modalPrice.hide();
+    $scope.modalLimit.hide();
+  };
+
+  //Price Ranger
+  $scope.rangePrice = function (val) {
+    var intVal = parseInt(val);
+    if (intVal >= 1 && intVal <= 500) {
+      $scope.formData.askingPrice = intVal;
+    }
+  };
+  $scope.rangeLimit = function (val) {
+    var intVal = parseInt(val);
+    if (intVal >= 1 && intVal <= 200) {
+      $scope.formData.coachingLimit = intVal;
+    }
+  };
 })
 
 .controller('BlogCtrl', function ($scope) {
@@ -542,100 +722,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       name: 'Samuel Trump',
       img: 'img/img-placeholder.png'
     }],
-  };
-
-})
-
-.controller('EditProfileCtrl', function ($scope, $state, MyServices, $ionicModal, $filter) {
-  $scope.formData = {
-    name: 'Sachin',
-    surname: 'Tendulkar',
-    image: 'http://2.bp.blogspot.com/-TgdKBlUGk90/T0PhPlFOf8I/AAAAAAAAAVc/jijEQ8u1uUg/s1600/387430_257363124319593_257347670987805_670782_1318978483_n.jpg',
-    yearsCoaching: 2,
-    email: 'sachin@gmail.com',
-    gender: 'Male',
-    contact: '+919098765324',
-    dob: new Date(),
-    country: 'United Kingdom',
-    coachingLimit: 50,
-    askingPrice: 100,
-    credentials: 'Level 4',
-    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod, turpis at auctor interdum, enim neque placerat diam, ac faucibus sem elit in sapien. Vivamus sodales et libero ac consectetur. Curabitur hendrerit lacus nisi, eget euismod felis gravida vitae. Nullam faucibus maximus eros, non facilisis magna tincidunt quis. Ut suscipit fringilla quam eu scelerisque. Proin orci lacus, condimentum eget urna at, aliquam pellentesque mauris. Aenean rutrum diam tortor, sed finibus nibh condimentum ac. Sed et blandit arcu.',
-    coachingFocus: ['Sprinting', 'Hurdles'],
-    specialisations: ['Children in Athletics', 'First aid']
-  };
-  $scope.coachingFocus = [
-    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country'
-  ];
-  $scope.specialisations = [
-    'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
-  ];
-
-  $scope.dummyPassword = '12345678';
-
-  $scope.submit = function (data) {
-    console.log(data);
-    $state.go('app.profile');
-  };
-
-  $scope.gender = [{
-    name: 'Male',
-    value: 'Male'
-  }, {
-    name: 'Female',
-    value: 'Female'
-  }];
-
-  $scope.countries = MyServices.getCountries();
-
-  $ionicModal.fromTemplateUrl('templates/modal/password.html', {
-    id: 1,
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modalPassword = modal;
-  });
-  $ionicModal.fromTemplateUrl('templates/modal/price.html', {
-    id: 2,
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modalPrice = modal;
-  });
-  $ionicModal.fromTemplateUrl('templates/modal/coaching-limit.html', {
-    id: 3,
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modalLimit = modal;
-  });
-  $scope.changePassword = function () {
-    $scope.modalPassword.show();
-  };
-  $scope.changePrice = function () {
-    $scope.modalPrice.show();
-  };
-  $scope.changeLimit = function () {
-    $scope.modalLimit.show();
-  };
-  $scope.closeModal = function () {
-    $scope.modalPassword.hide();
-    $scope.modalPrice.hide();
-    $scope.modalLimit.hide();
-  };
-
-  $scope.rangePrice = function (val) {
-    var intVal = parseInt(val);
-    if (intVal >= 1 && intVal <= 500) {
-      $scope.formData.askingPrice = intVal;
-    }
-  };
-
-  $scope.rangeLimit = function (val) {
-    var intVal = parseInt(val);
-    if (intVal >= 1 && intVal <= 200) {
-      $scope.formData.coachingLimit = intVal;
-    }
   };
 
 })

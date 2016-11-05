@@ -5,13 +5,15 @@
   <ion-content class="white-profile">
     <div class="picture-hold">
       <div class="zd">
-        <div class="dp" style="background-image: url({{profileData.image}});"></div>
+        <div class="dp" style="background-image: url({{profileData.image}});" ng-if="profileData.image"></div>
+        <div class="dp" style="background-image: url(img/img-placeholder.png);" ng-if="!profileData.image"></div>
         <h3>{{profileData.name}} {{profileData.surname}}</h3>
         <p>{{profileData.credentials}}</p>
         <div class="main-info">
           <div class="row">
             <div class="col">
-              <h3>{{profileData.askingPrice | currency: '£' : 0}}</h3>
+              <h3 ng-if="profileData.askingPrice">{{profileData.askingPrice | currency: '£' : 0}}</h3>
+              <h3 ng-if="!profileData.askingPrice">In Review</h3>
               <p>Coach Asking Price</p>
             </div>
             <div class="col">
@@ -25,7 +27,7 @@
     <ion-list class="stripped">
       <ion-item class="item-text-wrap">
         <h3>Years of Coaching</h3>
-        <p>{{profileData.yearsCoaching}}</p>
+        <p>{{profileData.yearsOfCoaching}}</p>
       </ion-item>
       <ion-item class="item-text-wrap">
         <h3>Country</h3>
@@ -33,7 +35,7 @@
       </ion-item>
       <ion-item class="item-text-wrap">
         <h3>Phone Number</h3>
-        <p>{{profileData.contact}}</p>
+        <p>{{profileData.mobile}}</p>
       </ion-item>
       <ion-item class="item-text-wrap">
         <h3>Email Address</h3>
@@ -41,7 +43,7 @@
       </ion-item>
       <ion-item class="item-text-wrap">
         <h3>Date of Birth</h3>
-        <p>{{profileData.dob}}</p>
+        <p>{{profileData.dob | date:'dd MMMM, yyyy'}}</p>
       </ion-item>
       <ion-item class="item-text-wrap">
         <h3>Gender</h3>
@@ -57,20 +59,26 @@
         <h3>Specialisations</h3>
         <p>
           <span class="tag-box" ng-repeat="s in profileData.specialisations">{{s}}</span>
+          <span class="tag-box" ng-if="profileData.specialisationOther">{{profileData.specialisationOther}}</span>
         </p>
       </ion-item>
       <ion-item class="item-text-wrap item-long">
         <h3>Experience</h3>
-        <p class="text-justified" read-more="profileData.experience" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+        <p class="text-justified" ng-if="profileData.experience" read-more="profileData.experience" read-more-limit="140" read-more-label-expand="Read More"
+          read-more-label-collapse="Read Less"></p>
+        <p class="text-justified" ng-if="!profileData.experience" ui-sref="app.edit-profile">Click here to complete profile!</p>
       </ion-item>
       <ion-item class="item-text-wrap item-long">
         <h3>Expertise</h3>
-        <p class="text-justified" read-more="profileData.expertise" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+        <p class="text-justified" ng-if="profileData.expertise" read-more="profileData.expertise" read-more-limit="140" read-more-label-expand="Read More"
+          read-more-label-collapse="Read Less"></p>
+        <p class="text-justified" ng-if="!profileData.expertise" ui-sref="app.edit-profile">Click here to complete profile!</p>
       </ion-item>
       <ion-item class="item-text-wrap item-long">
         <h3>Coaching Achievements</h3>
-        <p class="text-justified" read-more="profileData.coachingAchievements" read-more-limit="140" read-more-label-expand="Read More"
-          read-more-label-collapse="Read Less"></p>
+        <p class="text-justified" ng-if="profileData.coachingAchievements" read-more="profileData.coachingAchievements" read-more-limit="140"
+          read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+        <p class="text-justified" ng-if="!profileData.coachingAchievements" ui-sref="app.edit-profile">Click here to complete profile!</p>
       </ion-item>
     </ion-list>
   </ion-content>

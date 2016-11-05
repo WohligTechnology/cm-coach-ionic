@@ -109,8 +109,19 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
   width: 100px;
   border-radius: 100%;
   background-size: cover;
+  background-position: center;
   margin: 0 auto;
-  background-image: url(../img/img-placeholder.png);
+}
+
+.img-avatar {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
 }
 
 .picture-hold {
@@ -156,6 +167,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
       }
       p {
         text-align: justify;
+        &::after {
+          clear: both;
+        }
+        &::before,
+        &::after {
+          display: table;
+          content: "";
+          line-height: 0;
+        }
       }
     }
     .item-content {

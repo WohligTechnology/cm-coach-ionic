@@ -9863,8 +9863,18 @@ a.button {
   width: 100px;
   border-radius: 100%;
   background-size: cover;
-  margin: 0 auto;
-  background-image: url(../img/img-placeholder.png); }
+  background-position: center;
+  margin: 0 auto; }
+
+.img-avatar {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover; }
 
 .picture-hold {
   padding-top: 30px;
@@ -9902,6 +9912,12 @@ a.button {
     float: none; }
   .white-profile .item.item-long p {
     text-align: justify; }
+    .white-profile .item.item-long p::after {
+      clear: both; }
+    .white-profile .item.item-long p::before, .white-profile .item.item-long p::after {
+      display: table;
+      content: "";
+      line-height: 0; }
   .white-profile .item .item-content {
     padding: 0; }
   .white-profile .item h3 {

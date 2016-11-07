@@ -161,21 +161,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     border: none;
     padding: 14px 16px;
     &.item-long {
+      p {
+        text-align: justify;
+      }
       h3 {
         margin: 0 0 5px;
         float: none;
-      }
-      p {
-        text-align: justify;
-        &::after {
-          clear: both;
-        }
-        &::before,
-        &::after {
-          display: table;
-          content: "";
-          line-height: 0;
-        }
       }
     }
     .item-content {
@@ -190,6 +181,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default; // Include all of Ionic
     p {
       text-align: right;
       color: #000;
+      &::after {
+        clear: both;
+      }
+      &::before,
+      &::after {
+        display: table;
+        content: "";
+        line-height: 0;
+      }
     }
   }
 }

@@ -9907,17 +9907,11 @@ a.button {
 .white-profile .item {
   border: none;
   padding: 14px 16px; }
+  .white-profile .item.item-long p {
+    text-align: justify; }
   .white-profile .item.item-long h3 {
     margin: 0 0 5px;
     float: none; }
-  .white-profile .item.item-long p {
-    text-align: justify; }
-    .white-profile .item.item-long p::after {
-      clear: both; }
-    .white-profile .item.item-long p::before, .white-profile .item.item-long p::after {
-      display: table;
-      content: "";
-      line-height: 0; }
   .white-profile .item .item-content {
     padding: 0; }
   .white-profile .item h3 {
@@ -9928,6 +9922,12 @@ a.button {
   .white-profile .item p {
     text-align: right;
     color: #000; }
+    .white-profile .item p::after {
+      clear: both; }
+    .white-profile .item p::before, .white-profile .item p::after {
+      display: table;
+      content: "";
+      line-height: 0; }
 
 .pic-edit {
   padding: 30px 0;

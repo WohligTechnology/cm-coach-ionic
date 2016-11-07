@@ -604,7 +604,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('ChartsCtrl', function ($scope, $ionicModal) {
+.controller('AnalyticsCtrl', function ($scope, $ionicModal) {
   $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
   $scope.series = ['Series A', 'Series B'];
   $scope.data = [

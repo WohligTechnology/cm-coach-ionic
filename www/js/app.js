@@ -142,12 +142,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.charts', {
-    url: '/charts',
+  .state('app.analytics', {
+    url: '/analytics',
     views: {
       'menuContent': {
-        templateUrl: 'templates/charts.html',
-        controller: 'ChartsCtrl'
+        templateUrl: 'templates/analytics.html',
+        controller: 'AnalyticsCtrl'
       }
     }
   })

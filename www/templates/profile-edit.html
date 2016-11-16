@@ -36,7 +36,7 @@
             <div class="input-label">
               Country
             </div>
-            <select name="country" ng-model="formData.country" ng-options="c.name as c.name for c in countries">
+            <select name="country" ng-model="formData.country" ng-options="c.name as c.name for c in countries" required>
               <option value="">Select</option>
             </select>
           </label>
@@ -66,7 +66,7 @@
             <span class="input-label">Free Text CV </span>
             <textarea auto-grow rows="2" name="freeTextCV" ng-model="formData.freeTextCV" required></textarea>
           </label>
-          <ion-item class="item-text-wrap multi-select">
+          <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.coachingFocus == ''}">
             <h3>Coaching Focus</h3>
             <p>
               <div class="tag-box-label" ng-repeat="c in coachingFocus">
@@ -74,8 +74,9 @@
                 <label for="{{c}}">{{c}}</label>
               </div>
             </p>
+            <input type="hidden" name="coachingFocus" ng-model="formData.coachingFocus[0]" required>
           </ion-item>
-          <ion-item class="item-text-wrap">
+          <ion-item class="item-text-wrap" ng-class="{'err': formData.specialisations == '' && !formData.specialisations.otherVal}">
             <h3>Specialisations</h3>
             <p>
               <div class="tag-box-label" ng-repeat="s in specialisations">
@@ -87,6 +88,7 @@
                 <label for="Others">Others</label>
               </div>
             </p>
+            <input type="hidden" name="specialisations" ng-model="formData.specialisations[0]" required>
           </ion-item>
           <ion-item class="item-input item-block" ng-if="formData.specialisations.otherVal" ng-class="{'err':formName.specialisationOther.$invalid && formName.specialisationOther.$touched}">
             <span class="input-label">Others Specialisations</span>
@@ -107,7 +109,7 @@
         </div>
       </div>
       <div class="text-center m20 padding-horizontal">
-        <button class="button button-positive button-block" type="submit">Save</button>
+        <button class="button button-positive button-block" ng-disabled="formName.$invalid" type="submit">Save</button>
       </div>
     </form>
   </ion-content>

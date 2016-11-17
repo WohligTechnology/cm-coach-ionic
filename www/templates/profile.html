@@ -1,4 +1,7 @@
-<ion-view view-title="Welcome, {{profileData.name}}">
+<ion-view>
+  <ion-nav-title>
+    Welcome, {{profileData.name}}
+  </ion-nav-title>
   <ion-nav-buttons side="right">
     <a class="button button-icon icon ln-pencil ln-fit" ui-sref="app.edit-profile"></a>
     <a class="button button-icon icon ln-earth ln-fit" ui-sref="app.notifications"><span class="badge-icon assertive-bg">1</span></a>
@@ -6,8 +9,8 @@
   <ion-content class="white-profile">
     <div class="picture-hold">
       <div class="zd">
-        <div class="dp" style="background-image: url({{profileData.image}});" ng-if="profileData.image"></div>
-        <div class="dp" style="background-image: url(img/img-placeholder.png);" ng-if="!profileData.image"></div>
+        <div class="dp" style="background-image: url({{profileData.profilePic | uploadpath}});" ng-if="profileData.profilePic"></div>
+        <div class="dp" style="background-image: url(img/img-placeholder.png);" ng-if="!profileData.profilePic"></div>
         <h3>{{profileData.name}} {{profileData.surname}}</h3>
         <p>{{profileData.credentials}}</p>
         <div class="main-info">

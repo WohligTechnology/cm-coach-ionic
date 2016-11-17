@@ -1,12 +1,14 @@
-angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.rCalendar'])
+angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.rCalendar', 'ngCordova'])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $state) {
-  $scope.profileData = $.jStorage.get('user');
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices) {
+  $scope.profileData = MyServices.getUser();
+  console.log("APp is once only");
 
   $scope.logout = function () {
     $.jStorage.flush();
     $state.go('login');
   };
+
 })
 
 .controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices, $filter, $ionicLoading) {
@@ -147,7 +149,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         $scope.formData = {};
         $scope.hideLoading();
         $scope.showLoading('Login Successful!', 2000);
-        $.jStorage.set('user', data.data);
+        MyServices.setUser(data.data);
         $state.go('app.profile');
       } else {
         $scope.hideLoading();
@@ -157,13 +159,14 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 })
 
-.controller('ProfileCtrl', function ($scope, $ionicScrollDelegate) {
-  $scope.profileData = $.jStorage.get('user');
+.controller('ProfileCtrl', function ($scope, $ionicScrollDelegate, $rootScope, MyServices) {
+  $scope.profileData = MyServices.getUser();
+  console.log("Profile ReCalled");
 })
 
 
-.controller('EditProfileCtrl', function ($scope, $state, MyServices, $ionicModal, $filter, $ionicLoading) {
-  $scope.formData = $.jStorage.get('user');
+.controller('EditProfileCtrl', function ($scope, $state, MyServices, $ionicModal, $filter, $ionicLoading, $cordovaFileTransfer, $cordovaCamera) {
+  $scope.formData = MyServices.getUser();
   $scope.formData.dob = new Date($scope.formData.dob);
   $scope.dummyPassword = '12345678';
 
@@ -245,7 +248,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     MyServices.editProfile(formData, function (data) {
       if (data.value === true) {
         $scope.hideLoading();
-        $.jStorage.set('user', data.data);
+        MyServices.setUser(data.data);
         $scope.showLoading('Profile Updated!', 2000);
         $state.go('app.profile');
       } else {
@@ -341,6 +344,56 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.submitLimit = function () {
     $scope.formData.coachingLimit = $scope.limitData.coachingLimit;
     $scope.submitData($scope.formData);
+  };
+
+  // Upload Profile Pic
+  $scope.selectImage = function () {
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
+    $cordovaCamera.getPicture(options).then(function (imageURI) {
+      $scope.profileImage = imageURI;
+      $scope.uploadImage($scope.profileImage);
+    }, function (err) {
+      // error
+    });
+  };
+
+  $scope.uploadImage = function (imageURI) {
+    $scope.showLoading('Uploading Image!', 10000);
+    $cordovaFileTransfer.upload(adminurl + 'upload', imageURI)
+      .then(function (result) {
+        // Success!
+        console.log(result.response);
+        result.response = JSON.parse(result.response);
+        $scope.formData.profilePic = result.response.data[0];
+        MyServices.editProfile($scope.formData, function (data) {
+          if (data.value === true) {
+            $scope.hideLoading();
+            MyServices.setUser(data.data);
+
+            $scope.showLoading('Profile Updated!', 2000);
+            $state.go('app.profile');
+          } else {
+            $scope.hideLoading();
+            $scope.showLoading('Please Try Again!', 2000);
+          }
+        });
+      }, function (err) {
+        // Error
+        $scope.hideLoading();
+        $scope.showLoading('Error!', 2000);
+      }, function (progress) {
+        // constant progress updates
+      });
   };
 
 })

@@ -7,6 +7,11 @@ var uploadurl = imgurl;
 var user = {};
 angular.module('starter.services', [])
   .factory('MyServices', function ($http, $filter) {
+    var userProfile = $.jStorage.get("userProfile");
+    if (!userProfile) {
+      userProfile = {};
+    }
+
     var returnval = {};
     var countries = [{
       "name": "United Kingdom",
@@ -743,6 +748,15 @@ angular.module('starter.services', [])
         return countries;
       },
 
+      setUser: function (data) {
+
+        _.assignIn(userProfile, data);
+        $.jStorage.set("userProfile", userProfile);
+      },
+      getUser: function () {
+        return userProfile;
+      },
+
       registerCoach: function (formData, callback) {
         $http({
           url: adminurl + 'Coach/registerCoach',
@@ -760,6 +774,7 @@ angular.module('starter.services', [])
       },
 
       editProfile: function (formData, callback) {
+        console.log(formData);
         $http({
           url: adminurl + 'Coach/updateCoachProfile',
           method: 'POST',

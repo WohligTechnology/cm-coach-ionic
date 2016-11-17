@@ -2,7 +2,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices) {
   $scope.profileData = MyServices.getUser();
-  console.log("APp is once only");
 
   $scope.logout = function () {
     $.jStorage.flush();
@@ -47,7 +46,10 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     value: 'Level 4'
   }];
 
-  $scope.countries = MyServices.getCountries();
+  MyServices.getCountries(function (data) {
+    $scope.countries = data;
+  });
+
   //Loading
   $scope.showLoading = function (value, time) {
     $ionicLoading.show({
@@ -161,7 +163,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('ProfileCtrl', function ($scope, $ionicScrollDelegate, $rootScope, MyServices) {
   $scope.profileData = MyServices.getUser();
-  console.log("Profile ReCalled");
 })
 
 
@@ -206,7 +207,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     value: 'Level 4'
   }];
 
-  $scope.countries = MyServices.getCountries();
+  MyServices.getCountries(function (data) {
+    $scope.countries = data;
+  });
 
   //Loading
   $scope.showLoading = function (value, time) {
@@ -258,7 +261,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     });
   };
 
-  $scope.countries = MyServices.getCountries();
+  MyServices.getCountries(function (data) {
+    $scope.countries = data;
+  });
 
   $ionicModal.fromTemplateUrl('templates/modal/password.html', {
     id: 1,
@@ -324,8 +329,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       $scope.priceData.coachAskingPrice = intVal;
     }
   };
-  $scope.submitPrice = function () {
-    $scope.formData.coachAskingPrice = $scope.priceData.coachAskingPrice;
+  $scope.submitPrice = function (data) {
+    $scope.formData.coachAskingPrice = data.coachAskingPrice;
     $scope.submitData($scope.formData);
   };
 
@@ -341,8 +346,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       $scope.limitData.coachingLimit = intVal;
     }
   };
-  $scope.submitLimit = function () {
-    $scope.formData.coachingLimit = $scope.limitData.coachingLimit;
+  $scope.submitLimit = function (data) {
+    $scope.formData.coachingLimit = data.coachingLimit;
+    console.log($scope.formData);
     $scope.submitData($scope.formData);
   };
 
@@ -375,18 +381,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         console.log(result.response);
         result.response = JSON.parse(result.response);
         $scope.formData.profilePic = result.response.data[0];
-        MyServices.editProfile($scope.formData, function (data) {
-          if (data.value === true) {
-            $scope.hideLoading();
-            MyServices.setUser(data.data);
-
-            $scope.showLoading('Profile Updated!', 2000);
-            $state.go('app.profile');
-          } else {
-            $scope.hideLoading();
-            $scope.showLoading('Please Try Again!', 2000);
-          }
-        });
+        $scope.submitData($scope.formData);
       }, function (err) {
         // Error
         $scope.hideLoading();

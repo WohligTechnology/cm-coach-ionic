@@ -9,7 +9,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 })
 
-.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices, $ionicLoading) {
+.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices, $filter, $ionicLoading) {
 
   $scope.formData = {};
 
@@ -20,6 +20,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.specialisations = [
     'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
   ];
+
+  $scope.maxDate = $filter('date')(new Date(), 'yyyy-MM-dd');
 
   $scope.gender = [{
     name: 'Male',
@@ -141,7 +143,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.submitData = function (formData) {
     $scope.showLoading('Please wait...', 10000);
     MyServices.login(formData, function (data) {
-      console.log(data);
       if (data.value === true) {
         $scope.formData = {};
         $scope.hideLoading();
@@ -177,6 +178,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.specialisations = [
     'Coaching athletes with a disability', 'Coaching female athletes', 'Eating disorders', 'First aid', 'Long-term athlete development', 'Mentored practice', 'Strength and conditioning', 'Fitness in Running and Walking', 'Children in Athletics'
   ];
+
+  $scope.maxDate = $filter('date')(new Date(), 'yyyy-MM-dd');
 
   $scope.gender = [{
     name: 'Male',

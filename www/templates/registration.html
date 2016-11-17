@@ -55,7 +55,7 @@
           </label>
           <label class="item item-input" ng-class="{'err':formName.dob.$invalid && formName.dob.$touched}">
             <span class="input-label">Date of Birth</span>
-            <input type="date" name="dob" ng-model="formData.dob" required>
+            <input type="date" name="dob" ng-model="formData.dob" max="{{maxDate}}" required>
           </label>
           <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.coachingFocus == ''}">
             <h3>Coaching Focus</h3>

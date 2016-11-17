@@ -52,7 +52,7 @@
           </label>
           <label class="item item-input" ng-class="{'err':formName.dob.$invalid && formName.dob.$touched}">
             <span class="input-label">Date of Birth</span>
-            <input type="date" name="dob" ng-model="formData.dob" required>
+            <input type="date" name="dob" ng-model="formData.dob" max="{{maxDate}}" required>
           </label>
           <label class="item item-input" ng-click="changeLimit()">
             <span class="input-label">Coaching Limit</span>

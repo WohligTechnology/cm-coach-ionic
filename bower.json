@@ -10,7 +10,8 @@
     "ionic-calendar": "^0.3.1",
     "jStorage": "^0.4.12",
     "ngCordova": "^0.1.27-alpha",
-    "lodash": "^4.17.2"
+    "lodash": "^4.17.2",
+    "moment": "^2.16.0"
   },
   "resolutions": {
     "angular-sanitize": "1.5.3",

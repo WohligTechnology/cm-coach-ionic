@@ -26,6 +26,7 @@ angular.module('starter.services', [])
         _.assignIn(userProfile, data);
         $.jStorage.set("userProfile", userProfile);
       },
+
       getUser: function () {
         return userProfile;
       },

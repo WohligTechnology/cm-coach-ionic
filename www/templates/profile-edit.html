@@ -23,7 +23,7 @@
           </label>
           <label class="item item-input" ng-class="{'err':formName.email.$invalid && formName.email.$touched}">
             <span class="input-label">Email Address</span>
-            <input type="email" name="email" ng-model="formData.email" required>
+            <input type="email" name="email" ng-model="formData.email" maxlength="255" required>
           </label>
           <label class="item item-input" ng-click="changePassword()">
             <span class="input-label">Change Password</span>

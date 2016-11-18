@@ -1,5 +1,14 @@
 angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.rCalendar', 'ngCordova'])
 
+.controller('LoadingCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices) {
+  $scope.loadingData = MyServices.getUser();
+  if ($scope.loadingData.accessToken) {
+    $state.go('app.profile');
+  } else {
+    $state.go('login');
+  }
+})
+
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices) {
   $scope.profileData = MyServices.getUser();
 
@@ -118,7 +127,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 })
 
-.controller('LoginCtrl', function ($scope, $ionicModal, $timeout, $ionicLoading, MyServices, $state) {
+.controller('LoginCtrl', function ($scope, $ionicModal, $timeout, $ionicHistory, $ionicLoading, MyServices, $state) {
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
   $ionicModal.fromTemplateUrl('templates/modal/forgot-password.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -161,7 +172,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 })
 
-.controller('ProfileCtrl', function ($scope, $ionicScrollDelegate, $rootScope, MyServices) {
+.controller('ProfileCtrl', function ($scope, $ionicScrollDelegate, $ionicHistory, $rootScope, MyServices) {
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
   $scope.profileData = MyServices.getUser();
 })
 

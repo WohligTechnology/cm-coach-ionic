@@ -10573,6 +10573,13 @@ p.bold {
 .stripped .item:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.05); }
 
+.to-center {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0; }
+
 .nav-left {
   text-align: left; }
 

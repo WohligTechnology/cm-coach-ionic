@@ -23,7 +23,13 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+    .state('loading', {
+    url: '/loading',
+    templateUrl: 'templates/loading.html',
+    controller: 'LoadingCtrl'
+  })
+
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -255,7 +261,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/loading');
 })
 
 .filter('ageConvert', function () {

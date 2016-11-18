@@ -971,6 +971,14 @@ p.bold {
   }
 }
 
+.to-center {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+
 @import "www/lib/ionic-calendar/dist/css/calendar.min";
 .monthview-selected {
   background-color: $balanced;

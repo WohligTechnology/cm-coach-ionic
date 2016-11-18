@@ -12,6 +12,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices) {
   $scope.profileData = MyServices.getUser();
 
+  // Log out
   $scope.logout = function () {
     $.jStorage.flush();
     $state.go('login');

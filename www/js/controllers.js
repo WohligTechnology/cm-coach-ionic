@@ -131,6 +131,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, $ionicHistory, $ionicLoading, MyServices, $state) {
   $ionicHistory.clearCache();
   $ionicHistory.clearHistory();
+  $ionicHistory.removeBackView();
   $ionicModal.fromTemplateUrl('templates/modal/forgot-password.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -176,6 +177,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 .controller('ProfileCtrl', function ($scope, $ionicScrollDelegate, $ionicHistory, $rootScope, MyServices) {
   $ionicHistory.clearCache();
   $ionicHistory.clearHistory();
+  $ionicHistory.removeBackView();
   $scope.profileData = MyServices.getUser();
 })
 

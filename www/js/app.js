@@ -18,7 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleBlackTranslucent();
     }
     if (cordova.platformId == 'android') {
-      StatusBar.backgroundColorByHexString("#004a9b");
+      StatusBar.backgroundColorByHexString("#003268");
     }
   });
 })

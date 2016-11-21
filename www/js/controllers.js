@@ -1,7 +1,6 @@
 angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.rCalendar', 'ngCordova'])
 
-.controller('LoadingCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices, $ionicConfigProvider) {
-  $ionicConfigProvider.views.maxCache(0);
+.controller('LoadingCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices, $ionicHistory) {
   $scope.loadingData = MyServices.getUser();
   if ($scope.loadingData.accessToken) {
     $state.go('app.profile');

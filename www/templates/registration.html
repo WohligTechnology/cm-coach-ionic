@@ -6,7 +6,10 @@
     <form name="formName" ng-submit="termsPopup(formData);">
       <div class="pro-edit text-rite">
         <div class="list">
-          <div class="item item-divider">All the fields below are mandatory</div>
+          <div class="item item-divider item-text-wrap text-justified small-text">
+            <span>Membership to this website is public, once your account information has been submitted; you will be immediately granted access to the website environment.
+            <br> All the fields below are mandatory.</span>
+          </div>
           <label class="item item-input" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
             <span class="input-label">Forename</span>
             <input type="text" name="name" ng-model="formData.name" maxlength="35" required>
@@ -31,7 +34,7 @@
             </label>
           <label class="item item-input" ng-if="formData.password" ng-class="{'err':formData.repassword !== formData.password,'err succ':formData.repassword === formData.password}">
             <span class="input-label">Confirm Password</span>
-            <input type="password" name="repassword" ng-model="formData.repassword" maxlength="15">
+            <input type="password" name="repassword" ng-model="formData.repassword" maxlength="15" required>
           </label>
           <label class="item item-input" ng-class="{'err':formName.yearsOfCoaching.$invalid && formName.yearsOfCoaching.$touched}">
             <span class="input-label">Years Coaching</span>            

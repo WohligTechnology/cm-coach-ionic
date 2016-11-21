@@ -1,20 +1,20 @@
 <ion-view view-title="Test(s)">
-    <ion-nav-buttons side="right">
-        <a class="button button-clear icon ln-circle-plus ln-fit" ui-sref="app.testing-create"></a>
-    </ion-nav-buttons>
-    <ion-content>
-        <ion-list>
-            <ion-item class="item-input-inset">
-                <label class="item-input-wrapper"><input type="text" placeholder="Search Test"></label>
-                <button class="button button-small icon ln-magnifier"></button>
-            </ion-item>
-            <ion-item class="item-icon-left icon-c-l" ui-sref="app.testing-detail" ng-repeat="d in data">
-                <i class="icon icon-circled ln-speed-fast"></i>
-                <h2>{{d.name}}</h2>
-                <p>{{d.startDate}} - {{d.endDate}}</p>
-                <ion-option-button class="button-assertive"><i class="icon ln-trash"></i></ion-option-button>
-            </ion-item>
-        </ion-list>
-        </div>
-    </ion-content>
+  <ion-nav-buttons side="right">
+    <a class="button button-clear icon ion-ios-plus-empty" ui-sref="app.testing-create"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-input-inset">
+        <label class="item-input-wrapper"><input type="text" placeholder="Search Test"></label>
+        <button class="button button-small icon ln-magnifier"></button>
+      </ion-item>
+      <ion-item class="item-icon-left icon-c-l" ui-sref="app.testing-detail" ng-repeat="d in data">
+        <i class="icon icon-circled ln-speed-fast"></i>
+        <h2>{{d.name}}</h2>
+        <p>{{d.startDate}} - {{d.endDate}}</p>
+        <ion-option-button class="button-assertive"><i class="icon ln-trash"></i></ion-option-button>
+      </ion-item>
+    </ion-list>
+    </div>
+  </ion-content>
 </ion-view>

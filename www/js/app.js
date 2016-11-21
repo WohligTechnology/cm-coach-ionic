@@ -17,9 +17,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     if (window.StatusBar) {
       StatusBar.styleBlackTranslucent();
     }
-    if (cordova.platformId == 'android') {
-      StatusBar.backgroundColorByHexString("#003268");
+    if (cordova) {
+      if (cordova.platformId == 'android') {
+        StatusBar.backgroundColorByHexString("#003268");
+      }
     }
+
   });
 })
 

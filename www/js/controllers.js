@@ -34,27 +34,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   $scope.maxDate = $filter('date')(new Date(), 'yyyy-MM-dd');
 
-  $scope.gender = [{
-    name: 'Male',
-    value: 'Male'
-  }, {
-    name: 'Female',
-    value: 'Female'
-  }];
+  $scope.gender = ['Male', 'Female'];
 
-  $scope.credentials = [{
-    name: 'Level 1',
-    value: 'Level 1'
-  }, {
-    name: 'Level 2',
-    value: 'Level 2'
-  }, {
-    name: 'Level 3',
-    value: 'Level 3'
-  }, {
-    name: 'Level 4',
-    value: 'Level 4'
-  }];
+  $scope.credentials = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
 
   MyServices.getCountries(function (data) {
     $scope.countries = data;
@@ -201,27 +183,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   $scope.maxDate = $filter('date')(new Date(), 'yyyy-MM-dd');
 
-  $scope.gender = [{
-    name: 'Male',
-    value: 'Male'
-  }, {
-    name: 'Female',
-    value: 'Female'
-  }];
+  $scope.gender = ['Male', 'Female'];
 
-  $scope.credentials = [{
-    name: 'Level 1',
-    value: 'Level 1'
-  }, {
-    name: 'Level 2',
-    value: 'Level 2'
-  }, {
-    name: 'Level 3',
-    value: 'Level 3'
-  }, {
-    name: 'Level 4',
-    value: 'Level 4'
-  }];
+  $scope.credentials = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
 
   MyServices.getCountries(function (data) {
     $scope.countries = data;

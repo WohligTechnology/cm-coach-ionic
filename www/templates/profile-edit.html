@@ -43,7 +43,7 @@
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.gender.$invalid && formName.gender.$touched}">
             <span class="input-label">Gender</span>
-            <select name="gender" ng-model="formData.gender" ng-options="g.value as g.name for g in gender" required>
+            <select name="gender" ng-model="formData.gender" ng-options="g as g for g in gender" required>
               <option value="">Select</option>
             </select>
           </label>

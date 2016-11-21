@@ -85,7 +85,7 @@
             <div class="input-label">
               Credentials/Qualifications
             </div>
-            <select name="credentials" ng-model="formData.credentials" ng-options="c.value as c.name for c in credentials" required>
+            <select name="credentials" ng-model="formData.credentials" ng-options="c as c for c in credentials" required>
                 <option value="">Select</option>
             </select>
           </label>

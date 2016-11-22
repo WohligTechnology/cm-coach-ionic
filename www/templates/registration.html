@@ -30,11 +30,11 @@
           </ion-item>
           <label class="item item-input" ng-class="{'err': passwordInvalid}">
             <span class="input-label">Password</span>
-            <input type="password" name="password" ng-change="passwordValidator(formData.password);" maxlength="15" ng-model="formData.password" required>
+            <input type="password" name="password" ng-change="passwordValidator(formData.password);" ng-model="formData.password" required>
             </label>
           <label class="item item-input" ng-if="formData.password" ng-class="{'err':formData.repassword !== formData.password,'err succ':formData.repassword === formData.password}">
             <span class="input-label">Confirm Password</span>
-            <input type="password" name="repassword" ng-model="formData.repassword" maxlength="15" required>
+            <input type="password" name="repassword" ng-model="formData.repassword" required>
           </label>
           <label class="item item-input" ng-class="{'err':formName.yearsOfCoaching.$invalid && formName.yearsOfCoaching.$touched}">
             <span class="input-label">Years Coaching</span>            
@@ -103,9 +103,8 @@
         </div>
       </div>
       <div class="text-center m20 padding-horizontal">
-        <button class="button button-positive button-block" type="submit" ng-disabled="formName.$invalid || passwordInvalid">
-          <span ng-if="formName.$invalid || passwordInvalid">Please enter mandatory fields</span>
-          <span ng-if="formName.$valid || passwordInvalid">Register Now</span>
+        <button class="button button-positive button-block" type="submit" ng-disabled="formName.$invalid || passwordInvalid || formData.password != formData.repassword">
+            Register Now
           </button>
       </div>
     </form>

@@ -58,7 +58,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.valid2 = false;
   $scope.passwordValidator = function (password) {
     $scope.passwordInvalid = true;
-    if (password && password.length >= 8) {
+    if (password && password.length >= 8 && password.length >= 15) {
       $scope.valid1 = true;
     } else {
       $scope.valid1 = false;
@@ -208,7 +208,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.valid2 = false;
   $scope.passwordValidator = function (password) {
     $scope.passwordInvalid = true;
-    if (password && password.length >= 8) {
+    if (password && password.length >= 8 && password.length >= 15) {
       $scope.valid1 = true;
     } else {
       $scope.valid1 = false;

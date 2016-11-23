@@ -353,6 +353,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     });
   };
 
+  //Upload Image
   $scope.uploadImage = function (imageURI) {
     $scope.showLoading('Uploading Image...', 10000);
     $cordovaFileTransfer.upload(adminurl + 'upload', imageURI)

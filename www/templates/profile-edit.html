@@ -62,7 +62,7 @@
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
             <span class="input-label">Free Text CV</span>
-            <textarea auto-grow rows="2" name="freeTextCV" ng-model="formData.freeTextCV" required></textarea>
+            <textarea auto-grow rows="2" name="freeTextCV" ng-model="formData.freeTextCV"  maxlength="500" required></textarea>
           </label>
           <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.coachingFocus == ''}">
             <h3>Coaching Focus</h3>

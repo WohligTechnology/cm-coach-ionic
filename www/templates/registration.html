@@ -94,7 +94,7 @@
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.freeTextCV.$invalid && formName.freeTextCV.$touched}">
             <span class="input-label">Free Text CV</span>
-            <textarea auto-grow name="freeTextCV" rows="6" ng-model="formData.freeTextCV" required></textarea>
+            <textarea auto-grow name="freeTextCV" rows="6" maxlength="500" ng-model="formData.freeTextCV" required></textarea>
           </label>
           <ion-item class="item-text-wrap">
             <h3>Upload your CV</h3>

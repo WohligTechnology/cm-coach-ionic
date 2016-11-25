@@ -25,7 +25,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.formData = {};
 
   $scope.coachingFocus = [
-    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
+    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Race Walking', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
   ];
 
   $scope.specialisations = [
@@ -187,7 +187,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   }
 
   $scope.coachingFocus = [
-    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
+    'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Race Walking', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
   ];
 
   $scope.specialisations = [

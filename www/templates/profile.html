@@ -7,6 +7,9 @@
     <a class="button button-icon icon ln-earth ln-fit" ui-sref="app.notifications"><span class="badge-icon assertive-bg">1</span></a>
   </ion-nav-buttons>
   <ion-content class="white-profile">
+    <div class="warning-bar assertive-bg text-center" ui-sref="app.edit-profile" ng-if="profileIncomplete()">
+      <i class="ion ion-alert-circled"></i> Please complete your profile!
+    </div>
     <div class="picture-hold">
       <div class="zd">
         <div class="dp" style="background-image: url({{profileData.profilePic | uploadpath}});" ng-if="profileData.profilePic"></div>
@@ -65,23 +68,17 @@
           <span class="tag-box" ng-if="profileData.specialisationOther">{{profileData.specialisationOther}}</span>
         </p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="profileData.experience">
         <h3>Experience</h3>
-        <p class="text-justified" ng-if="profileData.experience" read-more="profileData.experience" read-more-limit="140" read-more-label-expand="Read More"
-          read-more-label-collapse="Read Less"></p>
-        <p class="text-justified" ng-if="!profileData.experience" ui-sref="app.edit-profile">Click here to complete profile!</p>
+        <p class="text-justified" read-more="profileData.experience" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="profileData.expertise">
         <h3>Expertise</h3>
-        <p class="text-justified" ng-if="profileData.expertise" read-more="profileData.expertise" read-more-limit="140" read-more-label-expand="Read More"
-          read-more-label-collapse="Read Less"></p>
-        <p class="text-justified" ng-if="!profileData.expertise" ui-sref="app.edit-profile">Click here to complete profile!</p>
+        <p class="text-justified" read-more="profileData.expertise" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="profileData.achievements">
         <h3>Coaching Achievements</h3>
-        <p class="text-justified" ng-if="profileData.achievements" read-more="profileData.achievements" read-more-limit="140" read-more-label-expand="Read More"
-          read-more-label-collapse="Read Less"></p>
-        <p class="text-justified" ng-if="!profileData.achievements" ui-sref="app.edit-profile">Click here to complete profile!</p>
+        <p class="text-justified" read-more="profileData.achievements" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
       </ion-item>
     </ion-list>
   </ion-content>

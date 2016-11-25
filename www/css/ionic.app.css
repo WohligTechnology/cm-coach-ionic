@@ -10580,6 +10580,15 @@ p.bold {
   transform: translateY(-50%);
   left: 0; }
 
+.warning-bar {
+  color: white;
+  font-size: 14px;
+  padding: 10px; }
+
+input[type="password"] {
+  -webkit-user-select: auto !important;
+  -webkit-touch-callout: default !important; }
+
 .nav-left {
   text-align: left; }
 

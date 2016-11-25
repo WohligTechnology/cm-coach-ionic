@@ -11,35 +11,35 @@
       <div class="pro-edit text-rite">
         <div class="list">
           <label class="item item-input" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
-            <span class="input-label">Forename*</span>
-            <input type="text" name="name" ng-model="formData.name" maxlength="35" required>
+            <span class="input-label">Forename</span>
+            <input type="text" name="name" ng-model="formData.name" maxlength="35" ng-pattern="onlyAplha" required>
           </label>
           <label class="item item-input" ng-class="{'err':formName.surname.$invalid && formName.surname.$touched}">
-            <span class="input-label">Surname*</span>
-            <input type="text" name="surname" ng-model="formData.surname" maxlength="35" required>
+            <span class="input-label">Surname</span>
+            <input type="text" name="surname" ng-model="formData.surname" maxlength="35" ng-pattern="onlyAplha" required>
           </label>
           <label class="item item-input">
             <span class="input-label">Email Address  <i class="icon ion-android-lock"></i></span>
-            <input type="email" name="email" ng-model="formData.email" maxlength="255" required readonly>
+            <input type="email" name="email" ng-model="formData.email" maxlength="255" ng-pattern="validEmail" required readonly>
           </label>
           <label class="item item-input" ng-click="changePassword()">
             <span class="input-label">Change Password</span>
             <input type="password" name="password" ng-model="dummyPassword" readonly>
           </label>
           <label class="item item-input" ng-class="{'err':formName.yearsOfCoaching.$invalid && formName.yearsOfCoaching.$touched}">
-            <span class="input-label">Years Coaching*</span>
+            <span class="input-label">Years Coaching</span>
             <input type="number" name="yearsOfCoaching" ng-model="formData.yearsOfCoaching" min="1" max="99" required>
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.country.$invalid && formName.country.$touched}">
             <div class="input-label">
-              Country*
+              Country
             </div>
             <select name="country" ng-model="formData.country" ng-options="c.name as c.name for c in countries" required>
               <option value="">Select</option>
             </select>
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.gender.$invalid && formName.gender.$touched}">
-            <span class="input-label">Gender*</span>
+            <span class="input-label">Gender</span>
             <select name="gender" ng-model="formData.gender" ng-options="g as g for g in gender" required>
               <option value="">Select</option>
             </select>
@@ -49,7 +49,7 @@
             <input type="tel" name="mobile" ng-model="formData.mobile" required readonly>
           </label>
           <label class="item item-input" ng-class="{'err':formName.dob.$invalid && formName.dob.$touched}">
-            <span class="input-label">Date of Birth*</span>
+            <span class="input-label">Date of Birth</span>
             <input type="date" name="dob" ng-model="formData.dob" max="{{maxDate}}" required>
           </label>
           <label class="item item-input" ng-click="changeLimit()">
@@ -61,11 +61,11 @@
             <input type="text" name="coachAskingPrice" ng-model="formData.coachAskingPrice" readonly>
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
-            <span class="input-label">Free Text CV*</span>
+            <span class="input-label">Free Text CV</span>
             <textarea auto-grow rows="2" name="freeTextCV" ng-model="formData.freeTextCV" required></textarea>
           </label>
           <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.coachingFocus == ''}">
-            <h3>Coaching Focus*</h3>
+            <h3>Coaching Focus</h3>
             <p>
               <div class="tag-box-label" ng-repeat="c in coachingFocus">
                 <input type="checkbox" id="{{c}}" checklist-model="formData.coachingFocus" checklist-value="c" name="coachingFocus">
@@ -89,20 +89,23 @@
             <input type="hidden" name="specialisations" ng-model="formData.specialisations[0]" required>
           </ion-item>
           <ion-item class="item-input item-block" ng-if="formData.specialisations.otherVal" ng-class="{'err':formName.specialisationOther.$invalid && formName.specialisationOther.$touched}">
-            <span class="input-label">Others Specialisations*</span>
+            <span class="input-label">Others Specialisations</span>
             <textarea auto-grow name="specialisationOther" rows="3" ng-model="formData.specialisationOther" required></textarea>
           </ion-item>
-          <label class="item item-input item-block">
+          <div class="item item-divider small-text" ng-if="profileIncomplete()">
+            Please enter below details to complete your profile.
+          </div>
+          <label class="item item-input item-block" ng-class="{'err':formName.experience.$invalid && formName.experience.$touched}">
             <span class="input-label">Experience</span>
-            <textarea auto-grow rows="2" name="experience" ng-model="formData.experience"></textarea>
+            <textarea auto-grow rows="2" name="experience" ng-model="formData.experience" required></textarea>
           </label>
-          <label class="item item-input item-block">
+          <label class="item item-input item-block" ng-class="{'err':formName.expertise.$invalid && formName.expertise.$touched}">
             <span class="input-label">Expertise</span>
-            <textarea auto-grow rows="2" name="expertise" ng-model="formData.expertise"></textarea>
+            <textarea auto-grow rows="2" name="expertise" ng-model="formData.expertise" required></textarea>
           </label>
-          <label class="item item-input item-block">
+          <label class="item item-input item-block" ng-class="{'err':formName.achievements.$invalid && formName.achievements.$touched}">
             <span class="input-label">Coaching Achievements</span>
-            <textarea auto-grow rows="2" name="achievements" ng-model="formData.achievements"></textarea>
+            <textarea auto-grow rows="2" name="achievements" ng-model="formData.achievements" required></textarea>
           </label>
         </div>
       </div>

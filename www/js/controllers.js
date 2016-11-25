@@ -38,6 +38,10 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   $scope.credentials = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
 
+  $scope.onlyAplha = /^[a-zA-Z_]+$/;
+  $scope.validTel = /^[+0-9]{9,15}$/;
+  $scope.validEmail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+
   MyServices.getCountries(function (data) {
     $scope.countries = data;
   });
@@ -161,6 +165,15 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $ionicHistory.clearHistory();
   $ionicHistory.removeBackView();
   $scope.profileData = MyServices.getUser();
+
+  //Profile Incomplete Check
+  $scope.profileIncomplete = function () {
+    if (!$scope.profileData.experience || !$scope.profileData.expertise || !$scope.profileData.achievements) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 })
 
 
@@ -187,6 +200,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   $scope.credentials = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
 
+  $scope.onlyAplha = /^[a-zA-Z_]+$/;
+  $scope.validEmail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+
   MyServices.getCountries(function (data) {
     $scope.countries = data;
   });
@@ -200,6 +216,15 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   $scope.hideLoading = function () {
     $ionicLoading.hide();
+  };
+
+  //Profile Incomplete Check
+  $scope.profileIncomplete = function () {
+    if (!$scope.formData.experience || !$scope.formData.expertise || !$scope.formData.achievements) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   //Password Validator

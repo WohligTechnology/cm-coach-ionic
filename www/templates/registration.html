@@ -12,15 +12,15 @@
           </div>
           <label class="item item-input" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
             <span class="input-label">Forename</span>
-            <input type="text" name="name" ng-model="formData.name" maxlength="35" required>
+            <input type="text" name="name" ng-model="formData.name" maxlength="35" ng-pattern="onlyAplha" required>
           </label>
           <label class="item item-input" ng-class="{'err':formName.surname.$invalid && formName.surname.$touched}">
             <span class="input-label">Surname</span>
-            <input type="text" name="surname" ng-model="formData.surname" maxlength="35" required>
+            <input type="text" name="surname" ng-model="formData.surname" maxlength="35" ng-pattern="onlyAplha" required>
           </label>
           <label class="item item-input" ng-class="{'err':formName.email.$invalid && formName.email.$touched}">
             <span class="input-label">Email Address</span>            
-            <input type="email" name="email" ng-model="formData.email" maxlength="255" required>
+            <input type="email" name="email" ng-model="formData.email" maxlength="255" ng-pattern="validEmail" required>
           </label>
           <ion-item class="item-divider item-text-wrap small-text">
             Password must contain: <br>
@@ -48,13 +48,13 @@
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.gender.$invalid && formName.gender.$touched}">
             <span class="input-label">Gender</span>
-            <select name="gender" ng-model="formData.gender" ng-options="g.value as g.name for g in gender" required>
+            <select name="gender" ng-model="formData.gender" ng-options="g as g for g in gender" required>
               <option value="">Select</option>
             </select>
           </label>
           <label class="item item-input" ng-class="{'err':formName.contact.$invalid && formName.contact.$touched}">
             <span class="input-label">Phone Number</span>
-            <input type="tel" name="contact" ng-model="formData.mobile" required>
+            <input type="tel" name="contact" ng-model="formData.mobile" ng-pattern="validTel" required>
           </label>
           <label class="item item-input" ng-class="{'err':formName.dob.$invalid && formName.dob.$touched}">
             <span class="input-label">Date of Birth</span>

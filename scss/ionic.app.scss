@@ -979,6 +979,17 @@ p.bold {
   left: 0;
 }
 
+.warning-bar {
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+}
+
+input[type="password"] {
+  -webkit-user-select: auto !important;
+  -webkit-touch-callout: default !important;
+}
+
 @import "www/lib/ionic-calendar/dist/css/calendar.min";
 .monthview-selected {
   background-color: $balanced;

@@ -161,11 +161,36 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 })
 
-.controller('ProfileCtrl', function ($scope, $ionicScrollDelegate, $ionicHistory, $rootScope, MyServices) {
+.controller('ProfileCtrl', function ($scope, $ionicScrollDelegate, $ionicHistory, $rootScope, MyServices, $ionicLoading) {
   $ionicHistory.clearCache();
   $ionicHistory.clearHistory();
   $ionicHistory.removeBackView();
   $scope.profileData = MyServices.getUser();
+
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  //Reload Profile
+  $scope.reloadProfile = function () {
+    MyServices.getProfile($scope.profileData, function (data) {
+      if (data.value === true) {
+        MyServices.setUser(data.data);
+        $scope.$broadcast('scroll.refreshComplete');
+      } else {
+        $scope.$broadcast('scroll.refreshComplete');
+        $scope.showLoading('Error Updating Profile!', 1000);
+      }
+    });
+  };
+  $scope.reloadProfile();
 
   //Profile Incomplete Check
   $scope.profileIncomplete = function () {

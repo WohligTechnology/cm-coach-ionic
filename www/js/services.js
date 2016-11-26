@@ -56,6 +56,15 @@ angular.module('starter.services', [])
         }).success(callback);
       },
 
+      getProfile: function (formData, callback) {
+        console.log(formData);
+        $http({
+          url: adminurl + 'Coach/getCoachProfile',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+
       changePassword: function (formData, callback) {
         $http({
           url: adminurl + 'Coach/resetPasswordCoach',

@@ -535,24 +535,16 @@ p.bold {
 }
 
 .error-msg {
-  background-color: $assertive;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 6px;
-  top: 2px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  &::after {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid $assertive;
-    bottom: -5px;
-    content: '';
-  }
+   color: $assertive;
+    top: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    font-size: 11px;
+    background-color: #f1f1f1;
+    padding: 0px 10px;
+    border-radius: 6px;
 }
 
 .sp-reg {

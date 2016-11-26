@@ -10580,7 +10580,12 @@ p.bold {
 
 input[type=password] {
   -webkit-user-select: auto !important;
-  -webkit-touch-callout: default !important; }
+  -webkit-touch-callout: default !important;
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important; }
 
 .nav-left {
   text-align: left; }

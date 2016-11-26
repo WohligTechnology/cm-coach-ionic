@@ -38,7 +38,7 @@
           </label>
           <label class="item item-input" ng-class="{'err':formName.yearsOfCoaching.$invalid && formName.yearsOfCoaching.$touched}">
             <span class="input-label">Years Coaching</span>            
-            <input type="number" name="yearsOfCoaching" ng-model="formData.yearsOfCoaching" min="1" max="99" required>
+            <input type="number" name="yearsOfCoaching" ng-model="formData.yearsOfCoaching" min="1" max="99" ng-pattern="validNum" required>
             <span class="error-msg" ng-if="formName.yearsOfCoaching.$invalid && formName.yearsOfCoaching.$touched">Please enter value between 1 - 99</span>
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.country.$invalid && formName.country.$touched}">

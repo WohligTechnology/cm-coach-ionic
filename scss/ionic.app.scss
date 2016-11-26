@@ -977,16 +977,6 @@ p.bold {
   padding: 10px;
 }
 
-input[type=password] {
-  -webkit-user-select: auto !important;
-  -webkit-touch-callout: default !important;
-  -webkit-user-select: auto !important;
-  -khtml-user-select: auto !important;
-  -moz-user-select: auto !important;
-  -ms-user-select: auto !important;
-  user-select: auto !important;
-}
-
 @import "www/lib/ionic-calendar/dist/css/calendar.min";
 .monthview-selected {
   background-color: $balanced;

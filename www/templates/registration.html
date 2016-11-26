@@ -30,11 +30,11 @@
           </ion-item>
           <label class="item item-input" ng-class="{'err': passwordInvalid}">
             <span class="input-label">Password</span>
-            <input type="password" name="password" ng-change="passwordValidator(formData.password);" ng-model="formData.password" required>
+            <input type="password" no-paste name="password" ng-change="passwordValidator(formData.password);" ng-model="formData.password" required>
             </label>
           <label class="item item-input" ng-if="formData.password" ng-class="{'err':formData.repassword !== formData.password,'err succ':formData.repassword === formData.password}">
             <span class="input-label">Confirm Password</span>
-            <input type="password" name="repassword" ng-model="formData.repassword" required>
+            <input type="password" no-paste name="repassword" ng-model="formData.repassword" required>
           </label>
           <label class="item item-input" ng-class="{'err':formName.yearsOfCoaching.$invalid && formName.yearsOfCoaching.$touched}">
             <span class="input-label">Years Coaching</span>            

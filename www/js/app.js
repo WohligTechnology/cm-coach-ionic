@@ -355,6 +355,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   };
 })
 
+.directive('noPaste', function ($filter, $ionicScrollDelegate) {
+  return {
+    scope: {},
+    link: function (scope, element) {
+      element.on('cut copy paste', function (event) {
+        event.preventDefault();
+      });
+    }
+  };
+})
+
 .directive('autoGrow', function ($window) {
   return {
     restrict: 'A',

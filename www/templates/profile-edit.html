@@ -98,15 +98,15 @@
           </div>
           <label class="item item-input item-block" ng-class="{'err':formName.experience.$invalid && formName.experience.$touched}">
             <span class="input-label">Experience</span>
-            <textarea auto-grow rows="2" name="experience" ng-model="formData.experience" required></textarea>
+            <textarea auto-grow rows="2" name="experience" ng-model="formData.experience" maxlength="200" required></textarea>
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.expertise.$invalid && formName.expertise.$touched}">
             <span class="input-label">Expertise</span>
-            <textarea auto-grow rows="2" name="expertise" ng-model="formData.expertise" required></textarea>
+            <textarea auto-grow rows="2" name="expertise" ng-model="formData.expertise" maxlength="200" required></textarea>
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.achievements.$invalid && formName.achievements.$touched}">
             <span class="input-label">Coaching Achievements</span>
-            <textarea auto-grow rows="2" name="achievements" ng-model="formData.achievements" required></textarea>
+            <textarea auto-grow rows="2" name="achievements" ng-model="formData.achievements" maxlength="100" required></textarea>
           </label>
         </div>
       </div>

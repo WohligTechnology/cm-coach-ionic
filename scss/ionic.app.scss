@@ -977,6 +977,29 @@ p.bold {
   padding: 10px;
 }
 
+.link {
+  color: $positive;
+  text-decoration: underline;
+}
+
+.content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  ol,
+  ul {
+    padding-left: 20px;
+    list-style: circle;
+    margin-bottom: 5px;
+  }
+}
+
 @import "www/lib/ionic-calendar/dist/css/calendar.min";
 .monthview-selected {
   background-color: $balanced;

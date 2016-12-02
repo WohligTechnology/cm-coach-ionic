@@ -10578,14 +10578,24 @@ p.bold {
   font-size: 14px;
   padding: 10px; }
 
-input[type=password] {
-  -webkit-user-select: auto !important;
-  -webkit-touch-callout: default !important;
-  -webkit-user-select: auto !important;
-  -khtml-user-select: auto !important;
-  -moz-user-select: auto !important;
-  -ms-user-select: auto !important;
-  user-select: auto !important; }
+.link {
+  color: #004a9b;
+  text-decoration: underline; }
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  font-weight: bold;
+  margin-bottom: 5px; }
+
+.content ol,
+.content ul {
+  padding-left: 20px;
+  list-style: circle;
+  margin-bottom: 5px; }
 
 .nav-left {
   text-align: left; }

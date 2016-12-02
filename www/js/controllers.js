@@ -20,7 +20,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices, $filter, $ionicLoading) {
+.controller('RegistrationCtrl', function ($scope, $state, $ionicPopup, MyServices, $filter, $ionicLoading, $ionicModal) {
 
   $scope.formData = {};
 
@@ -82,7 +82,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   //Submit Form
   $scope.submitData = function (formData) {
-    $scope.showLoading('Please wait...', 10000);
+    $scope.showLoading('Please wait...', 15000);
     MyServices.registerCoach(formData, function (data) {
       if (data.value === true) {
         $scope.formData = {};
@@ -96,11 +96,33 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     });
   };
 
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 15000);
+    MyServices.register(formData, function (data) {
+      if (data.value === true) {
+        $scope.formData = {};
+        $scope.hideLoading();
+        $scope.showLoading('Registration Successful!', 2000);
+        $state.go('login');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Registration Failed!', 2000);
+      }
+    });
+  };
+
   //Terms Popup
-  $scope.termsPopup = function (formData) {
-    var myPopup = $ionicPopup.show({
-      template: '<p>Do you agree to the Coach Mentor Terms of Service and Privacy Policy?</p>',
-      title: 'Terms of Service',
+  $scope.termsID = {
+    _id: "580cc6877f2ec11727460f1f"
+  };
+  $scope.privacyID = {
+    _id: "580cc67b7f2ec11727460f1c"
+  };
+  $scope.termsPopup = function (data) {
+    $scope.myPopup = $ionicPopup.show({
+      template: '<p>Do you agree to the Coach Mentor <span class="link" ng-click="staticModal(termsID)">Terms of Service</span> and <span class="link" ng-click="staticModal(privacyID)">Privacy Policy</span>?</p>',
+      title: 'Terms & Conditions',
       scope: $scope,
       buttons: [{
         text: 'No'
@@ -108,10 +130,37 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         text: '<b>Yes</b>',
         type: 'button-positive',
         onTap: function (e) {
-          $scope.submitData(formData);
+          $scope.submitData(data);
         }
       }]
     });
+  };
+
+
+  //Terms Modal
+  $ionicModal.fromTemplateUrl('templates/modal/static-page.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.staticModal = function (id) {
+    $scope.staticData = '';
+    $scope.myPopup.close();
+    $scope.showLoading('Loading...', 15000);
+    MyServices.getStatic(id, function (data) {
+      if (data.value === true) {
+        $scope.staticData = data.data;
+        $scope.hideLoading();
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Loading Failed!', 2000);
+      }
+    });
+    $scope.modal.show();
+  };
+  $scope.closeModal = function () {
+    $scope.modal.hide();
   };
 })
 
@@ -145,7 +194,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   //Submit Form
   $scope.submitData = function (formData) {
-    $scope.showLoading('Please wait...', 10000);
+    $scope.showLoading('Please wait...', 15000);
     MyServices.login(formData, function (data) {
       if (data.value === true) {
         $scope.formData = {};
@@ -278,7 +327,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   //Submit Form
   $scope.submitData = function (formData) {
-    $scope.showLoading('Please wait...', 10000);
+    $scope.showLoading('Please wait...', 15000);
     MyServices.editProfile(formData, function (data) {
       if (data.value === true) {
         $scope.hideLoading();
@@ -327,7 +376,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     $scope.modalPassword.show();
   };
   $scope.submitPassword = function (formData) {
-    $scope.showLoading('Please wait...', 10000);
+    $scope.showLoading('Please wait...', 15000);
     MyServices.changePassword(formData, function (data) {
       if (data.value === true) {
         $scope.passwordData = {};

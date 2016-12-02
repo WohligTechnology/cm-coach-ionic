@@ -39,6 +39,14 @@ angular.module('starter.services', [])
         }).success(callback);
       },
 
+      getStatic: function (formData, callback) {
+        $http({
+          url: adminurl + 'ConfigTwo/getOne',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+
       login: function (formData, callback) {
         $http({
           url: adminurl + 'Coach/coachLogin',

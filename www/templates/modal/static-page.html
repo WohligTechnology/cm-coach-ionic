@@ -1,0 +1,10 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive bar bar-header">
+    <h1 class="title">{{staticData.name}}</h1>
+    <button class="button button-icon ln-cross ln-fit" ng-click="closeModal()"> </button>
+    </span>
+  </ion-header-bar>
+  <ion-content class="padding text-justified">
+    <div class="content" ng-bind-html="staticData.content"></div>
+  </ion-content>
+</ion-modal-view>

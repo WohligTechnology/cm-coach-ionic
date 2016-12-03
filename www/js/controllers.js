@@ -776,8 +776,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     uiCalendarConfig.calendars.trainingDiary.fullCalendar(val);
   };
 
-
-
   $scope.uiConfig = {
     calendar: {
       height: 450,

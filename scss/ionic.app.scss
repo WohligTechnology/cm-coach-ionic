@@ -1000,14 +1000,6 @@ p.bold {
   }
 }
 
-@import "www/lib/ionic-calendar/dist/css/calendar.min";
-.monthview-selected {
-  background-color: $balanced;
-  color: #fff;
-}
-
-.calendar-event-inner,
-.monthview-primary-with-event {
-  background-color: $positive;
-  color: #fff;
+.fc-toolbar {
+  display: none;
 }

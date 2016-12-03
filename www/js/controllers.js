@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.rCalendar', 'ngCordova'])
+angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.calendar', 'ngCordova'])
 
 .controller('LoadingCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices, $ionicHistory) {
   $scope.loadingData = MyServices.getUser();
@@ -745,50 +745,49 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   ];
 })
 
-.controller('TrainingDiaryCtrl', function ($scope, $ionicModal) {
-  $scope.calendar = {};
-  $scope.changeMode = function (mode) {
-    $scope.calendar.mode = mode;
-  };
-
-  $scope.calendar.eventSource = [{
-    id: 1,
-    type: 'competition',
-    title: 'Run Happy Marathon',
-    startTime: new Date("October 14, 2016 11:00:00"),
-    endTime: new Date("October 14, 2016 23:15:00"),
-    allDay: false
+.controller('TrainingDiaryCtrl', function ($scope, $ionicModal, uiCalendarConfig) {
+  $scope.eventSources = [{
+    color: '#fbd12e',
+    events: [{
+      title: '5k Plan - Form 1',
+      start: moment($scope.startDate).toDate(),
+      end: moment($scope.startDate).add(5, "days").toDate(),
+      allDay: true
+    }]
   }, {
-    id: 1,
-    type: 'testing',
-    title: 'London Cycling Tour',
-    startTime: new Date("October 16, 2016 11:13:00"),
-    endTime: new Date("October 16, 2016 14:13:00"),
-    allDay: false
+    color: '#bada555',
+    events: [{
+      title: '5k Plan - Form 2',
+      start: moment($scope.startDate).add(5, "days").toDate(),
+      end: moment($scope.startDate).add(10, "days").toDate(),
+      allDay: true
+    }],
   }];
 
-  $scope.onEventSelected = function (event) {
-    // console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
-    console.log(event);
+  /* Change View */
+  $scope.activeView = 'month';
+  $scope.changeView = function (view) {
+    uiCalendarConfig.calendars.trainingDiary.fullCalendar('changeView', view);
+    $scope.activeView = view;
   };
 
-  $scope.onViewTitleChanged = function (title) {
-    $scope.viewTitle = title;
+  //Navigate Buttons
+  $scope.navigate = function (val) {
+    uiCalendarConfig.calendars.trainingDiary.fullCalendar(val);
   };
 
-  $scope.today = function () {
-    $scope.calendar.currentDate = new Date();
+
+
+  $scope.uiConfig = {
+    calendar: {
+      height: 450,
+      editable: true,
+      eventClick: $scope.formClick,
+      viewRender: function (view) {
+        $scope.viewTitle = view.title;
+      }
+    }
   };
-
-  $scope.isToday = function () {
-    var today = new Date(),
-      currentCalendarDate = new Date($scope.calendar.currentDate);
-
-    today.setHours(0, 0, 0, 0);
-    currentCalendarDate.setHours(0, 0, 0, 0);
-    return today.getTime() === currentCalendarDate.getTime();
-  };
-
 })
 
 .controller('TestingCreateCtrl', function ($scope, $ionicModal) {

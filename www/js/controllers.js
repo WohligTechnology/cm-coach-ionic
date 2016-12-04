@@ -755,7 +755,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       allDay: true
     }]
   }, {
-    color: '#bada555',
+    color: '#bada55',
     events: [{
       title: '5k Plan - Form 2',
       start: moment($scope.startDate).add(5, "days").toDate(),

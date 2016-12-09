@@ -304,12 +304,14 @@ p.bold {
 .chat-holder {
   padding: 20px 15px;
   .time-stamp {
+    margin-right: 15px;
     font-size: 11px;
   }
 }
 
 .bubble {
   position: relative;
+  padding-right: 20px;
   .tick {
     visibility: hidden;
     position: absolute;
@@ -328,8 +330,11 @@ p.bold {
   }
   &.me {
     text-align: right;
+    padding-left: 20px;
+    padding-right: 0px;
     .msg {
       text-align: left;
+      background-color: #f8f8f8;
     }
     .tick {
       visibility: visible;
@@ -340,6 +345,7 @@ p.bold {
     background-color: #e5e5e5;
     display: inline-block;
     border-radius: 10px;
+    position: relative;
     h6 {
       margin: 0 0 5px;
       font-size: 14px;

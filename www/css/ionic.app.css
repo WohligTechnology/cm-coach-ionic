@@ -10014,10 +10014,12 @@ p.bold {
 .chat-holder {
   padding: 20px 15px; }
   .chat-holder .time-stamp {
+    margin-right: 15px;
     font-size: 11px; }
 
 .bubble {
-  position: relative; }
+  position: relative;
+  padding-right: 20px; }
   .bubble .tick {
     visibility: hidden;
     position: absolute;
@@ -10033,16 +10035,20 @@ p.bold {
     .bubble .tick.positive-bg {
       background-color: #004a9b; }
   .bubble.me {
-    text-align: right; }
+    text-align: right;
+    padding-left: 20px;
+    padding-right: 0px; }
     .bubble.me .msg {
-      text-align: left; }
+      text-align: left;
+      background-color: #f8f8f8; }
     .bubble.me .tick {
       visibility: visible; }
   .bubble .msg {
     padding: 10px;
     background-color: #e5e5e5;
     display: inline-block;
-    border-radius: 10px; }
+    border-radius: 10px;
+    position: relative; }
     .bubble .msg h6 {
       margin: 0 0 5px;
       font-size: 14px;

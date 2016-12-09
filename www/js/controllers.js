@@ -542,7 +542,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('ChatDetailCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
-
+  $ionicScrollDelegate.scrollBottom();
   $scope.hideTime = true;
 
   $scope.timeStamp = function () {
@@ -554,7 +554,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.sendMessage = function () {
 
     if ($scope.data.message !== '' && $scope.data.message) {
-      console.log($scope.data.message);
       $scope.messages.push({
         userId: 'me',
         text: $scope.data.message,
@@ -579,11 +578,42 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   $scope.data = {};
   $scope.messages = [{
+    userId: 'me',
+    text: 'Hi Matt, how did you find the session?',
+    time: $scope.timeStamp()
+  }, {
     userId: 'he',
-    text: 'Hello! Welcome to Coach Mentor!',
+    text: 'Good, I managed to hit my target times, legs are feeling quite tired now.',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'me',
+    text: 'Good, I suggest you rehab today ready for tomorrow’s session.',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'me',
+    text: 'Stretch, foam roll etc, please refer to rehab programme attached with your Training Plan',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'Will do, thanks.',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'James, a question regarding the session on the 27th November, you have set three sets however still struggling with the legs from last week, shall I drop a set or take the reps slower and get it finished?',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'me',
+    text: 'Stick with the two sets, get it done in flats. I will adapt your training plan for you.',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'Thanks James',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'Session complete, have submitted my times in session feedback  ',
     time: $scope.timeStamp()
   }];
-
 })
 
 .controller('ChatGroupCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
@@ -912,12 +942,12 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('NotificationsCtrl', function ($scope, $ionicModal, $ionicScrollDelegate, $ionicPopup) {
   $scope.notifications = [{
-    name: 'Mathew',
-    surname: 'Dodge',
+    name: 'Matt',
+    surname: 'Chant',
     type: 'athleteUnsubscribe'
   }, {
-    name: 'Mathew',
-    surname: 'Dodge',
+    name: 'Matt',
+    surname: 'Chant',
     type: 'competition'
   }];
 

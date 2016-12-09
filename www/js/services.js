@@ -10,13 +10,9 @@ angular.module('starter.services', [])
     var userProfile = $.jStorage.get("userProfile");
     if (!userProfile) {
       userProfile = {};
-    } else {
-      var requestCredentials = {
-        accessToken: userProfile.accessToken[0],
-        accessType: "Coach"
-      };
     }
 
+    var requestCredentials;
     var returnval = {};
 
     return {
@@ -30,6 +26,10 @@ angular.module('starter.services', [])
       setUser: function (data) {
         _.assignIn(userProfile, data);
         $.jStorage.set("userProfile", userProfile);
+        requestCredentials = {
+          accessToken: $.jStorage.get("userProfile").accessToken[0],
+          accessType: "Coach"
+        };
       },
 
       getUser: function () {

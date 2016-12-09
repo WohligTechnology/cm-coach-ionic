@@ -17,8 +17,8 @@
   </ion-nav-buttons>
   <ion-content class="has-tabs">
     <ion-list>
-      <ion-item class="item-divider" ng-click="openSelect();">
-        <span ng-if="!formData.athlete">Select Athlete</span>
+      <ion-item class="item-divider item-icon-right" ng-click="openSelect();">
+        <span ng-if="!formData.athlete">Select Athlete</span> <i class="icon ion-ios-search"></i>
         <span ng-if="formData.athlete">{{formData.athlete.name}} {{formData.athlete.surname}}</span>
       </ion-item>
       <ion-item ng-if="formData.athlete && athleteData.length == 0">

@@ -63,7 +63,7 @@
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
             <span class="input-label">Free Text CV</span>
-            <textarea auto-grow rows="2" name="freeTextCV" ng-model="formData.freeTextCV"  maxlength="500" required></textarea>
+            <textarea auto-grow rows="2" name="freeTextCV" ng-model="formData.freeTextCV"  maxlength="1200" required></textarea>
           </label>
           <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.coachingFocus == ''}">
             <h3>Coaching Focus</h3>
@@ -98,15 +98,15 @@
           </div>
           <label class="item item-input item-block" ng-class="{'err':formName.experience.$invalid && formName.experience.$touched}">
             <span class="input-label">Experience</span>
-            <textarea auto-grow rows="2" name="experience" ng-model="formData.experience" maxlength="200" required></textarea>
+            <textarea auto-grow rows="2" name="experience" ng-model="formData.experience" maxlength="1200" required></textarea>
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.expertise.$invalid && formName.expertise.$touched}">
             <span class="input-label">Expertise</span>
-            <textarea auto-grow rows="2" name="expertise" ng-model="formData.expertise" maxlength="200" required></textarea>
+            <textarea auto-grow rows="2" name="expertise" ng-model="formData.expertise" maxlength="1200" required></textarea>
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.achievements.$invalid && formName.achievements.$touched}">
             <span class="input-label">Coaching Achievements</span>
-            <textarea auto-grow rows="2" name="achievements" ng-model="formData.achievements" maxlength="100" required></textarea>
+            <textarea auto-grow rows="2" name="achievements" ng-model="formData.achievements" maxlength="1200" required></textarea>
           </label>
         </div>
       </div>

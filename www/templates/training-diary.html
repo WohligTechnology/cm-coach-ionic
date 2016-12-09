@@ -1,18 +1,32 @@
 <ion-view>
   <ion-nav-title>
-    {{viewTitle}}
+    <span ng-if="athleteData.length > 0">{{viewTitle}}</span>
+    <span ng-if="athleteData.length == 0">Training Diary</span>
   </ion-nav-title>
-  <div class="tabs tabs-light tabs-color-positive">
+  <div class="tabs tabs-light tabs-color-positive" ng-if="athleteData.length > 0">
     <a class="tab-item" ng-click="changeView('agendaDay')" ng-class="{'active': activeView == 'agendaDay'}">Day</a>
     <a class="tab-item" ng-click="changeView('agendaWeek')" ng-class="{'active': activeView == 'agendaWeek'}">Week</a>
     <a class="tab-item" ng-click="changeView('month')" ng-class="{'active': activeView == 'month'}">Month</a>
   </div>
   <ion-nav-buttons side="right">
-    <button class="button button-clear button-icon ln-calendar ln-fit" ng-click="navigate('today')"></button>
-    <button class="button button-clear button-icon thick-btn ion-ios-arrow-left" ng-click="navigate('prev')"></button>
-    <button class="button button-clear button-icon thick-btn ion-ios-arrow-right" ng-click="navigate('next')"></button>
+    <div ng-if="athleteData.length > 0">
+      <button class="button button-clear button-icon ln-calendar ln-fit" ng-click="navigate('today')"></button>
+      <button class="button button-clear button-icon thick-btn ion-ios-arrow-left" ng-click="navigate('prev')"></button>
+      <button class="button button-clear button-icon thick-btn ion-ios-arrow-right" ng-click="navigate('next')"></button>
+    </div>
   </ion-nav-buttons>
   <ion-content class="has-tabs">
-    <div ui-calendar="uiConfig.calendar" calendar="trainingDiary" ng-model="eventSources">
+    <ion-list>
+      <ion-item class="item-divider" ng-click="openSelect();">
+        <span ng-if="!formData.athlete">Select Athlete</span>
+        <span ng-if="formData.athlete">{{formData.athlete.name}} {{formData.athlete.surname}}</span>
+      </ion-item>
+      <ion-item ng-if="formData.athlete && athleteData.length == 0">
+        No Training Plan assigned to selected Athlete
+      </ion-item>
+    </ion-list>
+    <div ng-if="athleteData.length > 0">
+      <div class="calendar" ng-model="trainingDiary" calendar="coachDiary" ui-calendar="uiConfig.calendar"></div>
+    </div>
   </ion-content>
 </ion-view>

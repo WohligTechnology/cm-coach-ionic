@@ -10,6 +10,11 @@ angular.module('starter.services', [])
     var userProfile = $.jStorage.get("userProfile");
     if (!userProfile) {
       userProfile = {};
+    } else {
+      var requestCredentials = {
+        accessToken: userProfile.accessToken[0],
+        accessType: "Coach"
+      };
     }
 
     var returnval = {};
@@ -77,6 +82,31 @@ angular.module('starter.services', [])
           method: 'POST',
           data: formData
         }).success(callback);
+      },
+
+      searchAthlete: function (formData, i, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'athlete/search',
+          method: 'POST',
+          data: formData
+        }).success(function (data) {
+          callback(data, i);
+        });
+      },
+
+      getAthletePlans: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http.post(adminurl + 'athlete/getAthletePlans', formData).success(function (data) {
+          callback(data);
+        });
+      },
+
+      saveComment: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http.post(adminurl + 'trainingPlan/saveComment', formData).success(function (data) {
+          callback(data);
+        });
       },
     };
   });

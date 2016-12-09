@@ -1,0 +1,47 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive bar bar-header">
+    <h1 class="title">{{dayInfo.title}}</h1>
+    <div class="buttons">
+      <button class="button button-clear button-icon ln-cross ln-fit" ng-click="closeModal()"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div ng-if="!showComment">
+      <form name="feedbackForm" ng-repeat="f in feedback" ng-submit="submitFeedback(feedback);closeModal()">
+        <ion-list ng-if="f.type=='Radio Button'">
+          <ion-item class="item-divider small-text item-text-wrap">{{f.name}}</ion-item>
+          <ion-radio ng-repeat="v in f.values track by $index" ng-model="f.answer" ng-value="v" ng-disabled="makeDisable">{{v}}</ion-radio>
+          <input type="hidden" name="radio" ng-model="f.answer" required>
+        </ion-list>
+        <ion-list ng-if="f.type=='Checkbox'">
+          <ion-item class="item-divider small-text item-text-wrap">{{f.name}}</ion-item>
+          <ion-checkbox ng-repeat="v in f.values track by $index" checklist-model="f.answer" checklist-value="v" ng-disabled="makeDisable">{{v}}</ion-checkbox>
+          <input type="hidden" name="checkbox" ng-model="f.answer" required>
+        </ion-list>
+        <ion-list ng-if="f.type=='Text Area'">
+          <ion-item class="item-divider small-text item-text-wrap">{{f.name}}</ion-item>
+          <ion-item class="item-input">
+            <textarea placeholder="Comments" ng-model="f.answer" ng-disabled="makeDisable" required></textarea>
+          </ion-item>
+        </ion-list>
+        <div class="padding">
+          <button class="button button-positive button-block" ng-disabled="feedbackForm.$invalid" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div ng-show="showComment">
+      <form name="commentForm" ng-submit="submitComment();closeModal();">
+        <ion-list>
+          <ion-item class="item-input item-stacked-label">
+            <label class="input-label">Comment</label>
+            <textarea name="comment" ng-model="commentData.comment" row="6" maxlength="200" required></textarea>
+          </ion-item>
+          <div class="text-right small-text"><span>{{200-commentData.comment.length}} characters left</span></div>
+        </ion-list>
+        <div class="padding">
+          <button class="button button-positive button-block" type="submit" ng-disabled="commentForm.$invalid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+</ion-modal-view>

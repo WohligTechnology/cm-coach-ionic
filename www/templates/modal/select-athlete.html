@@ -1,0 +1,17 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive bar bar-header">
+    <h1 class="title">Select Athletes</h1>
+    <div class="buttons">
+      <button class="button button-clear button-icon ln-cross ln-fit" ng-click="closeModal()"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content start-y="53">
+    <ion-list>
+      <form name="formName" class="item item-input-inset">
+        <label class="item-input-wrapper"><input type="search" placeholder="Athlete Name" name="athlete" ng-change="getAthlete(formData.athleteSearch);" ng-model="formData.athleteSearch"></label>
+        <button class="button button-small icon ln-magnifier" type="submit"></button>
+      </form>
+      <div class="item" ng-repeat="t in athletes" ng-click="matchName(t);changeAthlete();closeModal();"><img ng-src="{{t.profilePic|uploadpath}}" class="dp-img"> {{t.name}} {{t.surname}}</div>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

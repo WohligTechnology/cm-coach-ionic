@@ -259,6 +259,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   .state('app.training-diary', {
     url: '/training-diary',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: 'templates/training-diary.html',

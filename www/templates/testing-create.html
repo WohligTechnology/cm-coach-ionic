@@ -22,8 +22,8 @@
       </ion-item>
       <div class="item item-divider item-icon-right" ng-click="addAthlete();">Add Athletes <i class="icon ion-ios-plus-empty"></i></div>
       <ion-item class="item-name item-avatar" ng-repeat="d in data.assignedAthletes" ng-if="data.assignedAthletes">
-        <img ng-src="{{d.img}}">
-        <h2>{{d.name}}</h2>
+        <img ng-src="{{d.image|localurl}}">
+        <h2>{{d.name}} {{d.surname}}</h2>
         <ion-option-button class="button-assertive">Remove</ion-option-button>
       </ion-item>
     </ion-list>

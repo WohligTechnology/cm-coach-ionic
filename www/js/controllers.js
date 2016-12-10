@@ -476,15 +476,29 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('BlogCtrl', function ($scope) {
   $scope.data = [{
-    title: 'The Strongest Woman I’ve Ever Known',
-    image: 'http://d2gd8qsu8uml9u.cloudfront.net/uploads/AP_4657469935821-680x384.jpg',
+    title: 'Use of Resistance Bands',
+    image: 'http://cimg1.ibsrv.net/cimg/www.fitday.com/693x350_100-1/349/resistance-20band-107349.jpg',
     date: '4th October 2015',
-    rating: '4.5'
+    ratingup: '10',
+    ratingdown: '3',
+  }, {
+    title: 'Event Preparation for U18 European Champs',
+    image: 'https://c1.staticflickr.com/9/8661/28418185866_552e4d0e65_b.jpg',
+    date: '4th October 2015',
+    ratingup: '15',
+    ratingdown: '2',
+  }, {
+    title: 'The Strongest Woman I’ ve Ever Known',
+    image: 'http://www.ooyuz.com/images/2016/8/13/1473787848785.jpg',
+    date: '4th October 2015',
+    ratingup: '12',
+    ratingdown: '3',
   }, {
     title: 'What You Dont Know About: Being a GM',
     image: 'http://d2gd8qsu8uml9u.cloudfront.net/uploads/AP_234024109023-680x340.jpg',
     date: '3rd November 2015',
-    rating: '3.5'
+    ratingup: '23',
+    ratingdown: '1',
   }];
 
 })
@@ -542,7 +556,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('ChatDetailCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
-  $ionicScrollDelegate.scrollBottom();
+
+  $ionicScrollDelegate.scrollBottom(true);
   $scope.hideTime = true;
 
   $scope.timeStamp = function () {
@@ -664,24 +679,38 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('CompetitionCtrl', function ($scope, $ionicModal) {
+
   $scope.data = [{
-    name: 'Nike Marathon London',
-    startDate: '14 January, 2017',
-    endDate: '15 January, 2017',
-    keyCompetition: true,
-    assignedAthletes: [{
-      name: 'Van Gough',
-      img: 'img/img-placeholder.png'
-    }]
+    name: 'Hampshire county championships',
+    startDate: new Date('14 May, 2017'),
+    endDate: new Date('15 May, 2017'),
   }, {
-    name: 'Puma Marathon Manchester',
-    startDate: '14 January, 2017',
-    endDate: '15 January, 2017',
-    keyCompetition: false,
-    assignedAthletes: [{
-      name: 'Van Gough',
-      img: 'img/img-placeholder.png'
-    }]
+    name: 'Loughborough International',
+    startDate: new Date('22 May, 2017'),
+    endDate: new Date('22 May, 2017'),
+    keyCompetition: true
+  }, {
+    name: 'English Schools',
+    startDate: new Date('8 July, 2017'),
+    endDate: new Date('9 July, 2017'),
+  }, {
+    name: 'SIAB',
+    startDate: new Date('16 July, 2017'),
+    endDate: new Date('16 July, 2017'),
+  }, {
+    name: 'European Youths',
+    startDate: new Date('14 June, 2017'),
+    endDate: new Date('15 June, 2017'),
+    keyCompetition: true
+  }, {
+    name: 'U17 Southerns',
+    startDate: new Date('8 August, 2017'),
+    endDate: new Date('8 August, 2017'),
+  }, {
+    name: 'U17 Nationals',
+    startDate: new Date('8 September, 2017'),
+    endDate: new Date('9 September, 2017'),
+    keyCompetition: true
   }];
 })
 
@@ -727,41 +756,36 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
 
   $scope.data = {
-    name: 'Nike Marathon London',
-    startDate: new Date("January 14, 2017 11:13:00"),
-    endDate: new Date("January 15, 2017 11:13:00"),
-    keyCompetition: true,
-    details: 'Lorem ipsum facilisis',
+    name: 'Hampshire county championships',
+    startDate: new Date('14 May, 2017'),
+    endDate: new Date('15 May, 2017'),
+    details: '200M & 400M, Target times: 21.0, 46.0',
     assignedAthletes: [{
-      name: 'Van Gough',
-      img: 'img/img-placeholder.png'
+      "name": "Tod",
+      "surname": "Frazer",
+      "image": "tod-frazer"
     }, {
-      name: 'Samuel Trump',
-      img: 'img/img-placeholder.png'
-    }],
+      "name": "Natascha",
+      "surname": "Simmons",
+      "image": "natascha-simmons"
+    }]
   };
 
 })
 
 .controller('TestingCtrl', function ($scope, $ionicModal) {
   $scope.data = [{
-    name: '800M Running',
-    startDate: '14 January, 2017',
-    endDate: '15 January, 2017',
-    details: '',
-    assignedAthletes: [{
-      name: 'Van Gough',
-      img: 'img/img-placeholder.png'
-    }],
+    name: 'Anaerobic Test (45 second)',
+    startDate: new Date('14 May, 2017'),
+    endDate: new Date('14 May, 2017'),
   }, {
-    name: '5KM Cycling',
-    startDate: '14 January, 2017',
-    endDate: '15 January, 2017',
-    details: '',
-    assignedAthletes: [{
-      name: 'Van Gough',
-      img: 'img/img-placeholder.png'
-    }],
+    name: 'Gym Tests',
+    startDate: new Date('27 May, 2017'),
+    endDate: new Date('27 May, 2017'),
+  }, {
+    name: 'Speed Test',
+    startDate: new Date('17 June, 2017'),
+    endDate: new Date('17 June, 2017'),
   }];
 
 })
@@ -773,6 +797,65 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     [65, 59, 80, 81, 56, 55, 40],
     [28, 48, 40, 19, 86, 27, 90]
   ];
+})
+
+
+.controller('TestingCreateCtrl', function ($scope, $ionicModal) {
+
+  $scope.title = 'Create';
+
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+
+  $scope.addAthlete = function () {
+    $scope.modal.show();
+  };
+
+
+})
+
+.controller('TestingDetailCtrl', function ($scope, $ionicModal) {
+
+  $scope.title = 'Edit';
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+
+  $scope.addAthlete = function () {
+    $scope.modal.show();
+  };
+
+  $scope.data = {
+    name: 'Anaerobic Test (45 second)',
+    startDate: new Date('14 May, 2017'),
+    endDate: new Date('14 May, 2017'),
+    details: '45 second max run – Start 400M start, Target: 375 meters',
+    assignedAthletes: [{
+      "name": "Tod",
+      "surname": "Frazer",
+      "image": "tod-frazer"
+    }, {
+      "name": "Natascha",
+      "surname": "Simmons",
+      "image": "natascha-simmons"
+    }]
+  };
+
 })
 
 .controller('TrainingDiaryCtrl', function ($scope, $ionicModal, $ionicLoading, uiCalendarConfig, MyServices) {
@@ -982,62 +1065,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     });
   };
 
-
-})
-
-.controller('TestingCreateCtrl', function ($scope, $ionicModal) {
-
-  $scope.title = 'Create';
-
-  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.closeModal = function () {
-    $scope.modal.hide();
-  };
-
-  $scope.addAthlete = function () {
-    $scope.modal.show();
-  };
-
-
-})
-
-.controller('TestingDetailCtrl', function ($scope, $ionicModal) {
-
-  $scope.title = 'Edit';
-  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.closeModal = function () {
-    $scope.modal.hide();
-  };
-
-  $scope.addAthlete = function () {
-    $scope.modal.show();
-  };
-
-  $scope.data = {
-    name: '300M Running',
-    startDate: new Date("January 14, 2017 11:13:00"),
-    endDate: new Date("January 15, 2017 11:13:00"),
-    details: '300M Running on Ronal Ground',
-    assignedAthletes: [{
-      name: 'Van Gough',
-      img: 'img/img-placeholder.png'
-    }, {
-      name: 'Samuel Trump',
-      img: 'img/img-placeholder.png'
-    }],
-  };
 
 })
 

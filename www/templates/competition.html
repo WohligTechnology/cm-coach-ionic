@@ -11,7 +11,7 @@
       <ion-item class="item-icon-left icon-c-l" ui-sref="app.competition-detail" ng-repeat="d in data">
         <i class="icon icon-circled ln-trophy" ng-class="{'icon-positive': d.keyCompetition == true}"></i>
         <h2 data-ng-bind="d.name"></h2>
-        <p>{{d.startDate}} - {{d.endDate}}</p>
+        <p>{{d.startDate|date:'dd MMMM, yyyy'}} - {{d.endDate|date:'dd MMMM, yyyy'}}</p>
         <ion-option-button class="button-assertive"><i class="icon ln-trash"></i></ion-option-button>
       </ion-item>
     </ion-list>

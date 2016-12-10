@@ -1,4 +1,4 @@
-var adminurl = "http://coachmentor.wohlig.co.in/api/";
+var adminurl = "http://wohlig.io/api/";
 // var adminurl = "http://192.168.2.78/api/";
 var imgurl = adminurl + "upload/";
 
@@ -7,12 +7,19 @@ var uploadurl = imgurl;
 var user = {};
 angular.module('starter.services', [])
   .factory('MyServices', function ($http, $filter) {
+    var requestCredentials;
+
     var userProfile = $.jStorage.get("userProfile");
     if (!userProfile) {
       userProfile = {};
+    } else {
+      console.log(userProfile);
+      requestCredentials = {
+        accessToken: $.jStorage.get("userProfile").accessToken[0],
+        accessType: "Coach"
+      };
     }
 
-    var requestCredentials;
     var returnval = {};
 
     return {

@@ -906,6 +906,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       $scope.makeDisable = true;
       if (moment().isSameOrAfter(m)) {
         $scope.openModal();
+        console.log('Feedback');
       }
     } else {
       $scope.feedback = obj.planForm.answer;
@@ -913,6 +914,12 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       $scope.commentData.comment = obj.planForm.comment;
       if (moment().isBefore(m)) {
         $scope.openModal();
+        console.log('Comment');
+      }
+    }
+    if (obj.planForm.answer.length === 0) {
+      if (moment().isSameOrAfter(m)) {
+        $scope.showLoading('No Feedback Recived!', 2000);
       }
     }
   };
@@ -1035,52 +1042,153 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 .controller('AthletesCoachingCtrl', function ($scope, $ionicModal) {
+
   $scope.athleteCoaching = [{
-    name: 'Matt',
-    surname: 'Smith',
-    image: 'img/img-placeholder.png',
-    acceptedDate: '13 May, 2016',
-    renewalDate: '12 June, 2016',
-    subscriptionType: 'Monthly'
+    "name": "Matt",
+    "surname": "Chant",
+    "image": "matt-chant",
+    "acceptedDate": '13 May, 2016',
+    "renewalDate": '12 June, 2016',
+    "subscriptionType": 'Monthly'
   }, {
-    name: 'John',
-    surname: 'Damon',
-    image: 'img/img-placeholder.png',
-    acceptedDate: '17 August, 2016',
-    renewalDate: '16 August, 2017',
-    subscriptionType: 'Annual'
+    "name": "Tod",
+    "surname": "Frazer",
+    "image": "tod-frazer",
+    "acceptedDate": '1 June, 2016',
+    "renewalDate": '2 June, 2017',
+    "subscriptionType": 'Yearly'
+  }, {
+    "name": "Natascha",
+    "surname": "Simmons",
+    "image": "natascha-simmons",
+    "acceptedDate": '13 May, 2016',
+    "renewalDate": '12 June, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Nick",
+    "surname": "Smith",
+    "image": "nick-smith",
+    "acceptedDate": '1 June, 2016',
+    "renewalDate": '2 July, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Connor",
+    "surname": "Simpson",
+    "image": "connor-simpson",
+    "acceptedDate": '23 February, 2016',
+    "renewalDate": '22 March, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Aaron",
+    "surname": "Small",
+    "image": "aaron-small",
+    "acceptedDate": '1 June, 2016',
+    "renewalDate": '2 June, 2017',
+    "subscriptionType": 'Yearly'
+  }, {
+    "name": "Holly",
+    "surname": "Nickleby",
+    "image": "holly-nickleby",
+    "acceptedDate": '13 May, 2016',
+    "renewalDate": '12 June, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "John",
+    "surname": "Burrows",
+    "image": "john-burrows",
+    "acceptedDate": '13 May, 2016',
+    "renewalDate": '12 June, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Holly",
+    "surname": "Mills",
+    "image": "holly-mills",
+    "acceptedDate": '23 February, 2016',
+    "renewalDate": '22 March, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Scott",
+    "surname": "Barker",
+    "image": "scott-barker",
+    "acceptedDate": '13 May, 2016',
+    "renewalDate": '12 June, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Sam",
+    "surname": "Sears",
+    "image": "sam-sears",
+    "acceptedDate": '13 May, 2016',
+    "renewalDate": '12 June, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Keiran",
+    "surname": "Nicholls",
+    "image": "keiran-nicholls",
+    "acceptedDate": '13 May, 2016',
+    "renewalDate": '12 June, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Annie",
+    "surname": "Brookes",
+    "image": "annie-brookes",
+    "acceptedDate": '23 February, 2016',
+    "renewalDate": '22 March, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "Molly",
+    "surname": "Wood",
+    "image": "molly-wood",
+    "acceptedDate": '13 May, 2016',
+    "renewalDate": '12 June, 2016',
+    "subscriptionType": 'Monthly'
+  }, {
+    "name": "William",
+    "surname": "Barnes",
+    "image": "william-barnes",
+    "acceptedDate": '23 February, 2016',
+    "renewalDate": '22 March, 2016',
+    "subscriptionType": 'Monthly'
   }];
 })
 
 .controller('AthletesRequestCtrl', function ($scope, $ionicModal) {
   $scope.athleteRequests = [{
-    name: 'Matt',
-    surname: 'Smith',
-    image: 'img/img-placeholder.png',
-    sports: 'Running, Cycling',
-    message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maiores, cupiditate rerum facere ex velit dignissimos expedita totam dicta saepe, ad sint inventore blanditiis consequuntur possimus dolorem at nisi dolore!',
+    "name": "Liz",
+    "surname": "Hurrley",
+    "image": "liz-hurrley",
+    "sports": "Gym, Tennis, Badminton",
+    "message": "We would like to work train under you sir."
   }, {
-    name: 'Matt',
-    surname: 'Smith',
-    image: 'img/img-placeholder.png',
-    sports: 'Running, Cycling',
-    message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maiores, cupiditate rerum facere ex velit dignissimos expedita totam dicta saepe, ad sint inventore blanditiis consequuntur possimus dolorem at nisi dolore!',
-  }, ];
+    "name": "David",
+    "surname": "Awde",
+    "image": "david-awde",
+    "sports": "Athletics",
+    "message": "We would like to work train under you sir."
+  }, {
+    "name": "James",
+    "surname": "Folkes",
+    "image": "james-folkes",
+    "sports": "Athletics",
+    "message": "We would like to work train under you sir."
+  }];
 })
 
 .controller('AthletesCoachingDetailCtrl', function ($scope, $ionicModal) {
 
   $scope.athleteCoaching = {
     name: 'Matt',
-    surname: 'Smith',
-    image: 'img/img-placeholder.png',
-    acceptedDate: '13 May, 2016',
-    renewalDate: '12 June, 2016',
+    surname: 'Chant',
+    image: 'matt-chant',
+    acceptedDate: '10 December, 2016',
+    renewalDate: '11 January, 2017',
     subscriptionType: 'Monthly',
     location: 'United Kingdom',
     age: '22',
-    sports: 'Cycling, Running',
-    events: 'United Kingdom Marathon 2016, Triathlon 2016'
+    sports: 'All Sports',
+    events: '200, 400m',
+    about: 'Athlete, currently studying sport psychology at Loughborough University, 200 and 400 meter runner',
+    achievements: 'Natiional indoor 400m bronze meadlist, SEAA Indoor gold medalist holding current championship record, English Schools medalist, Various county medals',
+    previousSeasonReview: 'Transition from rugby back into athletics, target was to lose 10kg, hit my target, season was Injury free - very few competitions'
   };
 
 })
@@ -1088,14 +1196,17 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 .controller('AthleteDetailCtrl', function ($scope, $ionicModal) {
 
   $scope.athlete = {
-    name: 'Matt',
-    surname: 'Smith',
-    image: 'img/img-placeholder.png',
-    message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maiores, cupiditate rerum facere ex velit dignissimos expedita totam dicta saepe, ad sint inventore blanditiis consequuntur possimus dolorem at nisi dolore!',
+    name: 'Liz',
+    surname: 'Hurrley',
+    image: 'liz-hurrley',
+    message: "We would like to work train under you sir.",
     location: 'United Kingdom',
-    age: '22',
-    sports: 'Cycling, Running',
-    events: 'United Kingdom Marathon 2016, Triathlon 2016'
+    age: '16',
+    sports: 'Gym, Tennis, Badminton',
+    events: '60m, 100m, 200m',
+    about: 'Self motivated and dedicated athlete',
+    achievements: 'Represented county at 100m and county schools at 200m',
+    previousSeasonReview: 'Achieved my pesonal goals and ran personal bests in all events'
   };
 
 })

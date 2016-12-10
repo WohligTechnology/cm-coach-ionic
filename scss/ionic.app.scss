@@ -1021,3 +1021,57 @@ p.bold {
   border-radius: 100%;
   margin-right: 10px;
 }
+
+.custom-look {
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px;
+  &:before {
+    content: "\f3fd";
+    font-family: 'Ionicons';
+    position: absolute;
+    color: white;
+    top: -3px;
+    left: 3px;
+    font-size: 26px;
+    line-height: 1;
+  }
+  input[type=checkbox],
+  input[type=radio] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    margin-right: 2px;
+    width: 16px;
+    height: 16px;
+    &:checked {
+      background-color: $positive;
+      border-color: $positive;
+    }
+  }
+  input[type=radio] {
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+  }
+}
+
+.checkbox-list {
+  font-weight: normal;
+  padding: 7px 0;
+  display: block;
+  margin: 0;
+  +.checkbox-list {
+    border-top: 1px solid #e6e6e6;
+  }
+  &:before {
+    top: 4px;
+    left: 4.5px;
+  }
+  input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+    border-radius: 100%;
+  }
+}

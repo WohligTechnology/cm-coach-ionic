@@ -1,31 +1,43 @@
 <ion-view view-title="{{athlete.name}}">
-    <ion-content class="white-profile">
-        <div class="picture-hold picture-pad">
-            <div class="zd">
-                <div class="dp" style="background-image: url('{{athlete.image}}');"></div>
-                <h3>{{athlete.name}} {{athlete.surname}}</h3>
-                <p>{{athlete.age}} years, {{athlete.location}}</p>
-            </div>
-        </div>
-        <ion-list>
-            <ion-item class="item-text-wrap item-long">
-                <h3>Message</h3>
-                <p read-more="athlete.message" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
-            </ion-item>
-            <ion-item class="item-text-wrap item-long">
-                <h3>Sports</h3>
-                <p read-more="athlete.sports" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
-            </ion-item>
-            <ion-item class="item-text-wrap item-long">
-                <h3>Events</h3>
-                <p read-more="athlete.events" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
-                           </ion-item>
-        </ion-list>
-        <div class="padding-horizontal">
-            <div class="button-bar">
-                <button class="button button-balanced button-block">Accept</button>
-                <button class="button button-assertive button-block">Reject</button>
-            </div>
-        </div>
-    </ion-content>
+  <ion-content class="white-profile">
+    <div class="picture-hold picture-pad">
+      <div class="zd">
+        <div class="dp" style="background-image: url('{{athlete.image|localurl}}');"></div>
+        <h3>{{athlete.name}} {{athlete.surname}}</h3>
+        <p>{{athlete.age}} years, {{athlete.location}}</p>
+      </div>
+    </div>
+    <ion-list>
+      <ion-item class="item-text-wrap item-long">
+        <h3>Message</h3>
+        <p read-more="athlete.message" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+      </ion-item>
+      <ion-item class="item-text-wrap item-long">
+        <h3>Sports</h3>
+        <p read-more="athlete.sports" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+      </ion-item>
+      <ion-item class="item-text-wrap item-long">
+        <h3>About</h3>
+        <p read-more="athlete.about" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+      </ion-item>
+      <ion-item class="item-text-wrap item-long">
+        <h3>Events</h3>
+        <p read-more="athlete.events" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+      </ion-item>
+      <ion-item class="item-text-wrap item-long">
+        <h3>Achievement / Personal Bests</h3>
+        <p read-more="athlete.achievements" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+      </ion-item>
+      <ion-item class="item-text-wrap item-long">
+        <h3>Previous Season Review</h3>
+        <p read-more="athlete.previousSeasonReview" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+      </ion-item>
+    </ion-list>
+    <div class="padding-horizontal">
+      <div class="button-bar">
+        <button class="button button-balanced button-block">Accept</button>
+        <button class="button button-assertive button-block">Reject</button>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

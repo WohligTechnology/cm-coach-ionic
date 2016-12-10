@@ -1,7 +1,7 @@
 <ion-view view-title="Athletes Coaching">
   <ion-nav-buttons side="right">
     <span class="ln ln-user right-badge ln-fit" ui-sref="app.athletes-request">
-    <span class="badge badge-assertive">1</span>
+    <span class="badge badge-assertive">3</span>
     </span>
   </ion-nav-buttons>
   <ion-content start-y="53">
@@ -11,7 +11,7 @@
         <button class="button button-small icon ln-magnifier"></button>
       </ion-item>
       <ion-item class="item-avatar" ui-sref="app.athletes-coaching-detail" ng-repeat="a in athleteCoaching">
-        <img ng-src="{{a.image}}">
+        <img ng-src="{{a.image|localurl}}">
         <h2>{{a.name}} {{a.surname}}</h2>
         <p><i class="icon ln-calendar3"></i> {{a.acceptedDate}} - {{a.renewalDate}}</p>
         <span class="badge badge-positive chat-badge">{{ a.subscriptionType | limitTo:1 }}</span>

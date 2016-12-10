@@ -10615,3 +10615,49 @@ p.bold {
   vertical-align: middle;
   border-radius: 100%;
   margin-right: 10px; }
+
+.custom-look {
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px; }
+  .custom-look:before {
+    content: "\f3fd";
+    font-family: 'Ionicons';
+    position: absolute;
+    color: white;
+    top: -3px;
+    left: 3px;
+    font-size: 26px;
+    line-height: 1; }
+  .custom-look input[type=checkbox],
+  .custom-look input[type=radio] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    margin-right: 2px;
+    width: 16px;
+    height: 16px; }
+    .custom-look input[type=checkbox]:checked,
+    .custom-look input[type=radio]:checked {
+      background-color: #004a9b;
+      border-color: #004a9b; }
+  .custom-look input[type=radio] {
+    border-radius: 100%;
+    -webkit-border-radius: 100%; }
+
+.checkbox-list {
+  font-weight: normal;
+  padding: 7px 0;
+  display: block;
+  margin: 0; }
+  .checkbox-list + .checkbox-list {
+    border-top: 1px solid #e6e6e6; }
+  .checkbox-list:before {
+    top: 4px;
+    left: 4.5px; }
+  .checkbox-list input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+    border-radius: 100%; }

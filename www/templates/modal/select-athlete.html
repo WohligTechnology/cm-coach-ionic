@@ -11,7 +11,7 @@
         <label class="item-input-wrapper"><input type="search" placeholder="Athlete Name" name="athlete" ng-change="getAthlete(formData.athleteSearch);" ng-model="formData.athleteSearch"></label>
         <button class="button button-small icon ln-magnifier" type="submit"></button>
       </form>
-      <div class="item" ng-repeat="t in athletes" ng-click="matchName(t);changeAthlete();closeModal();"><img ng-src="{{t.profilePic|uploadpath}}" class="dp-img"> {{t.name}} {{t.surname}}</div>
+      <div class="item" ng-repeat="t in athletes" ng-click="matchName(t);changeAthlete();closeModal();">{{t.name}} {{t.surname}}</div>
     </ion-list>
   </ion-content>
 </ion-modal-view>

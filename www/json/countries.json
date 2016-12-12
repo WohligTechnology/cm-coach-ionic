@@ -1,6 +1,15 @@
 [{
-    "name": "United Kingdom",
-    "code": "GB"
+    "name": "England",
+    "code": "ENG"
+},{
+    "name": "Northern Ireland",
+    "code": "N-IRL"
+},{
+    "name": "Scotland",
+    "code": "SCT"
+},{
+    "name": "Wales",
+    "code": "WAL"
 }, {
     "name": "United States",
     "code": "US"

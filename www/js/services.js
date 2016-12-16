@@ -1,5 +1,5 @@
 var adminurl = "http://coachmentor.wohlig.com/api/";
-// var adminurl = "http://192.168.2.78/api/";
+// var adminurl = "http://wohlig.io/api/";
 var imgurl = adminurl + "upload/";
 
 var imgpath = imgurl + "readFile";
@@ -13,7 +13,6 @@ angular.module('starter.services', [])
     if (!userProfile) {
       userProfile = {};
     } else {
-      console.log(userProfile);
       requestCredentials = {
         accessToken: $.jStorage.get("userProfile").accessToken[0],
         accessType: "Coach"
@@ -43,14 +42,6 @@ angular.module('starter.services', [])
         return userProfile;
       },
 
-      registerCoach: function (formData, callback) {
-        $http({
-          url: adminurl + 'Coach/registerCoach',
-          method: 'POST',
-          data: formData
-        }).success(callback);
-      },
-
       getStatic: function (formData, callback) {
         $http({
           url: adminurl + 'ConfigTwo/getOne',
@@ -59,6 +50,13 @@ angular.module('starter.services', [])
         }).success(callback);
       },
 
+      registerCoach: function (formData, callback) {
+        $http({
+          url: adminurl + 'Coach/registerCoach',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
       login: function (formData, callback) {
         $http({
           url: adminurl + 'Coach/coachLogin',
@@ -66,7 +64,6 @@ angular.module('starter.services', [])
           data: formData
         }).success(callback);
       },
-
       editProfile: function (formData, callback) {
         $http({
           url: adminurl + 'Coach/updateCoachProfile',
@@ -74,7 +71,6 @@ angular.module('starter.services', [])
           data: formData
         }).success(callback);
       },
-
       getProfile: function (formData, callback) {
         $http({
           url: adminurl + 'Coach/getCoachProfile',
@@ -82,7 +78,6 @@ angular.module('starter.services', [])
           data: formData
         }).success(callback);
       },
-
       changePassword: function (formData, callback) {
         $http({
           url: adminurl + 'Coach/resetPasswordCoach',
@@ -115,5 +110,49 @@ angular.module('starter.services', [])
           callback(data);
         });
       },
+
+      saveCompetition: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Competition/save',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      updateCompetition: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Competition/updateCompetition',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      deleteCompetition: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Competition/delete',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      getOneCompetition: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Competition/findOne',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      searchCompetition: function (formData, i, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Competition/search',
+          method: 'POST',
+          data: formData
+        }).success(function (data) {
+          callback(data, i);
+        });
+      },
+
     };
   });

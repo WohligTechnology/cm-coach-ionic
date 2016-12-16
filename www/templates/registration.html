@@ -13,14 +13,17 @@
           <label class="item item-input" ng-class="{'err':formName.name.$invalid && formName.name.$touched}">
             <span class="input-label">Forename</span>
             <input type="text" name="name" ng-model="formData.name" maxlength="35" ng-pattern="onlyAplha" required>
+            <span class="error-msg" ng-show="formName.name.$invalid && formName.name.$touched">Invalid Forename</span>
           </label>
           <label class="item item-input" ng-class="{'err':formName.surname.$invalid && formName.surname.$touched}">
             <span class="input-label">Surname</span>
             <input type="text" name="surname" ng-model="formData.surname" maxlength="35" ng-pattern="onlyAplha" required>
+            <span class="error-msg" ng-show="formName.surname.$invalid && formName.surname.$touched">Invalid Surname</span>
           </label>
           <label class="item item-input" ng-class="{'err':formName.email.$invalid && formName.email.$touched}">
             <span class="input-label">Email Address</span>            
             <input type="email" name="email" ng-model="formData.email" maxlength="255" ng-pattern="validEmail" required>
+            <span class="error-msg" ng-show="formName.email.$invalid && formName.email.$touched">Invalid Email</span>
           </label>
           <ion-item class="item-divider item-text-wrap small-text">
             Password must contain: <br>
@@ -32,7 +35,7 @@
             <span class="input-label">Password</span>
             <input type="password" no-paste name="password" ng-change="passwordValidator(formData.password);" ng-model="formData.password" required>
             </label>
-          <label class="item item-input" ng-if="formData.password" ng-class="{'err':formData.repassword !== formData.password,'err succ':formData.repassword === formData.password}">
+          <label class="item item-input" ng-show="formData.password" ng-class="{'err':formData.repassword !== formData.password,'err succ':formData.repassword === formData.password}">
             <span class="input-label">Confirm Password</span>
             <input type="password" no-paste name="repassword" ng-model="formData.repassword" required>
           </label>
@@ -46,20 +49,24 @@
             <select name="country" ng-model="formData.country" ng-options="c.name as c.name for c in countries" required>
               <option value="" selected>Select</option>
             </select>
+            <span class="error-msg" ng-show="formName.country.$invalid && formName.country.$touched">Please select Country</span>
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.gender.$invalid && formName.gender.$touched}">
             <span class="input-label">Gender</span>
             <select name="gender" ng-model="formData.gender" ng-options="g as g for g in gender" required>
               <option value="">Select</option>
             </select>
+            <span class="error-msg" ng-show="formName.gender.$invalid && formName.gender.$touched">Please select Gender</span>
           </label>
           <label class="item item-input" ng-class="{'err':formName.contact.$invalid && formName.contact.$touched}">
             <span class="input-label">Phone Number</span>
             <input type="tel" name="contact" ng-model="formData.mobile" ng-pattern="validTel" required>
+            <span class="error-msg" ng-show="formName.contact.$invalid && formName.contact.$touched">Invalid Phone Number</span>
           </label>
           <label class="item item-input" ng-class="{'err':formName.dob.$invalid && formName.dob.$touched}">
             <span class="input-label">Date of Birth</span>
             <input type="date" name="dob" ng-model="formData.dob" max="{{maxDate}}" required>
+            <span class="error-msg" ng-show="formName.dob.$invalid && formName.dob.$touched">Invalid Date of Birth</span>
           </label>
           <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.coachingFocus == ''}">
             <h3>Coaching Focus</h3>
@@ -68,6 +75,7 @@
               <label for="{{c}}">{{c}}</label>
             </div>
             <input type="hidden" name="coachingFocus" ng-model="formData.coachingFocus[0]" required>
+            <span class="error-msg" ng-show="formData.coachingFocus == ''">Please select Coaching Focus</span>
           </ion-item>
           <ion-item class="item-text-wrap multi-select" ng-class="{'err': formData.specialisations == '' && !formData.specialisations.otherVal}">
             <h3>Specialisations</h3>
@@ -80,10 +88,11 @@
               <label for="Others">Others</label>
             </div>
             <input type="hidden" name="specialisations" ng-model="formData.specialisations[0]" required>
+            <span class="error-msg" ng-show="formData.specialisations == '' && !formData.specialisations.otherVal">Please select Specialisations</span>
           </ion-item>
           <label ng-if="formData.specialisations.otherVal" class="item item-input item-block" ng-class="{'err':formName.specialisationOther.$invalid && formName.specialisationOther.$touched}">
             <span class="input-label">Others Specialisations</span>
-            <textarea auto-grow name="specialisationOther" rows="3" ng-model="formData.specialisationOther" required></textarea>
+            <textarea auto-grow name="specialisationOther" rows="3" ng-model="formData.specialisationOther"></textarea>
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.credentials.$invalid && formName.credentials.$touched}">
             <div class="input-label">
@@ -92,10 +101,12 @@
             <select name="credentials" ng-model="formData.credentials" ng-options="c as c for c in credentials" required>
                 <option value="">Select</option>
             </select>
+            <span class="error-msg" ng-show="formName.credentials.$invalid && formName.credentials.$touched">Please select Credentials</span>
           </label>
           <label class="item item-input item-block" ng-class="{'err':formName.freeTextCV.$invalid && formName.freeTextCV.$touched}">
             <span class="input-label">Free Text CV</span>
-            <textarea auto-grow name="freeTextCV" rows="6" maxlength="500" ng-model="formData.freeTextCV" required></textarea>
+            <textarea auto-grow name="freeTextCV" rows="6" maxlength="1200" ng-model="formData.freeTextCV" required></textarea>
+            <span class="error-msg" ng-show="formName.freeTextCV.$invalid && formName.freeTextCV.$touched">Invalid Free Text CV</span>
           </label>
           <ion-item class="item-text-wrap">
             <h3>Upload your CV</h3>

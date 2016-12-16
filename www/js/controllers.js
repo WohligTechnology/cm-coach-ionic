@@ -87,27 +87,11 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       if (data.value === true) {
         $scope.formData = {};
         $scope.hideLoading();
-        $scope.showLoading('Registration Successful!', 2000);
+        $scope.showLoading('Registration Successful', 2000);
         $state.go('login');
       } else {
         $scope.hideLoading();
-        $scope.showLoading('Registration Failed!', 2000);
-      }
-    });
-  };
-
-  //Submit Form
-  $scope.submitData = function (formData) {
-    $scope.showLoading('Please wait...', 15000);
-    MyServices.register(formData, function (data) {
-      if (data.value === true) {
-        $scope.formData = {};
-        $scope.hideLoading();
-        $scope.showLoading('Registration Successful!', 2000);
-        $state.go('login');
-      } else {
-        $scope.hideLoading();
-        $scope.showLoading('Registration Failed!', 2000);
+        $scope.showLoading('Registration Failed', 2000);
       }
     });
   };
@@ -154,7 +138,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         $scope.hideLoading();
       } else {
         $scope.hideLoading();
-        $scope.showLoading('Loading Failed!', 2000);
+        $scope.showLoading('Loading Failed', 2000);
       }
     });
     $scope.modal.show();
@@ -180,6 +164,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.closeModal = function () {
     $scope.modal.hide();
   };
+  $scope.validEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   //Loading
   $scope.showLoading = function (value, time) {
@@ -199,7 +184,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       if (data.value === true) {
         $scope.formData = {};
         $scope.hideLoading();
-        $scope.showLoading('Login Successful!', 2000);
+        $scope.showLoading('Login Successful', 2000);
         MyServices.setUser(data.data);
         $state.go('app.profile');
       } else {
@@ -235,7 +220,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         $scope.$broadcast('scroll.refreshComplete');
       } else {
         $scope.$broadcast('scroll.refreshComplete');
-        $scope.showLoading('Error Updating Profile!', 1000);
+        $scope.showLoading('Error Updating Profile', 1000);
       }
     });
   };
@@ -332,11 +317,11 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       if (data.value === true) {
         $scope.hideLoading();
         MyServices.setUser(data.data);
-        $scope.showLoading('Profile Updated!', 2000);
+        $scope.showLoading('Profile Updated', 2000);
         $state.go('app.profile');
       } else {
         $scope.hideLoading();
-        $scope.showLoading('Please Try Again!', 2000);
+        $scope.showLoading('Please Try Again', 2000);
       }
     });
   };
@@ -381,12 +366,12 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       if (data.value === true) {
         $scope.passwordData = {};
         $scope.hideLoading();
-        $scope.showLoading('Password Updated!', 2000);
+        $scope.showLoading('Password Updated', 2000);
         $state.go('app.profile');
         $scope.closeModal();
       } else {
         $scope.hideLoading();
-        $scope.showLoading('Please Try Again!', 2000);
+        $scope.showLoading('Please Try Again', 2000);
       }
     });
   };
@@ -466,7 +451,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       }, function (err) {
         // Error
         $scope.hideLoading();
-        $scope.showLoading('Error!', 2000);
+        $scope.showLoading('Error', 2000);
       }, function (progress) {
         // constant progress updates
       });
@@ -672,103 +657,261 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     userId: 'he',
     name: 'Sachin',
     surname: 'Sachin',
-    text: 'Hello! Welcome to Coach Mentor!',
+    text: 'Hello! Welcome to Coach Mentor',
     time: $scope.timeStamp()
   }];
 
 })
 
-.controller('CompetitionCtrl', function ($scope, $ionicModal) {
+.controller('CompetitionCtrl', function ($scope, $ionicModal, MyServices, $ionicLoading, $ionicPopup) {
+  $scope.currentPage = 1;
+  var i = 0;
+  $scope.search = {
+    keyword: ""
+  };
 
-  $scope.data = [{
-    name: 'Hampshire county championships',
-    startDate: new Date('14 May, 2017'),
-    endDate: new Date('15 May, 2017'),
-  }, {
-    name: 'Loughborough International',
-    startDate: new Date('22 May, 2017'),
-    endDate: new Date('22 May, 2017'),
-    keyCompetition: true
-  }, {
-    name: 'English Schools',
-    startDate: new Date('8 July, 2017'),
-    endDate: new Date('9 July, 2017'),
-  }, {
-    name: 'SIAB',
-    startDate: new Date('16 July, 2017'),
-    endDate: new Date('16 July, 2017'),
-  }, {
-    name: 'European Youths',
-    startDate: new Date('14 June, 2017'),
-    endDate: new Date('15 June, 2017'),
-    keyCompetition: true
-  }, {
-    name: 'U17 Southerns',
-    startDate: new Date('8 August, 2017'),
-    endDate: new Date('8 August, 2017'),
-  }, {
-    name: 'U17 Nationals',
-    startDate: new Date('8 September, 2017'),
-    endDate: new Date('9 September, 2017'),
-    keyCompetition: true
-  }];
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  $scope.showAllCompetition = function (keywordChange) {
+    $scope.totalItems = undefined;
+    $scope.allCompetition = undefined;
+    if (keywordChange) {
+      $scope.currentPage = 1;
+    }
+    MyServices.searchCompetition({
+      page: $scope.currentPage,
+      keyword: $scope.search.keyword
+    }, ++i, function (data, ini) {
+      if (ini == i) {
+        console.log(data);
+        if (data.value) {
+          $scope.allCompetition = data.data.results;
+          $scope.totalItems = data.data.total;
+          $scope.maxRow = data.data.options.count;
+        } else {
+          $scope.allCompetition = [];
+          $scope.showLoading('Error Loading Competitions', 2000);
+        }
+      }
+    });
+  };
+
+  $scope.showAllCompetition();
+
+  //Delete Popup
+  $scope.deletePop = function (id) {
+    $scope.myPopup = $ionicPopup.show({
+      template: '<p>Are you sure want to delete the competition?</p>',
+      title: 'Confirmation Message',
+      scope: $scope,
+      buttons: [{
+        text: 'No'
+      }, {
+        text: '<b>Yes</b>',
+        type: 'button-positive',
+        onTap: function (e) {
+          $scope.deleteCompetition(id);
+        }
+      }]
+    });
+  };
+  $scope.deleteCompetition = function (id) {
+    $scope.showLoading("Loading...", 10000);
+    if (id) {
+      MyServices.deleteCompetition({
+        _id: id
+      }, function (data) {
+        if (data.value) {
+          $scope.showAllCompetition();
+          $scope.hideLoading();
+          $scope.showLoading("Competition Deleted", 2000);
+        } else {
+          $scope.hideLoading();
+          $scope.showLoading("Error Deleting Competition", 2000);
+        }
+      });
+    }
+  };
 })
 
-.controller('CompetitionCreateCtrl', function ($scope, $ionicModal) {
+.controller('CompetitionCreateCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
+  $scope.title = 'Create';
+  $scope.formData = {
+    iskey: false
+  };
+  $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
 
-  $scope.title = 'Add Competition';
+  //Match start date & end date
+  $scope.matchDate = function () {
+    $scope.formData.endDate = $scope.formData.startDate;
+  };
 
+  //Select Athletes Modal
   $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.modal = modal;
   });
-
   $scope.closeModal = function () {
     $scope.modal.hide();
   };
-
   $scope.addAthlete = function () {
     $scope.modal.show();
   };
 
+  //Remove Selected Athlete
+  $scope.removeAthlete = function (pos) {
+    $scope.formData.assignedAthletes.splice(pos, 1);
+  };
+
+
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 15000);
+    MyServices.saveCompetition(formData, function (data) {
+      if (data.value === true) {
+        $scope.hideLoading();
+        $scope.showLoading('Competition Created', 2000);
+        $state.go('app.competition');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading(data.data.message, 2000);
+      }
+    });
+  };
 })
 
-.controller('CompetitionDetailCtrl', function ($scope, $ionicModal) {
+.controller('CompetitionDetailCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
+  $scope.title = 'Edit';
+  $scope.formData = {};
+  $scope.competitionId = $stateParams.id;
+  $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
 
-  $scope.title = 'Edit Competition';
+  //Match start date & end date
+  $scope.matchDate = function () {
+    $scope.formData.endDate = $scope.formData.startDate;
+  };
 
-
+  //Select Athletes
   $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.modal = modal;
   });
-
   $scope.closeModal = function () {
     $scope.modal.hide();
   };
-
   $scope.addAthlete = function () {
     $scope.modal.show();
   };
 
-  $scope.data = {
-    name: 'Hampshire county championships',
-    startDate: new Date('14 May, 2017'),
-    endDate: new Date('15 May, 2017'),
-    details: '200M & 400M, Target times: 21.0, 46.0',
-    assignedAthletes: [{
-      "name": "Tod",
-      "surname": "Frazer",
-      "image": "tod-frazer"
-    }, {
-      "name": "Natascha",
-      "surname": "Simmons",
-      "image": "natascha-simmons"
-    }]
+  //Remove Selected Athlete
+  $scope.removeAthlete = function (pos) {
+    $scope.formData.assignedAthletes.splice(pos, 1);
+  };
+
+
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 15000);
+    MyServices.updateCompetition(formData, function (data) {
+      if (data.value === true) {
+        $scope.hideLoading();
+        $scope.showLoading('Competition Edited', 2000);
+        $state.go('app.competition');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Error Editing Competition', 2000);
+      }
+    });
+  };
+
+  //get one edit
+  if ($stateParams.id) {
+    MyServices.getOneCompetition({
+      _id: $stateParams.id
+    }, function (response) {
+      if (response.data) {
+        $scope.formData = response.data;
+        $scope.formData.athleteArray = response.data.athlete;
+        if ($scope.formData.startDate) {
+          $scope.formData.startDate = new Date($scope.formData.startDate);
+          $scope.formData.endDate = new Date($scope.formData.endDate);
+        }
+      } else {
+        $scope.formData = {};
+      }
+    });
+  }
+
+  //Delete Popup
+  $scope.deletePop = function (id) {
+    $scope.myPopup = $ionicPopup.show({
+      template: '<p>Are you sure want to delete the competition?</p>',
+      title: 'Confirmation Message',
+      scope: $scope,
+      buttons: [{
+        text: 'No'
+      }, {
+        text: '<b>Yes</b>',
+        type: 'button-positive',
+        onTap: function (e) {
+          $scope.deleteCompetition(id);
+        }
+      }]
+    });
+  };
+  $scope.deleteCompetition = function (id) {
+    $scope.showLoading("Loading...", 10000);
+    if (id) {
+      MyServices.deleteCompetition({
+        _id: id
+      }, function (data) {
+        if (data.value) {
+          $scope.hideLoading();
+          $scope.showLoading("Competition Deleted", 2000);
+          $state.go('app.competition');
+
+        } else {
+          $scope.hideLoading();
+          $scope.showLoading("Error Deleting Competition", 2000);
+        }
+      });
+    }
   };
 
 })
@@ -1002,7 +1145,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     }
     if (obj.planForm.answer.length === 0) {
       if (moment().isSameOrAfter(m)) {
-        $scope.showLoading('No Feedback Recived!', 2000);
+        $scope.showLoading('No Feedback Recived', 2000);
       }
     }
   };

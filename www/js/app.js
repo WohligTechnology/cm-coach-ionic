@@ -146,6 +146,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.competition', {
+    cache: false,
     url: '/competition',
     views: {
       'menuContent': {
@@ -176,7 +177,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.competition-detail', {
-    url: '/competition-detail',
+    url: '/competition/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/competition-create.html',

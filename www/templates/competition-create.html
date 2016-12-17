@@ -28,7 +28,7 @@
         </ion-item>
         <div class="item item-divider item-icon-right" ng-click="addAthlete();">Add Athletes <i class="icon ion-ios-plus-empty"></i></div>
         <ion-item class="item-name item-avatar item-icon-right" ng-repeat="d in formData.athleteArray" ng-if="formData.athleteArray">
-          <img ng-src="{{d.image|localurl}}">
+          <img ng-src="{{d.profilePic|uploadpath}}">
           <h2>{{d.name}} {{d.surname}}</h2>
           <i class="icon ion-ios-trash-outline" ng-click="removeAthlete($index);"></i>
         </ion-item>

@@ -4,17 +4,21 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item class="item-input-inset">
-        <label class="item-input-wrapper"><input type="text" placeholder="Search Test"></label>
-        <button class="button button-small icon ln-magnifier"></button>
+      <form ng-submit="searchChange(search.keyword)" class="item item-input-inset">
+        <label class="item-input-wrapper"><input type="search" ng-change="searchChange(search.keyword)" ng-model="search.keyword" placeholder="Test Name"></label>
+        <button class="button button-small icon ln-magnifier" type="submit"></button>
+      </form>
+      <ion-item ng-if="allTest.length == 0 && !more.Data">
+        No Test(s) found.
       </ion-item>
-      <ion-item class="item-icon-left icon-c-l" ui-sref="app.testing-detail" ng-repeat="d in data">
+      <ion-item ng-if="allTest.length > 0" class="item-icon-left icon-c-l" ui-sref="app.testing-detail({id: d._id})" ng-repeat="d in allTest">
         <i class="icon icon-circled ln-speed-fast"></i>
-        <h2>{{d.name}}</h2>
+        <h2 data-ng-bind="d.name"></h2>
         <p>{{d.startDate|date:'dd MMMM, yyyy'}} - {{d.endDate|date:'dd MMMM, yyyy'}}</p>
-        <ion-option-button class="button-assertive"><i class="icon ln-trash"></i></ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deletePop(d._id)"><i class="icon ion-ios-trash-outline"></i></ion-option-button>
       </ion-item>
     </ion-list>
+    <ion-infinite-scroll ng-if="more.Data" on-infinite="loadMore();" distance="1%"></ion-infinite-scroll>
     </div>
   </ion-content>
 </ion-view>

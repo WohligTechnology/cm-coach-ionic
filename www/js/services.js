@@ -1,5 +1,5 @@
-var adminurl = "http://coachmentor.wohlig.com/api/";
-// var adminurl = "http://wohlig.io/api/";
+// var adminurl = "http://coachmentor.wohlig.com/api/";
+var adminurl = "http://wohlig.io/api/";
 var imgurl = adminurl + "upload/";
 
 var imgpath = imgurl + "readFile";
@@ -147,6 +147,49 @@ angular.module('starter.services', [])
         formData = _.merge(formData, requestCredentials);
         $http({
           url: adminurl + 'Competition/search',
+          method: 'POST',
+          data: formData
+        }).success(function (data) {
+          callback(data, i);
+        });
+      },
+
+      saveTest: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Test/save',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      updateTest: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Test/updateTest',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      deleteTest: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Test/delete',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      getOneTest: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Test/findOne',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      searchTest: function (formData, i, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Test/search',
           method: 'POST',
           data: formData
         }).success(function (data) {

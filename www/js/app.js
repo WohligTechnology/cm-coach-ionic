@@ -187,6 +187,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.testing', {
+    cache: false,
     url: '/testing',
     views: {
       'menuContent': {
@@ -208,7 +209,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.testing-detail', {
-    url: '/testing-detail',
+    url: '/testing/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/testing-create.html',

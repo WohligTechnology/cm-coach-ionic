@@ -2,22 +2,24 @@
   <ion-nav-buttons side="right">
     <a class="button button-clear icon ion-ios-plus-empty" ui-sref="app.competition-create"></a>
   </ion-nav-buttons>
-  <ion-content start-y="53">
+  <ion-content>
     <ion-list>
-      <form ng-submit="showAllCompetition(search.keyword)" class="item item-input-inset">
-        <label class="item-input-wrapper"><input type="search" ng-change="showAllCompetition(search.keyword)" ng-model="search.keyword" placeholder="Competition Name"></label>
+      <form ng-submit="searchChange(search.keyword)" class="item item-input-inset">
+        <label class="item-input-wrapper"><input type="search" ng-change="searchChange(search.keyword)" ng-model="search.keyword" placeholder="Competition Name"></label>
         <button class="button button-small icon ln-magnifier" type="submit"></button>
       </form>
-      <ion-item class="item-icon-left icon-c-l" ui-sref="app.competition-detail({id: d._id})" ng-repeat="d in allCompetition">
+      <ion-item ng-if="allCompetition.length == 0 && !more.Data">
+        No Competition(s) found.
+      </ion-item>
+      <ion-item ng-if="allCompetition.length > 0" class="item-icon-left icon-c-l" ui-sref="app.competition-detail({id: d._id})"
+        ng-repeat="d in allCompetition">
         <i class="icon icon-circled ln-trophy" ng-class="{'icon-positive': d.isKey}"></i>
         <h2 data-ng-bind="d.name"></h2>
         <p>{{d.startDate|date:'dd MMMM, yyyy'}} - {{d.endDate|date:'dd MMMM, yyyy'}}</p>
         <ion-option-button class="button-assertive" ng-click="deletePop(d._id)"><i class="icon ion-ios-trash-outline"></i></ion-option-button>
       </ion-item>
-      <ion-item ng-if="allCompetition == ''">
-        No Competition(s) found.
-      </ion-item>
     </ion-list>
+    <ion-infinite-scroll ng-if="more.Data" on-infinite="loadMore();" distance="1%"></ion-infinite-scroll>
     </div>
   </ion-content>
 </ion-view>

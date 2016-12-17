@@ -506,168 +506,16 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('ChatCtrl', function ($scope, $ionicModal, $state) {
-  $ionicModal.fromTemplateUrl('templates/modal/chat.html', {
-    id: 1,
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modalChat = modal;
-  });
-  $scope.newChat = function () {
-    $scope.modalChat.show();
-  };
-
-  $ionicModal.fromTemplateUrl('templates/modal/group-chat.html', {
-    id: 2,
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modalGroup = modal;
-  });
-  $scope.newGroupChat = function () {
-    $scope.modalGroup.show();
-  };
-
-  $scope.closeModal = function () {
-    $scope.modalGroup.hide();
-    $scope.modalChat.hide();
-  };
-
-  $scope.startChat = function () {
-    $state.go('app.chatdetail');
-    $scope.modalChat.hide();
-  };
-})
-
-.controller('ChatDetailCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
-
-  $ionicScrollDelegate.scrollBottom(true);
-  $scope.hideTime = true;
-
-  $scope.timeStamp = function () {
-    var d = new Date();
-    d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
-    return d;
-  };
-
-  $scope.sendMessage = function () {
-
-    if ($scope.data.message !== '' && $scope.data.message) {
-      $scope.messages.push({
-        userId: 'me',
-        text: $scope.data.message,
-        time: $scope.timeStamp()
-      });
-
-      delete $scope.data.message;
-      $ionicScrollDelegate.scrollBottom(true);
-    }
-
-  };
-
-  $scope.chatTap = function (m) {
-    m.showTime = true;
-    $timeout(function () {
-      m.showTime = false;
-    }, 4000);
-  };
-  $scope.openKb = function () {
-    cordova.plugins.Keyboard.open();
-  };
-
-  $scope.data = {};
-  $scope.messages = [{
-    userId: 'me',
-    text: 'Hi Matt, how did you find the session?',
-    time: $scope.timeStamp()
-  }, {
-    userId: 'he',
-    text: 'Good, I managed to hit my target times, legs are feeling quite tired now.',
-    time: $scope.timeStamp()
-  }, {
-    userId: 'me',
-    text: 'Good, I suggest you rehab today ready for tomorrow’s session.',
-    time: $scope.timeStamp()
-  }, {
-    userId: 'me',
-    text: 'Stretch, foam roll etc, please refer to rehab programme attached with your Training Plan',
-    time: $scope.timeStamp()
-  }, {
-    userId: 'he',
-    text: 'Will do, thanks.',
-    time: $scope.timeStamp()
-  }, {
-    userId: 'he',
-    text: 'James, a question regarding the session on the 27th November, you have set three sets however still struggling with the legs from last week, shall I drop a set or take the reps slower and get it finished?',
-    time: $scope.timeStamp()
-  }, {
-    userId: 'me',
-    text: 'Stick with the two sets, get it done in flats. I will adapt your training plan for you.',
-    time: $scope.timeStamp()
-  }, {
-    userId: 'he',
-    text: 'Thanks James',
-    time: $scope.timeStamp()
-  }, {
-    userId: 'he',
-    text: 'Session complete, have submitted my times in session feedback  ',
-    time: $scope.timeStamp()
-  }];
-})
-
-.controller('ChatGroupCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
-
-  $scope.hideTime = true;
-
-  $scope.timeStamp = function () {
-    var d = new Date();
-    d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
-    return d;
-  };
-
-  $scope.sendMessage = function () {
-
-    if ($scope.data.message !== '' && $scope.data.message) {
-      console.log($scope.data.message);
-      $scope.messages.push({
-        userId: 'me',
-        text: $scope.data.message,
-        time: $scope.timeStamp()
-      });
-
-      delete $scope.data.message;
-      $ionicScrollDelegate.scrollBottom(true);
-    }
-
-  };
-
-  $scope.chatTap = function (m) {
-    m.showTime = true;
-    $timeout(function () {
-      m.showTime = false;
-    }, 4000);
-  };
-  $scope.openKb = function () {
-    cordova.plugins.Keyboard.open();
-  };
-
-  $scope.data = {};
-  $scope.messages = [{
-    userId: 'he',
-    name: 'Sachin',
-    surname: 'Sachin',
-    text: 'Hello! Welcome to Coach Mentor',
-    time: $scope.timeStamp()
-  }];
-
-})
 
 .controller('CompetitionCtrl', function ($scope, $ionicModal, MyServices, $ionicLoading, $ionicPopup) {
   $scope.currentPage = 1;
   var i = 0;
+  $scope.allCompetition = [];
   $scope.search = {
     keyword: ""
+  };
+  $scope.more = {
+    Data: true
   };
 
   //Loading
@@ -681,31 +529,52 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     $ionicLoading.hide();
   };
 
+
+  //On Change Search Function
+  $scope.searchChange = function (keywordChange) {
+    if (keywordChange === '') {
+      $scope.allCompetition = [];
+      $scope.showAllCompetition(keywordChange);
+    } else {
+      $scope.showAllCompetition(keywordChange);
+    }
+  };
+
+  //Get All Competiton
   $scope.showAllCompetition = function (keywordChange) {
-    $scope.totalItems = undefined;
-    $scope.allCompetition = undefined;
     if (keywordChange) {
       $scope.currentPage = 1;
+      $scope.allCompetition = [];
     }
     MyServices.searchCompetition({
       page: $scope.currentPage,
       keyword: $scope.search.keyword
     }, ++i, function (data, ini) {
       if (ini == i) {
-        console.log(data);
         if (data.value) {
-          $scope.allCompetition = data.data.results;
+          _.forEach(data.data.results, function (value) {
+            $scope.allCompetition.push(value);
+          });
           $scope.totalItems = data.data.total;
-          $scope.maxRow = data.data.options.count;
+          if ($scope.totalItems > $scope.allCompetition.length) {
+            $scope.currentPage++;
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+          } else {
+            $scope.more.Data = false;
+          }
         } else {
-          $scope.allCompetition = [];
           $scope.showLoading('Error Loading Competitions', 2000);
         }
       }
     });
   };
 
-  $scope.showAllCompetition();
+  //Load More
+  $scope.loadMore = function () {
+    // $scope.more.Data = false;
+    console.log('Load More');
+    $scope.showAllCompetition();
+  };
 
   //Delete Popup
   $scope.deletePop = function (id) {
@@ -745,6 +614,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('CompetitionCreateCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
   $scope.title = 'Create';
+  $scope.selectAthlete = {};
   $scope.formData = {
     iskey: false
   };
@@ -767,11 +637,26 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   $scope.addAthlete = function () {
     $scope.modal.show();
+    $scope.getAthlete('');
   };
-
+  //Search Athlete API
+  var j = 0;
+  $scope.getAthlete = function (search) {
+    MyServices.searchAthlete({
+      keyword: search
+    }, ++j, function (data, ci) {
+      if (ci == j) {
+        $scope.athletes = data.data.results;
+      }
+    });
+  };
   //Remove Selected Athlete
   $scope.removeAthlete = function (pos) {
-    $scope.formData.assignedAthletes.splice(pos, 1);
+    $scope.formData.athleteArray.splice(pos, 1);
+  };
+  //Match Selected
+  $scope.matchAthlete = function () {
+    $scope.formData.athleteArray = $scope.selectAthlete.array;
   };
 
 
@@ -804,6 +689,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('CompetitionDetailCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
   $scope.title = 'Edit';
+  $scope.selectAthlete = {};
   $scope.formData = {};
   $scope.competitionId = $stateParams.id;
   $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
@@ -826,11 +712,26 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.addAthlete = function () {
     $scope.modal.show();
   };
-
+  //Search Athlete API
+  var j = 0;
+  $scope.getAthlete = function (search) {
+    MyServices.searchAthlete({
+      keyword: search
+    }, ++j, function (data, ci) {
+      if (ci == j) {
+        $scope.athletes = data.data.results;
+      }
+    });
+  };
   //Remove Selected Athlete
   $scope.removeAthlete = function (pos) {
-    $scope.formData.assignedAthletes.splice(pos, 1);
+    $scope.formData.athleteArray.splice(pos, 1);
   };
+  //Match Selected
+  $scope.matchAthlete = function () {
+    $scope.formData.athleteArray = $scope.selectAthlete.array;
+  };
+
 
 
   //Loading
@@ -916,21 +817,308 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('TestingCtrl', function ($scope, $ionicModal) {
-  $scope.data = [{
-    name: 'Anaerobic Test (45 second)',
-    startDate: new Date('14 May, 2017'),
-    endDate: new Date('14 May, 2017'),
-  }, {
-    name: 'Gym Tests',
-    startDate: new Date('27 May, 2017'),
-    endDate: new Date('27 May, 2017'),
-  }, {
-    name: 'Speed Test',
-    startDate: new Date('17 June, 2017'),
-    endDate: new Date('17 June, 2017'),
-  }];
+.controller('TestingCtrl', function ($scope, $ionicModal, MyServices, $ionicLoading, $ionicPopup) {
+  $scope.currentPage = 1;
+  var i = 0;
+  $scope.allTest = [];
+  $scope.search = {
+    keyword: ""
+  };
+  $scope.more = {
+    Data: true
+  };
 
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  //On Change Search Function
+  $scope.searchChange = function (keywordChange) {
+    if (keywordChange === '') {
+      $scope.allTest = [];
+      $scope.showAllTest(keywordChange);
+    } else {
+      $scope.showAllTest(keywordChange);
+    }
+  };
+
+  $scope.showAllTest = function (keywordChange) {
+    if (keywordChange) {
+      $scope.currentPage = 1;
+      $scope.allTest = [];
+    }
+    MyServices.searchTest({
+      page: $scope.currentPage,
+      keyword: $scope.search.keyword
+    }, ++i, function (data, ini) {
+      if (ini == i) {
+        if (data.value) {
+          _.forEach(data.data.results, function (value) {
+            $scope.allTest.push(value);
+          });
+          $scope.totalItems = data.data.total;
+          if ($scope.totalItems > $scope.allTest.length) {
+            $scope.currentPage++;
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+          } else {
+            $scope.more.Data = false;
+          }
+        } else {
+          $scope.showLoading('Error Loading Test', 2000);
+        }
+      }
+    });
+  };
+
+  //Load More
+  $scope.loadMore = function () {
+    // $scope.more.Data = false;
+    console.log('Load More');
+    $scope.showAllTest();
+  };
+
+  //Delete Popup
+  $scope.deletePop = function (id) {
+    $scope.myPopup = $ionicPopup.show({
+      template: '<p>Are you sure want to delete the test?</p>',
+      title: 'Confirmation Message',
+      scope: $scope,
+      buttons: [{
+        text: 'No'
+      }, {
+        text: '<b>Yes</b>',
+        type: 'button-positive',
+        onTap: function (e) {
+          $scope.deleteTest(id);
+        }
+      }]
+    });
+  };
+  $scope.deleteTest = function (id) {
+    $scope.showLoading("Loading...", 10000);
+    if (id) {
+      MyServices.deleteTest({
+        _id: id
+      }, function (data) {
+        if (data.value) {
+          $scope.showAllTest();
+          $scope.hideLoading();
+          $scope.showLoading("Test Deleted", 2000);
+        } else {
+          $scope.hideLoading();
+          $scope.showLoading("Error Deleting Test", 2000);
+        }
+      });
+    }
+  };
+})
+
+.controller('TestingCreateCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
+  $scope.title = 'Create';
+  $scope.selectAthlete = {};
+  $scope.formData = {
+    iskey: false
+  };
+  $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+  //Match start date & end date
+  $scope.matchDate = function () {
+    $scope.formData.endDate = $scope.formData.startDate;
+  };
+
+  //Select Athletes Modal
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+  $scope.addAthlete = function () {
+    $scope.modal.show();
+  };
+  //Search Athlete API
+  var j = 0;
+  $scope.getAthlete = function (search) {
+    MyServices.searchAthlete({
+      keyword: search
+    }, ++j, function (data, ci) {
+      if (ci == j) {
+        $scope.athletes = data.data.results;
+      }
+    });
+  };
+  //Remove Selected Athlete
+  $scope.removeAthlete = function (pos) {
+    $scope.formData.athleteArray.splice(pos, 1);
+  };
+  //Match Selected
+  $scope.matchAthlete = function () {
+    $scope.formData.athleteArray = $scope.selectAthlete.array;
+  };
+
+
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 15000);
+    MyServices.saveTest(formData, function (data) {
+      if (data.value === true) {
+        $scope.hideLoading();
+        $scope.showLoading('Test Created', 2000);
+        $state.go('app.testing');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading(data.data.message, 2000);
+      }
+    });
+  };
+})
+
+.controller('TestingDetailCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
+  $scope.title = 'Edit';
+  $scope.selectAthlete = {};
+  $scope.formData = {};
+  $scope.testId = $stateParams.id;
+  $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+  //Match start date & end date
+  $scope.matchDate = function () {
+    $scope.formData.endDate = $scope.formData.startDate;
+  };
+
+  //Select Athletes
+  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+  $scope.addAthlete = function () {
+    $scope.modal.show();
+  };
+  //Search Athlete API
+  var j = 0;
+  $scope.getAthlete = function (search) {
+    MyServices.searchAthlete({
+      keyword: search
+    }, ++j, function (data, ci) {
+      if (ci == j) {
+        $scope.athletes = data.data.results;
+      }
+    });
+  };
+  //Remove Selected Athlete
+  $scope.removeAthlete = function (pos) {
+    $scope.formData.athleteArray.splice(pos, 1);
+  };
+  //Match Selected
+  $scope.matchAthlete = function () {
+    $scope.formData.athleteArray = $scope.selectAthlete.array;
+  };
+
+
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 15000);
+    MyServices.updateTest(formData, function (data) {
+      if (data.value === true) {
+        $scope.hideLoading();
+        $scope.showLoading('Test Edited', 2000);
+        $state.go('app.testing');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Error Editing Test', 2000);
+      }
+    });
+  };
+
+  //get one edit
+  if ($stateParams.id) {
+    MyServices.getOneTest({
+      _id: $stateParams.id
+    }, function (response) {
+      if (response.data) {
+        $scope.formData = response.data;
+        $scope.formData.athleteArray = response.data.athlete;
+        if ($scope.formData.startDate) {
+          $scope.formData.startDate = new Date($scope.formData.startDate);
+          $scope.formData.endDate = new Date($scope.formData.endDate);
+        }
+      } else {
+        $scope.formData = {};
+      }
+    });
+  }
+
+  //Delete Popup
+  $scope.deletePop = function (id) {
+    $scope.myPopup = $ionicPopup.show({
+      template: '<p>Are you sure want to delete the test?</p>',
+      title: 'Confirmation Message',
+      scope: $scope,
+      buttons: [{
+        text: 'No'
+      }, {
+        text: '<b>Yes</b>',
+        type: 'button-positive',
+        onTap: function (e) {
+          $scope.deleteTest(id);
+        }
+      }]
+    });
+  };
+  $scope.deleteTest = function (id) {
+    $scope.showLoading("Loading...", 10000);
+    if (id) {
+      MyServices.deleteTest({
+        _id: id
+      }, function (data) {
+        if (data.value) {
+          $scope.hideLoading();
+          $scope.showLoading("Test Deleted", 2000);
+          $state.go('app.testing');
+
+        } else {
+          $scope.hideLoading();
+          $scope.showLoading("Error Test Test", 2000);
+        }
+      });
+    }
+  };
 })
 
 .controller('AnalyticsCtrl', function ($scope, $ionicModal) {
@@ -943,66 +1131,9 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 })
 
 
-.controller('TestingCreateCtrl', function ($scope, $ionicModal) {
 
-  $scope.title = 'Create';
-
-  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.closeModal = function () {
-    $scope.modal.hide();
-  };
-
-  $scope.addAthlete = function () {
-    $scope.modal.show();
-  };
-
-
-})
-
-.controller('TestingDetailCtrl', function ($scope, $ionicModal) {
-
-  $scope.title = 'Edit';
-  $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.closeModal = function () {
-    $scope.modal.hide();
-  };
-
-  $scope.addAthlete = function () {
-    $scope.modal.show();
-  };
-
-  $scope.data = {
-    name: 'Anaerobic Test (45 second)',
-    startDate: new Date('14 May, 2017'),
-    endDate: new Date('14 May, 2017'),
-    details: '45 second max run – Start 400M start, Target: 375 meters',
-    assignedAthletes: [{
-      "name": "Tod",
-      "surname": "Frazer",
-      "image": "tod-frazer"
-    }, {
-      "name": "Natascha",
-      "surname": "Simmons",
-      "image": "natascha-simmons"
-    }]
-  };
-
-})
 
 .controller('TrainingDiaryCtrl', function ($scope, $ionicModal, $ionicLoading, uiCalendarConfig, MyServices) {
-
   //Loading
   $scope.showLoading = function (value, time) {
     $ionicLoading.show({
@@ -1025,7 +1156,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.openSelect = function () {
     $scope.modal1.show();
     $scope.getAthlete('');
-
   };
 
   //Feedback Modal
@@ -1074,7 +1204,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       } else {
         $scope.athleteData = [];
       }
-
     });
   };
 
@@ -1410,6 +1539,164 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       }, ]
     });
   };
+})
+
+
+.controller('ChatCtrl', function ($scope, $ionicModal, $state) {
+  $ionicModal.fromTemplateUrl('templates/modal/chat.html', {
+    id: 1,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalChat = modal;
+  });
+  $scope.newChat = function () {
+    $scope.modalChat.show();
+  };
+
+  $ionicModal.fromTemplateUrl('templates/modal/group-chat.html', {
+    id: 2,
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalGroup = modal;
+  });
+  $scope.newGroupChat = function () {
+    $scope.modalGroup.show();
+  };
+
+  $scope.closeModal = function () {
+    $scope.modalGroup.hide();
+    $scope.modalChat.hide();
+  };
+
+  $scope.startChat = function () {
+    $state.go('app.chatdetail');
+    $scope.modalChat.hide();
+  };
+})
+
+.controller('ChatDetailCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
+
+  $ionicScrollDelegate.scrollBottom(true);
+  $scope.hideTime = true;
+
+  $scope.timeStamp = function () {
+    var d = new Date();
+    d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+    return d;
+  };
+
+  $scope.sendMessage = function () {
+
+    if ($scope.data.message !== '' && $scope.data.message) {
+      $scope.messages.push({
+        userId: 'me',
+        text: $scope.data.message,
+        time: $scope.timeStamp()
+      });
+
+      delete $scope.data.message;
+      $ionicScrollDelegate.scrollBottom(true);
+    }
+
+  };
+
+  $scope.chatTap = function (m) {
+    m.showTime = true;
+    $timeout(function () {
+      m.showTime = false;
+    }, 4000);
+  };
+  $scope.openKb = function () {
+    cordova.plugins.Keyboard.open();
+  };
+
+  $scope.data = {};
+  $scope.messages = [{
+    userId: 'me',
+    text: 'Hi Matt, how did you find the session?',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'Good, I managed to hit my target times, legs are feeling quite tired now.',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'me',
+    text: 'Good, I suggest you rehab today ready for tomorrow’s session.',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'me',
+    text: 'Stretch, foam roll etc, please refer to rehab programme attached with your Training Plan',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'Will do, thanks.',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'James, a question regarding the session on the 27th November, you have set three sets however still struggling with the legs from last week, shall I drop a set or take the reps slower and get it finished?',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'me',
+    text: 'Stick with the two sets, get it done in flats. I will adapt your training plan for you.',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'Thanks James',
+    time: $scope.timeStamp()
+  }, {
+    userId: 'he',
+    text: 'Session complete, have submitted my times in session feedback  ',
+    time: $scope.timeStamp()
+  }];
+})
+
+.controller('ChatGroupCtrl', function ($scope, $ionicScrollDelegate, $timeout) {
+
+  $scope.hideTime = true;
+
+  $scope.timeStamp = function () {
+    var d = new Date();
+    d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+    return d;
+  };
+
+  $scope.sendMessage = function () {
+
+    if ($scope.data.message !== '' && $scope.data.message) {
+      console.log($scope.data.message);
+      $scope.messages.push({
+        userId: 'me',
+        text: $scope.data.message,
+        time: $scope.timeStamp()
+      });
+
+      delete $scope.data.message;
+      $ionicScrollDelegate.scrollBottom(true);
+    }
+
+  };
+
+  $scope.chatTap = function (m) {
+    m.showTime = true;
+    $timeout(function () {
+      m.showTime = false;
+    }, 4000);
+  };
+  $scope.openKb = function () {
+    cordova.plugins.Keyboard.open();
+  };
+
+  $scope.data = {};
+  $scope.messages = [{
+    userId: 'he',
+    name: 'Sachin',
+    surname: 'Sachin',
+    text: 'Hello! Welcome to Coach Mentor',
+    time: $scope.timeStamp()
+  }];
+
 })
 
 ;

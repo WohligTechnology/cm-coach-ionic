@@ -652,11 +652,11 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   //Remove Selected Athlete
   $scope.removeAthlete = function (pos) {
-    $scope.formData.athleteArray.splice(pos, 1);
+    $scope.formData.athlete.splice(pos, 1);
   };
   //Match Selected
   $scope.matchAthlete = function () {
-    $scope.formData.athleteArray = $scope.selectAthlete.array;
+    $scope.formData.athlete = $scope.selectAthlete.array;
   };
 
 
@@ -689,8 +689,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('CompetitionDetailCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
   $scope.title = 'Edit';
-  $scope.selectAthlete = {};
   $scope.formData = {};
+  $scope.selectAthlete = {};
   $scope.competitionId = $stateParams.id;
   $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
 
@@ -711,6 +711,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   $scope.addAthlete = function () {
     $scope.modal.show();
+    $scope.getAthlete('');
   };
   //Search Athlete API
   var j = 0;
@@ -725,11 +726,11 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   //Remove Selected Athlete
   $scope.removeAthlete = function (pos) {
-    $scope.formData.athleteArray.splice(pos, 1);
+    $scope.formData.athlete.splice(pos, 1);
   };
   //Match Selected
   $scope.matchAthlete = function () {
-    $scope.formData.athleteArray = $scope.selectAthlete.array;
+    $scope.formData.athlete = $scope.selectAthlete.array;
   };
 
 
@@ -768,7 +769,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     }, function (response) {
       if (response.data) {
         $scope.formData = response.data;
-        $scope.formData.athleteArray = response.data.athlete;
+        $scope.selectAthlete.array = $scope.formData.athlete = response.data.athlete;
         if ($scope.formData.startDate) {
           $scope.formData.startDate = new Date($scope.formData.startDate);
           $scope.formData.endDate = new Date($scope.formData.endDate);
@@ -945,6 +946,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   $scope.addAthlete = function () {
     $scope.modal.show();
+    $scope.getAthlete('');
   };
   //Search Athlete API
   var j = 0;
@@ -959,11 +961,11 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   //Remove Selected Athlete
   $scope.removeAthlete = function (pos) {
-    $scope.formData.athleteArray.splice(pos, 1);
+    $scope.formData.athlete.splice(pos, 1);
   };
   //Match Selected
   $scope.matchAthlete = function () {
-    $scope.formData.athleteArray = $scope.selectAthlete.array;
+    $scope.formData.athlete = $scope.selectAthlete.array;
   };
 
 
@@ -996,8 +998,8 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('TestingDetailCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
   $scope.title = 'Edit';
-  $scope.selectAthlete = {};
   $scope.formData = {};
+  $scope.selectAthlete = {};
   $scope.testId = $stateParams.id;
   $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
 
@@ -1018,6 +1020,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   $scope.addAthlete = function () {
     $scope.modal.show();
+    $scope.getAthlete('');
   };
   //Search Athlete API
   var j = 0;
@@ -1032,13 +1035,12 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   //Remove Selected Athlete
   $scope.removeAthlete = function (pos) {
-    $scope.formData.athleteArray.splice(pos, 1);
+    $scope.formData.athlete.splice(pos, 1);
   };
   //Match Selected
   $scope.matchAthlete = function () {
-    $scope.formData.athleteArray = $scope.selectAthlete.array;
+    $scope.formData.athlete = $scope.selectAthlete.array;
   };
-
 
   //Loading
   $scope.showLoading = function (value, time) {
@@ -1073,7 +1075,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     }, function (response) {
       if (response.data) {
         $scope.formData = response.data;
-        $scope.formData.athleteArray = response.data.athlete;
+        $scope.selectAthlete.array = $scope.formData.athlete = response.data.athlete;
         if ($scope.formData.startDate) {
           $scope.formData.startDate = new Date($scope.formData.startDate);
           $scope.formData.endDate = new Date($scope.formData.endDate);

@@ -1,4 +1,4 @@
-<ion-view view-title="My Blogs">
+<ion-view view-title="Blogs">
   <ion-content class="blog-detail" start-y="53">
     <form ng-submit="searchChange(search.keyword)" class="item item-input-inset">
       <label class="item-input-wrapper"><input type="search" ng-change="searchChange(search.keyword)" ng-model="search.keyword" placeholder="Blog Title"></label>
@@ -6,7 +6,7 @@
     </form>
     <div class="list" ng-if="allBlog.length == 0 && !more.Data">
       <ion-item>
-        No Competition(s) found.
+        No Blog(s) found.
       </ion-item>
     </div>
     <div class="list card" ui-sref="app.blog-detail({id:d._id})" ng-repeat="d in allBlog">

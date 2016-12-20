@@ -650,7 +650,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-
 .controller('CompetitionCtrl', function ($scope, $ionicModal, MyServices, $ionicLoading, $ionicPopup) {
   $scope.currentPage = 1;
   var i = 0;
@@ -744,6 +743,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         _id: id
       }, function (data) {
         if (data.value) {
+          $scope.allCompetition = [];
           $scope.showAllCompetition();
           $scope.hideLoading();
           $scope.showLoading("Competition Deleted", 2000);
@@ -1050,6 +1050,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
         _id: id
       }, function (data) {
         if (data.value) {
+          $scope.allTest = [];
           $scope.showAllTest();
           $scope.hideLoading();
           $scope.showLoading("Test Deleted", 2000);

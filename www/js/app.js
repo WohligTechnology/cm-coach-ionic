@@ -76,6 +76,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.blog', {
+    cache: false,
     url: '/blog',
     views: {
       'menuContent': {

@@ -85,8 +85,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.blogdetail', {
-    url: '/blog-detail',
+  .state('app.blog-detail', {
+    url: '/blog/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/blog-detail.html',

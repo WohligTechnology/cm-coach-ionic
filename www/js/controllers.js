@@ -459,49 +459,193 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('BlogCtrl', function ($scope) {
-  $scope.data = [{
-    title: 'Use of Resistance Bands',
-    image: 'http://cimg1.ibsrv.net/cimg/www.fitday.com/693x350_100-1/349/resistance-20band-107349.jpg',
-    date: '4th October 2015',
-    ratingup: '10',
-    ratingdown: '3',
-  }, {
-    title: 'Event Preparation for U18 European Champs',
-    image: 'https://c1.staticflickr.com/9/8661/28418185866_552e4d0e65_b.jpg',
-    date: '4th October 2015',
-    ratingup: '15',
-    ratingdown: '2',
-  }, {
-    title: 'The Strongest Woman I’ ve Ever Known',
-    image: 'http://www.ooyuz.com/images/2016/8/13/1473787848785.jpg',
-    date: '4th October 2015',
-    ratingup: '12',
-    ratingdown: '3',
-  }, {
-    title: 'What You Dont Know About: Being a GM',
-    image: 'http://d2gd8qsu8uml9u.cloudfront.net/uploads/AP_234024109023-680x340.jpg',
-    date: '3rd November 2015',
-    ratingup: '23',
-    ratingdown: '1',
-  }];
+.controller('BlogCtrl', function ($scope, $ionicModal, MyServices, $ionicLoading, $ionicPopup) {
+  $scope.currentPage = 1;
+  var i = 0;
+  $scope.allBlog = [];
+  $scope.search = {
+    keyword: ""
+  };
+  $scope.more = {
+    Data: true
+  };
 
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+
+  //On Change Search Function
+  $scope.searchChange = function (keywordChange) {
+    if (keywordChange === '') {
+      $scope.allBlog = [];
+      $scope.showAllBlog(keywordChange);
+    } else {
+      $scope.showAllBlog(keywordChange);
+    }
+  };
+
+  //Get All blog
+  $scope.showAllBlog = function (keywordChange) {
+    if (keywordChange) {
+      $scope.currentPage = 1;
+      $scope.allBlog = [];
+    }
+    MyServices.searchBlog({
+      page: $scope.currentPage,
+      keyword: $scope.search.keyword
+    }, ++i, function (data, ini) {
+      if (ini == i) {
+        if (data.value) {
+          _.forEach(data.data.results, function (value) {
+            $scope.allBlog.push(value);
+          });
+          $scope.totalItems = data.data.total;
+          if ($scope.totalItems > $scope.allBlog.length) {
+            $scope.currentPage++;
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+          } else {
+            $scope.more.Data = false;
+          }
+        } else {
+          $scope.showLoading('Error Loading Blogs', 2000);
+        }
+      }
+    });
+  };
+
+  //Load More
+  $scope.loadMore = function () {
+    // $scope.more.Data = false;
+    console.log('Load More');
+    $scope.showAllBlog();
+  };
 })
 
-.controller('BlogDetailCtrl', function ($scope, $ionicModal) {
+.controller('BlogDetailCtrl', function ($scope, $ionicModal, $ionicLoading, MyServices, $ionicPopup, $stateParams, $filter, $state) {
+  $scope.formData = {};
+  $scope.selectAthlete = {};
+  $scope.blogId = $stateParams.id;
+
+  //Select Athletes
   $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.modal = modal;
   });
-
   $scope.closeModal = function () {
     $scope.modal.hide();
   };
-
-  $scope.shareAthlete = function () {
+  $scope.addAthlete = function () {
     $scope.modal.show();
+    $scope.getAthlete('');
+  };
+  //Search Athlete API
+  var j = 0;
+  $scope.getAthlete = function (search) {
+    MyServices.searchAthlete({
+      keyword: search
+    }, ++j, function (data, ci) {
+      if (ci == j) {
+        $scope.athletes = data.data.results;
+      }
+    });
+  };
+  //Remove Selected Athlete
+  $scope.removeAthlete = function (pos) {
+    $scope.formData.athlete.splice(pos, 1);
+  };
+  //Match Selected
+  $scope.matchAthlete = function () {
+    $scope.formData.athlete = $scope.selectAthlete.array;
+  };
+
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  //Submit Form
+  $scope.submitData = function (formData) {
+    $scope.showLoading('Please wait...', 15000);
+    MyServices.updateBlog(formData, function (data) {
+      if (data.value === true) {
+        $scope.hideLoading();
+        $scope.showLoading('Blog Edited', 2000);
+        $state.go('app.blog');
+      } else {
+        $scope.hideLoading();
+        $scope.showLoading('Error Editing Blog', 2000);
+      }
+    });
+  };
+
+  //get one edit
+  if ($stateParams.id) {
+    MyServices.getOneBlog({
+      _id: $stateParams.id
+    }, function (response) {
+      if (response.data) {
+        $scope.formData = response.data;
+        $scope.selectAthlete.array = $scope.formData.athlete = response.data.athlete;
+        if ($scope.formData.startDate) {
+          $scope.formData.startDate = new Date($scope.formData.startDate);
+          $scope.formData.endDate = new Date($scope.formData.endDate);
+        }
+      } else {
+        $scope.formData = {};
+      }
+    });
+  }
+
+  //Delete Popup
+  $scope.deletePop = function (id) {
+    $scope.myPopup = $ionicPopup.show({
+      template: '<p>Are you sure want to delete the blog?</p>',
+      title: 'Confirmation Message',
+      scope: $scope,
+      buttons: [{
+        text: 'No'
+      }, {
+        text: '<b>Yes</b>',
+        type: 'button-positive',
+        onTap: function (e) {
+          $scope.deleteBlog(id);
+        }
+      }]
+    });
+  };
+  $scope.deleteBlog = function (id) {
+    $scope.showLoading("Loading...", 10000);
+    if (id) {
+      MyServices.deleteBlog({
+        _id: id
+      }, function (data) {
+        if (data.value) {
+          $scope.hideLoading();
+          $scope.showLoading("Blog Deleted", 2000);
+          $state.go('app.blog');
+
+        } else {
+          $scope.hideLoading();
+          $scope.showLoading("Error Deleting Blog", 2000);
+        }
+      });
+    }
   };
 
 })
@@ -733,8 +877,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     $scope.formData.athlete = $scope.selectAthlete.array;
   };
 
-
-
   //Loading
   $scope.showLoading = function (value, time) {
     $ionicLoading.show({
@@ -745,7 +887,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.hideLoading = function () {
     $ionicLoading.hide();
   };
-
 
   //Submit Form
   $scope.submitData = function (formData) {

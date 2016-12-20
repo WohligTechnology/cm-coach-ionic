@@ -1075,3 +1075,11 @@ p.bold {
     border-radius: 100%;
   }
 }
+
+.feedback-form {
+  .item {
+    textarea {
+      width: 100%;
+    }
+  }
+}

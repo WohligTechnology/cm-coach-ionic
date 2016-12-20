@@ -1,31 +1,28 @@
 <ion-view view-title="Blog">
   <ion-nav-buttons side="right">
-    <button class="button button-clear" type="button" ng-click="shareAthlete();">Add Athlete</button>
+    <button class="button button-clear" type="button" ng-click="submitData(formData);">Save</button>
   </ion-nav-buttons>
   <ion-content>
     <div class="blog-detail">
       <div class="list">
         <div class="item item-body brd-zero">
-          <img class="full-image" src="http://cimg1.ibsrv.net/cimg/www.fitday.com/693x350_100-1/349/resistance-20band-107349.jpg">
+          <img class="full-image" ng-src="{{formData.image|uploadpath}}">
           <div class="padding">
             <div class="more-info adjustment">
-              <span class="small-text pull-right">3rd November 2016</span>
+              <span class="small-text pull-right">{{formData.publishingDate|date:'dd MMMM, yyyy'}}</span>
               <span class="th up"><i class="icon ion-thumbsup"></i> 20</span>
               <span class="th dn"><i class="icon ion-thumbsdown"></i> 4</span>
             </div>
-            <h4 class="card-title">Use of Resistance Bands</h4>
-            <div class="blog-html">
-              <p>This week we will utilising the use of elastic bands to help increase hip strength and mobilisation so please
-                ensure that you bring a range of bands to training. If you don't have any bands yet I have some spares that
-                you can utilise but please go online tonight and purchase a black, red and purple band, these normally cost
-                between £1.50 - £3 each.</p>
-              <p>
-                To help you prepare for this activity please refer to the attached link and video for some of the exercises we will be using.
-                Please have a look and try to understand how the band focuses on the key areas I have highlighted earlier
-                - there will be a test so be prepared!!</p>
-            </div>
+            <h4 class="card-title">{{formData.title}}</h4>
+            <div class="blog-html" ng-bind-html="formData.content"> </div>
           </div>
         </div>
+        <div class="item item-divider item-icon-right" ng-click="addAthlete();">Add Athletes <i class="icon ion-ios-plus-empty"></i></div>
+        <ion-item class="item-name item-avatar item-icon-right" ng-repeat="d in formData.athlete" ng-if="formData.athlete">
+          <img ng-src="{{d.profilePic|uploadpath}}">
+          <h2>{{d.name}} {{d.surname}}</h2>
+          <i class="icon ion-ios-trash-outline" ng-click="removeAthlete($index);"></i>
+        </ion-item>
       </div>
     </div>
   </ion-content>

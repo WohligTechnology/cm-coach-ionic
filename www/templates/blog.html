@@ -1,25 +1,29 @@
 <ion-view view-title="My Blogs">
   <ion-content class="blog-detail" start-y="53">
-
-    <ion-item class="item-input-inset">
-      <label class="item-input-wrapper"><input type="text" placeholder="Search Blog"></label>
-      <button class="button button-small icon ln-magnifier"></button>
-    </ion-item>
-
-    <div class="list card" ui-sref="app.blogdetail" ng-repeat="d in data">
+    <form ng-submit="searchChange(search.keyword)" class="item item-input-inset">
+      <label class="item-input-wrapper"><input type="search" ng-change="searchChange(search.keyword)" ng-model="search.keyword" placeholder="Blog Title"></label>
+      <button class="button button-small icon ln-magnifier" type="submit"></button>
+    </form>
+    <div class="list" ng-if="allBlog.length == 0 && !more.Data">
+      <ion-item>
+        No Competition(s) found.
+      </ion-item>
+    </div>
+    <div class="list card" ui-sref="app.blog-detail({id:d._id})" ng-repeat="d in allBlog">
       <div class="item item-body">
-        <img class="full-image" ng-src="{{d.image}}">
+        <img class="full-image" ng-src="{{d.image|uploadpath}}">
         <div class="item-content">
           <h4 class="card-title">
             {{d.title}}
           </h4>
           <div class="more-info">
-            <span class="small-text pull-right">{{d.date}}</span>
+            <span class="small-text pull-right">{{d.publishingDate|date:'dd MMMM, yyyy'}}</span>
             <span class="th up"><i class="icon ion-thumbsup"></i> 20</span>
             <span class="th dn"><i class="icon ion-thumbsdown"></i> 4</span>
           </div>
         </div>
       </div>
     </div>
+    <ion-infinite-scroll ng-if="more.Data" on-infinite="loadMore();" distance="1%"></ion-infinite-scroll>
   </ion-content>
 </ion-view>

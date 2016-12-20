@@ -197,5 +197,48 @@ angular.module('starter.services', [])
         });
       },
 
+      saveBlog: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Blog/save',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      updateBlog: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Blog/updateBlog',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      deleteBlog: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Blog/delete',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      getOneBlog: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Blog/findOne',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      searchBlog: function (formData, i, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'Blog/search',
+          method: 'POST',
+          data: formData
+        }).success(function (data) {
+          callback(data, i);
+        });
+      },
+
     };
   });

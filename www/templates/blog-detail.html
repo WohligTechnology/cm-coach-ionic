@@ -10,8 +10,8 @@
           <div class="padding">
             <div class="more-info adjustment">
               <span class="small-text pull-right">{{formData.publishingDate|date:'dd MMMM, yyyy'}}</span>
-              <span class="th up"><i class="icon ion-thumbsup"></i> 20</span>
-              <span class="th dn"><i class="icon ion-thumbsdown"></i> 4</span>
+              <span class="th up"><i class="icon ion-thumbsup"></i> {{formData.likes}}</span>
+              <span class="th dn"><i class="icon ion-thumbsdown"></i> {{formData.dislikes}}</span>
             </div>
             <h4 class="card-title">{{formData.title}}</h4>
             <div class="blog-html" ng-bind-html="formData.content"> </div>

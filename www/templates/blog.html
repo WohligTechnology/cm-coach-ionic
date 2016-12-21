@@ -9,7 +9,7 @@
         No Blog(s) found.
       </ion-item>
     </div>
-    <div class="list card" ui-sref="app.blog-detail({id:d._id})" ng-repeat="d in allBlog">
+    <div class="list card" ng-if="allBlog.length > 0" ui-sref="app.blog-detail({id:d._id})" ng-repeat="d in allBlog">
       <div class="item item-body">
         <img class="full-image" ng-src="{{d.image|uploadpath}}">
         <div class="item-content">

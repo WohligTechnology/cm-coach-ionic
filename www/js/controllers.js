@@ -602,10 +602,6 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       if (response.data) {
         $scope.formData = response.data;
         $scope.selectAthlete.array = $scope.formData.athlete = response.data.athlete;
-        if ($scope.formData.startDate) {
-          $scope.formData.startDate = new Date($scope.formData.startDate);
-          $scope.formData.endDate = new Date($scope.formData.endDate);
-        }
       } else {
         $scope.formData = {};
       }

@@ -3,8 +3,7 @@
     <form name="formName" ng-submit="submitData(formData);">
       <div class="pic-edit">
         <div class="ch-relative" ng-click="selectImage()">
-          <div class="dp" style="background-image: url({{formData.profilePic | uploadpath}});" ng-if="formData.profilePic"></div>
-          <div class="dp" style="background-image: url(img/img-placeholder.png);" ng-if="!formData.profilePic"></div>
+          <div class="dp" style="background-image: url({{(formData.profilePic | uploadpath) || 'img/img-placeholder.png'}});"></div>
           <a class="button button-icon icon ln-pencil ln-fit"></a>
         </div>
       </div>

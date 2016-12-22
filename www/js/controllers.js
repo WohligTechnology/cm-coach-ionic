@@ -534,6 +534,19 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.selectAthlete = {};
   $scope.blogId = $stateParams.id;
 
+  //Loading
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+
+  $scope.showLoading('Please wait...', 15000);
+
   //Select Athletes
   $ionicModal.fromTemplateUrl('templates/modal/add-athlete.html', {
     scope: $scope,
@@ -600,6 +613,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       _id: $stateParams.id
     }, function (response) {
       if (response.data) {
+        $scope.hideLoading();
         $scope.formData = response.data;
         $scope.selectAthlete.array = $scope.formData.athlete = response.data.athlete;
       } else {

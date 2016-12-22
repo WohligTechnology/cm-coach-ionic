@@ -14,8 +14,7 @@
     <ion-content class="top-statusbar">
       <ion-list>
         <ion-item class="item-avatar" menu-close ui-sref="app.profile" ui-sref-active="on">
-          <div class="img-avatar" style="background-image: url({{profileData.profilePic | uploadpath}});" ng-if="profileData.profilePic"></div>
-          <div class="img-avatar" style="background-image: url(img/img-placeholder.png);" ng-if="!profileData.profilePic"></div>
+          <div class="img-avatar" style="background-image: url({{(profileData.profilePic | uploadpath) || 'img/img-placeholder.png'}});"></div>
           <h2>{{profileData.name}} {{profileData.surname}}</h2>
           <p>Coach</p>
         </ion-item>

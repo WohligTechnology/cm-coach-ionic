@@ -12,8 +12,7 @@
     </div>
     <div class="picture-hold">
       <div class="zd">
-        <div class="dp" style="background-image: url({{profileData.profilePic | uploadpath}});" ng-if="profileData.profilePic"></div>
-        <div class="dp" style="background-image: url(img/img-placeholder.png);" ng-if="!profileData.profilePic"></div>
+        <div class="dp" style="background-image: url({{(profileData.profilePic | uploadpath) || 'img/img-placeholder.png'}});"></div>
         <h3>{{profileData.name}} {{profileData.surname}}</h3>
         <p>{{profileData.credentials}}</p>
         <div class="main-info">

@@ -15,7 +15,7 @@
         <button class="button button-small icon ln-magnifier" type="submit"></button>
       </form>
       <li class="item item-checkbox" ng-repeat="t in athletes">
-        <img ng-src="{{t.profilePic|uploadpath}}">{{t.name}} {{t.surname}}
+        <img ng-src="{{(t.profilePic|uploadpath) || 'img/img-placeholder.png'}}">{{t.name}} {{t.surname}}
         <label class="checkbox"><input type="checkbox" checklist-model="selectAthlete.array" checklist-value="t"> </label>
       </li>
     </ion-list>

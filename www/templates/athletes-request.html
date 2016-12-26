@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-big-image item-text-wrap" ng-repeat="a in athleteRequests" ui-sref="app.athlete-detail">
-        <img ng-src="{{a.image|localurl}}">
+        <img ng-src="{{{{(a.image|localurl)||'img/img-placeholder.png'}}}}">
         <h2>{{a.name}} {{a.surname}}</h2>
         <p>Sports: {{a.sports}}</p>
         <p class="text-justified">{{a.message|truncate:70:'...'}} <a class="read-more">Read More</a></p>

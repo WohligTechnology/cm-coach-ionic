@@ -2,7 +2,7 @@
   <ion-content class="white-profile">
     <div class="picture-hold picture-pad">
       <div class="zd">
-        <div class="dp" style="background-image: url('{{athleteCoaching.image|localurl}}');"></div>
+        <div class="dp" style="background-image: url({{(athleteCoaching.image|localurl)||'img/img-placeholder.png'}});"></div>
         <h3>{{athleteCoaching.name}} {{athleteCoaching.surname}}</h3>
         <p>{{athleteCoaching.age}} years, {{athleteCoaching.location}}</p>
         <p class="badged positive-bg">{{athleteCoaching.subscriptionType}}</p>

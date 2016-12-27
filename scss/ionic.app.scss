@@ -1083,3 +1083,13 @@ p.bold {
     }
   }
 }
+
+.border-around {
+  border: 1px solid rgba(2, 2, 2, 0.1);
+  border-radius: 6px;
+  vertical-align: text-bottom;
+}
+
+*[contenteditable] {
+  -webkit-user-select: text !important;
+}

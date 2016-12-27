@@ -39,7 +39,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.credentials = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
 
   $scope.onlyAplha = /^[a-zA-Z_]+$/;
-  $scope.validTel = /^[+0-9]{9,15}$/;
+  $scope.validTel = /^[+0-9]{10,15}$/;
   $scope.validNum = /^[0-9]+$/;
   $scope.validEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -261,6 +261,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.credentials = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
 
   $scope.onlyAplha = /^[a-zA-Z_]+$/;
+  $scope.validTel = /^[+0-9]{10,15}$/;
   $scope.validNum = /^[0-9]+$/;
 
   MyServices.getCountries(function (data) {

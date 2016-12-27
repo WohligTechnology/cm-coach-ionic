@@ -44,6 +44,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   .state('app.profile', {
     url: '/profile',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: 'templates/profile.html',
@@ -317,7 +318,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   };
 })
 
-.directive('readMore', function ($filter, $ionicScrollDelegate) {
+.directive('readMore', function ($filter, $ionicScrollDelegate, $timeout) {
   return {
     restrict: 'A',
     scope: {
@@ -327,11 +328,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       limit: '@readMoreLimit'
     },
     transclude: true,
-    template: '<span ng-transclude ng-bind-html="text"></span><a href="javascript:;" class="read-more" ng-click="toggleReadMore()" ng-if="applyLimit" ng-bind="label"></a>',
+    template: '<span ng-bind-html="text"></span><a  class="read-more" ng-click="toggleReadMore()" ng-if="applyLimit" ng-bind="label"></a>',
     link: function (scope /*, element, attrs */ ) {
 
       var originalText = scope.text;
       scope.applyLimit = false;
+      scope.expanded = false;
 
       if (scope.text) {
         if (scope.text.length >= scope.limit) {
@@ -341,21 +343,21 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
       scope.label = scope.labelExpand;
 
-      scope.$watch('expanded', function (expandedNew) {
-        if (expandedNew) {
+
+      scope.toggleReadMore = function () {
+        scope.expanded = !scope.expanded;
+        $ionicScrollDelegate.resize();
+        if (scope.expanded) {
           scope.text = originalText;
           scope.label = scope.labelCollapse;
         } else {
           scope.text = $filter('truncate')(originalText, scope.limit, '...');
           scope.label = scope.labelExpand;
         }
-      });
-
-      scope.toggleReadMore = function () {
-        scope.expanded = !scope.expanded;
-        $ionicScrollDelegate.resize();
       };
-
+      $timeout(function () {
+        scope.text = scope.text = $filter('truncate')(originalText, scope.limit, '...');
+      }, 500);
     }
   };
 })

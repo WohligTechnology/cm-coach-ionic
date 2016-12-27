@@ -103,10 +103,10 @@
             </select>
             <span class="error-msg" ng-show="formName.credentials.$invalid && formName.credentials.$touched">Please select Credentials</span>
           </label>
-          <label class="item item-input item-block" ng-class="{'err':formName.freeTextCV.$invalid && formName.freeTextCV.$touched}">
+          <label class="item item-input item-block" ng-class="{'err':formName['freeTextCV' + $index].$invalid && formName['freeTextCV' + $index].$touched}">
             <span class="input-label">Free Text CV</span>
             <textarea auto-grow name="freeTextCV" rows="6" maxlength="1200" ng-model="formData.freeTextCV" required></textarea>
-            <span class="error-msg" ng-show="formName.freeTextCV.$invalid && formName.freeTextCV.$touched">Please enter valid Free Text CV</span>
+            <span class="error-msg" ng-show="formName['freeTextCV' + $index].$invalid && formName['freeTextCV' + $index].$touched">Please enter valid Free Text CV</span>
           </label>
           <ion-item class="item-text-wrap">
             <h3>Upload your CV</h3>

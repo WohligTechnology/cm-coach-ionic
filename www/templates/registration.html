@@ -83,7 +83,7 @@
               <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="{{s}}">
               <label for="{{s}}">{{s}}</label>
             </div>
-            <div class="tag-box-label">
+            <div class="tag-box-label" ng-click="toggleOthers();">
               <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal">
               <label for="Others">Others</label>
             </div>
@@ -92,7 +92,7 @@
           </ion-item>
           <label ng-if="formData.specialisations.otherVal" class="item item-input item-block" ng-class="{'err':formName.specialisationOther.$invalid && formName.specialisationOther.$touched}">
             <span class="input-label">Others Specialisations</span>
-            <textarea auto-grow name="specialisationOther" rows="3" ng-model="formData.specialisationOther"></textarea>
+            <textarea auto-grow name="specialisationOther" rows="3" ng-model="formData.specialisationOther" required></textarea>
           </label>
           <label class="item item-input item-select" ng-class="{'err':formName.credentials.$invalid && formName.credentials.$touched}">
             <div class="input-label">

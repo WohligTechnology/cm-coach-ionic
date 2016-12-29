@@ -92,7 +92,7 @@
                 <input type="checkbox" id="{{s}}" checklist-model="formData.specialisations" checklist-value="s" name="specialisations">
                 <label for="{{s}}">{{s}}</label>
               </div>
-              <div class="tag-box-label">
+              <div class="tag-box-label" ng-click="toggleOthers()">
                 <input type="checkbox" id="Others" ng-model="formData.specialisations.otherVal">
                 <label for="Others">Others</label>
               </div>
@@ -102,7 +102,7 @@
           </ion-item>
           <ion-item class="item-input item-block" ng-if="formData.specialisations.otherVal" ng-class="{'err':formName.specialisationOther.$invalid && formName.specialisationOther.$touched}">
             <span class="input-label">Others Specialisations</span>
-            <textarea auto-grow name="specialisationOther" rows="3" ng-model="formData.specialisationOther"></textarea>
+            <textarea auto-grow name="specialisationOther" rows="3" ng-model="formData.specialisationOther" required></textarea>
           </ion-item>
           <div class="item item-divider small-text" ng-if="profileIncomplete()">
             Please enter below details to complete your profile.

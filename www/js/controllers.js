@@ -24,6 +24,14 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   $scope.formData = {};
 
+  $scope.toggleOthers = function () {
+    if ($scope.formData.specialisations.otherVal === true) {
+      $scope.formData.specialisationOther = 'Others';
+    } else {
+      $scope.formData.specialisationOther = '';
+    }
+  };
+
   $scope.coachingFocus = [
     'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Race Walking', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
   ];
@@ -245,6 +253,14 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   if ($scope.formData.specialisationOther) {
     $scope.formData.specialisations.otherVal = true;
   }
+  //Toggle Other Specialisations
+  $scope.toggleOthers = function () {
+    if ($scope.formData.specialisations.otherVal === true) {
+      $scope.formData.specialisationOther = 'Others';
+    } else {
+      $scope.formData.specialisationOther = '';
+    }
+  };
 
   $scope.coachingFocus = [
     'Sprinting', 'Middle Distance', 'Endurance', 'Throws', 'Jumps', 'Hurdles', 'Race Walking', 'Hill/Fell Running', 'Cross Country', 'Triathlon'
@@ -278,6 +294,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.hideLoading = function () {
     $ionicLoading.hide();
   };
+
 
   //Profile Incomplete Check
   $scope.profileIncomplete = function () {

@@ -17,26 +17,26 @@
         <h3>Next Renewal</h3>
         <p>{{athleteCoaching.renewalDate}}</p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteCoaching.sports">
         <h3>Sports</h3>
-        <p class="text-justified" read-more="athleteCoaching.sports" read-more-limit="140" read-more-label-expand="Read More">
+        <p class="text-justified" read-more="athleteCoaching.sports">
         </p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteCoaching.about">
         <h3>About</h3>
-        <p class="text-justified" read-more="athleteCoaching.about" read-more-limit="140" read-more-label-expand="Read More"></p>
+        <p class="text-justified" read-more="athleteCoaching.about"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteCoaching.events">
         <h3>Events</h3>
-        <p class="text-justified" read-more="athleteCoaching.events" read-more-limit="140" read-more-label-expand="Read More"></p>
+        <p class="text-justified" read-more="athleteCoaching.events"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteCoaching.achievements">
         <h3>Achievement / Personal Bests</h3>
-        <p class="text-justified" read-more="athleteCoaching.achievements" read-more-limit="140" read-more-label-expand="Read More"></p>
+        <p class="text-justified" read-more="athleteCoaching.achievements"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteCoaching.previousSeasonReview">
         <h3>Previous Season Review</h3>
-        <p class="text-justified" read-more="athleteCoaching.previousSeasonReview" read-more-limit="140" read-more-label-expand="Read More"></p>
+        <p class="text-justified" read-more="athleteCoaching.previousSeasonReview"></p>
       </ion-item>
     </ion-list>
     <div class="padding-horizontal">

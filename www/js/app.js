@@ -323,41 +323,43 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     restrict: 'A',
     scope: {
       text: '=readMore',
-      labelExpand: '@readMoreLabelExpand',
-      labelCollapse: '@readMoreLabelCollapse',
       limit: '@readMoreLimit'
     },
     transclude: true,
-    template: '<span ng-bind-html="text"></span><a  class="read-more" ng-click="toggleReadMore()" ng-if="applyLimit" ng-bind="label"></a>',
+    template: '<span ng-bind-html="outText"></span><a class="read-more" ng-click="toggleReadMore()" ng-if="applyLimit" ng-bind="label"></a>',
     link: function (scope /*, element, attrs */ ) {
-
       var originalText = scope.text;
+      var truncateText = $filter('truncate')(originalText, scope.limit, '...');
       scope.applyLimit = false;
       scope.expanded = false;
+      scope.labelExpand = 'Read More';
+      scope.labelCollapse = 'Read Less';
+      scope.label = scope.labelExpand;
 
+      //Limit Check
       if (scope.text) {
         if (scope.text.length >= scope.limit) {
           scope.applyLimit = true;
+          scope.outText = truncateText;
+        } else {
+          scope.outText = originalText;
         }
       }
 
-      scope.label = scope.labelExpand;
-
-
+      //Read More Toggle
       scope.toggleReadMore = function () {
         scope.expanded = !scope.expanded;
-        $ionicScrollDelegate.resize();
         if (scope.expanded) {
-          scope.text = originalText;
+          scope.outText = originalText;
           scope.label = scope.labelCollapse;
+          $ionicScrollDelegate.resize();
         } else {
-          scope.text = $filter('truncate')(originalText, scope.limit, '...');
+          scope.outText = truncateText;
           scope.label = scope.labelExpand;
+          $ionicScrollDelegate.resize();
         }
       };
-      $timeout(function () {
-        scope.text = scope.text = $filter('truncate')(originalText, scope.limit, '...');
-      }, 500);
+
     }
   };
 })

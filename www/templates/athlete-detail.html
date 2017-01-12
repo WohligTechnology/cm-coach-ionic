@@ -1,40 +1,41 @@
-<ion-view view-title="{{athlete.name}}">
+<ion-view view-title="{{athleteProfile.name}}">
   <ion-content class="white-profile">
     <div class="picture-hold picture-pad">
       <div class="zd">
-        <div class="dp" style="background-image: url({{(athlete.image|localurl)||'img/img-placeholder.png'}});"></div>
-        <h3>{{athlete.name}} {{athlete.surname}}</h3>
-        <p>{{athlete.age}} years, {{athlete.location}}</p>
+        <div class="dp" style="background-image: url({{(athleteProfile.profilePic|uploadpath)||'img/img-placeholder.png'}});"></div>
+        <h3>{{athleteProfile.name}} {{athleteProfile.surname}}</h3>
+        <p>{{(athleteProfile.age) || '-'}} years, {{athleteProfile.location}}</p>
       </div>
     </div>
     <ion-list>
-      <ion-item class="item-text-wrap item-long">
+      <!--<ion-item class="item-text-wrap item-long">
         <h3>Message</h3>
-        <p read-more="athlete.message" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
-      </ion-item>
-      <ion-item class="item-text-wrap item-long">
+        <p read-more="athleteProfile.message" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+      </ion-item>-->
+      <ion-item class="item-text-wrap item-long" ng-if="athleteProfile.sports">
         <h3>Sports</h3>
-        <p read-more="athlete.sports" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+        <!--<p>{{athleteProfile.sports}}</p>-->
+        <p read-more="athleteProfile.sports" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteProfile.about">
         <h3>About</h3>
-        <p read-more="athlete.about" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+        <p read-more="athleteProfile.about" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteProfile.events">
         <h3>Events</h3>
-        <p read-more="athlete.events" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+        <p read-more="athleteProfile.events" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteProfile.achievements">
         <h3>Achievement / Personal Bests</h3>
-        <p read-more="athlete.achievements" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+        <p read-more="athleteProfile.achievements" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
       </ion-item>
-      <ion-item class="item-text-wrap item-long">
+      <ion-item class="item-text-wrap item-long" ng-if="athleteProfile.previousSeasonReview">
         <h3>Previous Season Review</h3>
-        <p read-more="athlete.previousSeasonReview" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
+        <p read-more="athleteProfile.previousSeasonReview" read-more-limit="140" read-more-label-expand="Read More" read-more-label-collapse="Read Less"></p>
       </ion-item>
     </ion-list>
     <div class="padding-horizontal">
-      <div class="button-bar">
+      <div class="button-bar hide">
         <button class="button button-balanced button-block">Accept</button>
         <button class="button button-assertive button-block">Reject</button>
       </div>

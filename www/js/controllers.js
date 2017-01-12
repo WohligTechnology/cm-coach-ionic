@@ -1,4 +1,5 @@
 angular.module('starter.controllers', ['starter.services', 'checklist-model', 'chart.js', 'ui.calendar', 'ngCordova'])
+  // angular.module('starter.controllers', ['starter.services', 'checklist-model', 'ui.calendar', 'ngCordova'])
 
 .controller('LoadingCtrl', function ($scope, $ionicModal, $timeout, $state, $rootScope, MyServices, $ionicHistory) {
   $scope.loadingData = MyServices.getUser();
@@ -242,6 +243,37 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       return false;
     }
   };
+  console.log($scope.profileData);
+  var i = 0;
+  var coach = $scope.profileData._id;
+  $scope.showCoachNotification = function (coach) {
+    $scope.totalItems = undefined;
+    $scope.coachnotifications = undefined;
+    $scope.currentPage = 1;
+    MyServices.getCoachNotification({
+      Id: coach,
+      page: $scope.currentPage
+    }, ++i, function (response, ini) {
+      if (ini == i) {
+        if (response.value == true) {
+          $scope.isAthlete = false;
+          $scope.coachnotifications = response.data.results;
+          $scope.notificationCount = response.data.unreadcount;
+          $scope.maxRow = response.data.count;
+          $scope.totalItems = response.data.total;
+
+        } else {
+          $scope.coachnotifications = [];
+        }
+      }
+
+    })
+  };
+
+  $scope.showCoachNotification(coach);
+
+
+
 })
 
 
@@ -1622,26 +1654,63 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   }];
 })
 
-.controller('AthletesRequestCtrl', function ($scope, $ionicModal) {
-  $scope.athleteRequests = [{
-    "name": "Liz",
-    "surname": "Hurrley",
-    "image": "liz-hurrley",
-    "sports": "Gym, Tennis, Badminton",
-    "message": "We would like to work train under you sir."
-  }, {
-    "name": "David",
-    "surname": "Awde",
-    "image": "david-awde",
-    "sports": "Athletics",
-    "message": "We would like to work train under you sir."
-  }, {
-    "name": "James",
-    "surname": "Folkes",
-    "image": "james-folkes",
-    "sports": "Athletics",
-    "message": "We would like to work train under you sir."
-  }];
+.controller('AthletesRequestCtrl', function ($scope, $ionicModal, MyServices) {
+  $scope.profileData = MyServices.getUser();
+  $scope.showLoading = function (value, time) {
+    $ionicLoading.show({
+      template: value,
+      duration: time
+    });
+  };
+  $scope.hideLoading = function () {
+    $ionicLoading.hide();
+  };
+  var coachId = $scope.profileData._id;
+  $scope.showAllNotification = function (coachId) {
+    MyServices.getAllRequest({
+      Id: coachId
+    }, function (response) {
+      if (response.value == true) {
+        $scope.athletes = response.data;
+        $scope.requestCount = $scope.athletes.length;
+      }
+    })
+  }
+  $scope.showAllNotification(coachId);
+
+  $scope.rejectRequest = function (requestRejectData) {
+    var athleteCoaching = {};
+    athleteCoaching._id = $scope.Id;
+    athleteCoaching.status = "Rejected";
+    athleteCoaching.readRequestStatus = true;
+    athleteCoaching.reason = requestRejectData
+    $scope.acceptRejectRequest(athleteCoaching, 'reject');
+  }
+
+  $scope.acceptRequest = function (Id) {
+    var athleteCoaching = {};
+    athleteCoaching._id = Id;
+    athleteCoaching.status = "Payment Pending";
+    athleteCoaching.readRequestStatus = true;
+    // athleteCoaching.acceptedDate = moment().format();
+    $scope.acceptRejectRequest(athleteCoaching, 'accept');
+  }
+
+  $scope.acceptRejectRequest = function (athleteCoaching, data) {
+    MyServices.updateAthleteCoaching(athleteCoaching, function (response) {
+      if (response.value == true) {
+        if (data == 'accept') {
+          // toastr.success('Request accepted', 'Thank you');
+        } else {
+          // $scope.modalInstance.close();
+          // toastr.success('Request Rejected', 'Thank you');
+        }
+        $scope.showAllNotification(coachId);
+      }
+    })
+  }
+
+
 })
 
 .controller('AthletesCoachingDetailCtrl', function ($scope, $ionicModal) {
@@ -1664,25 +1733,23 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('AthleteDetailCtrl', function ($scope, $ionicModal) {
-
-  $scope.athlete = {
-    name: 'Liz',
-    surname: 'Hurrley',
-    image: 'liz-hurrley',
-    message: "We would like to work train under you sir.",
-    location: 'United Kingdom',
-    age: '16',
-    sports: 'Gym, Tennis, Badminton',
-    events: '60m, 100m, 200m',
-    about: 'Self motivated and dedicated athlete',
-    achievements: 'Represented county at 100m and county schools at 200m',
-    previousSeasonReview: 'Achieved my pesonal goals and ran personal bests in all events'
+.controller('AthleteDetailCtrl', function ($scope, $ionicModal, $stateParams, MyServices) {
+  if ($stateParams.athleteId) {
+    $scope.athleteProfile = undefined;
+    MyServices.getOneAthleteProfile({
+      _id: $stateParams.athleteId
+    }, function (response) {
+      if (response.value) {
+        $scope.athleteProfile = response.data;
+      } else {
+        $scope.athleteProfile = [];
+      }
+    })
   };
-
 })
 
-.controller('NotificationsCtrl', function ($scope, $ionicModal, $ionicScrollDelegate, $ionicPopup) {
+.controller('NotificationsCtrl', function ($scope, $ionicModal, MyServices, $ionicScrollDelegate, $ionicPopup) {
+  $scope.profileData = MyServices.getUser();
   $scope.notifications = [{
     name: 'Matt',
     surname: 'Chant',
@@ -1711,6 +1778,38 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       }, ]
     });
   };
+
+  // console.log($scope.profileData);
+  var i = 0;
+  var coach = $scope.profileData._id;
+
+  $scope.showCoachNotification = function (coach) {
+    $scope.totalItems = undefined;
+    $scope.coachnotifications = undefined;
+    $scope.currentPage = 1;
+    MyServices.getCoachNotification({
+      Id: coach,
+      page: $scope.currentPage
+    }, ++i, function (response, ini) {
+      if (ini == i) {
+        if (response.value == true) {
+          $scope.isAthlete = false;
+          $scope.coachnotifications = response.data.results;
+          $scope.notificationCount = response.data.unreadcount;
+          $scope.maxRow = response.data.count;
+          $scope.totalItems = response.data.total;
+
+        } else {
+          $scope.coachnotifications = [];
+        }
+      }
+
+    })
+  };
+
+  $scope.showCoachNotification(coach);
+
+
 })
 
 

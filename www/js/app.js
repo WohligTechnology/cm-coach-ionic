@@ -242,7 +242,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.athlete-detail', {
-    url: '/athlete-detail',
+    url: '/athlete-detail/:athleteId',
     views: {
       'menuContent': {
         templateUrl: 'templates/athlete-detail.html',

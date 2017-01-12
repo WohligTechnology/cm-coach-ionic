@@ -1,13 +1,13 @@
 <ion-view view-title="Athlete Requests">
   <ion-content>
     <ion-list>
-      <ion-item class="item-big-image item-text-wrap" ng-repeat="a in athleteRequests" ui-sref="app.athlete-detail">
-        <img ng-src="{{(a.image|localurl)||'img/img-placeholder.png'}}">
-        <h2>{{a.name}} {{a.surname}}</h2>
-        <p>Sports: {{a.sports}}</p>
-        <p class="text-justified">{{a.message|truncate:70:'...'}} <a class="read-more">Read More</a></p>
-        <ion-option-button class="button-assertive">Reject</ion-option-button>
-        <ion-option-button class="button-balanced">Accept</ion-option-button>
+      <ion-item class="item-big-image item-text-wrap" ng-repeat="athlete in athletes" ui-sref="app.athlete-detail({athleteId:athlete.athlete._id})">
+        <img ng-src="{{(athlete.athlete.profilePic|uploadpath)||'img/img-placeholder.png'}}">
+        <h2>{{athlete.athlete.name}} {{athlete.athlete.surname}}</h2>
+        <p>Sports: {{athlete.athlete.sports}}</p>
+        <p class="text-justified">{{athlete.reason|truncate:70:'...'}} <a class="read-more">Read More</a></p>
+        <ion-option-button class="button-assertive" ng-click="reason(athlete._id)">Reject</ion-option-button>
+        <ion-option-button class="button-balanced" ng-click="acceptRequest(athlete._id)">Accept</ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

@@ -4,7 +4,7 @@
   </ion-nav-title>
   <ion-nav-buttons side="right">
     <a class="button button-icon icon ln-pencil ln-fit" ui-sref="app.edit-profile"></a>
-    <a class="button button-icon icon ln-earth ln-fit" ui-sref="app.notifications"><span class="badge-icon assertive-bg">2</span></a>
+    <a class="button button-icon icon ln-earth ln-fit" ui-sref="app.notifications"><span class="badge-icon assertive-bg">{{notificationCount}}</span></a>
   </ion-nav-buttons>
   <ion-content class="white-profile">
     <div class="warning-bar assertive-bg text-center" ui-sref="app.edit-profile" ng-if="profileIncomplete()">

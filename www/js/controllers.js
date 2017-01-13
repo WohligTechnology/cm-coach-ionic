@@ -243,7 +243,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       return false;
     }
   };
-  console.log($scope.profileData);
+  // console.log($scope.profileData);
   var i = 0;
   var coach = $scope.profileData._id;
   $scope.showCoachNotification = function (coach) {
@@ -1153,21 +1153,25 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   //Search Athlete API
   var j = 0;
   $scope.getAthlete = function (search) {
+    $scope.athletes = [];
     MyServices.searchAthlete({
       keyword: search
     }, ++j, function (data, ci) {
       if (ci == j) {
-        $scope.athletes = data.data.results;
+        _.each(data.data.results, function (key) {
+            $scope.athletes.push(key.athlete);
+          })
+          // $scope.athletes = data.data.results;
       }
     });
   };
   //Remove Selected Athlete
   $scope.removeAthlete = function (pos) {
-    $scope.formData.athlete.splice(pos, 1);
+    $scope.formData.newathlete.splice(pos, 1);
   };
   //Match Selected
   $scope.matchAthlete = function () {
-    $scope.formData.athlete = $scope.selectAthlete.array;
+    $scope.formData.newathlete = $scope.selectAthlete.array;
   };
 
 
@@ -1184,6 +1188,11 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   //Submit Form
   $scope.submitData = function (formData) {
+    if (formData.newathlete) {
+      formData.athlete = _.map($scope.formData.newathlete, function (key) {
+        return key._id;
+      });
+    }
     $scope.showLoading('Please wait...', 15000);
     MyServices.saveTest(formData, function (data) {
       if (data.value === true) {
@@ -1227,21 +1236,25 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   //Search Athlete API
   var j = 0;
   $scope.getAthlete = function (search) {
+    $scope.athletes = [];
     MyServices.searchAthlete({
       keyword: search
     }, ++j, function (data, ci) {
       if (ci == j) {
-        $scope.athletes = data.data.results;
+        _.each(data.data.results, function (key) {
+            $scope.athletes.push(key.athlete);
+          })
+          // $scope.athletes = data.data.results;
       }
     });
   };
   //Remove Selected Athlete
   $scope.removeAthlete = function (pos) {
-    $scope.formData.athlete.splice(pos, 1);
+    $scope.formData.newathlete.splice(pos, 1);
   };
   //Match Selected
   $scope.matchAthlete = function () {
-    $scope.formData.athlete = $scope.selectAthlete.array;
+    $scope.formData.newathlete = $scope.selectAthlete.array;
   };
 
   //Loading
@@ -1257,6 +1270,11 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   //Submit Form
   $scope.submitData = function (formData) {
+    if (formData.newathlete) {
+      formData.athlete = _.map($scope.formData.newathlete, function (key) {
+        return key._id;
+      });
+    }
     $scope.showLoading('Please wait...', 15000);
     MyServices.updateTest(formData, function (data) {
       if (data.value === true) {
@@ -1277,7 +1295,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     }, function (response) {
       if (response.data) {
         $scope.formData = response.data;
-        $scope.selectAthlete.array = $scope.formData.athlete = response.data.athlete;
+        $scope.selectAthlete.array = $scope.formData.newathlete = response.data.athlete;
         if ($scope.formData.startDate) {
           $scope.formData.startDate = new Date($scope.formData.startDate);
           $scope.formData.endDate = new Date($scope.formData.endDate);
@@ -1544,118 +1562,86 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('AthletesCoachingCtrl', function ($scope, $ionicModal) {
+.controller('AthletesCoachingCtrl', function ($scope, $ionicModal, MyServices, $stateParams) {
+  $scope.profileData = MyServices.getUser();
+  var coachId = $scope.profileData._id;
+  var i = 0;
+  $scope.search = {
+    keyword: ""
+  };
+  if ($stateParams.keyword) {
+    $scope.search.keyword = $stateParams.keyword;
+  }
+  $scope.changePage = function (page) {
+    var goTo = "app.athletes-coaching";
+    if ($scope.search.keyword) {
+      goTo = "app.athletes-coaching";
+    }
+    $state.go(goTo, {
+      page: page,
+      keyword: $scope.search.keyword
+    });
+  };
 
-  $scope.athleteCoaching = [{
-    "name": "Matt",
-    "surname": "Chant",
-    "image": "matt-chant",
-    "acceptedDate": '13 May, 2016',
-    "renewalDate": '12 June, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Tod",
-    "surname": "Frazer",
-    "image": "tod-frazer",
-    "acceptedDate": '1 June, 2016',
-    "renewalDate": '2 June, 2017',
-    "subscriptionType": 'Yearly'
-  }, {
-    "name": "Natascha",
-    "surname": "Simmons",
-    "image": "natascha-simmons",
-    "acceptedDate": '13 May, 2016',
-    "renewalDate": '12 June, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Nick",
-    "surname": "Smith",
-    "image": "nick-smith",
-    "acceptedDate": '1 June, 2016',
-    "renewalDate": '2 July, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Connor",
-    "surname": "Simpson",
-    "image": "connor-simpson",
-    "acceptedDate": '23 February, 2016',
-    "renewalDate": '22 March, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Aaron",
-    "surname": "Small",
-    "image": "aaron-small",
-    "acceptedDate": '1 June, 2016',
-    "renewalDate": '2 June, 2017',
-    "subscriptionType": 'Yearly'
-  }, {
-    "name": "Holly",
-    "surname": "Nickleby",
-    "image": "holly-nickleby",
-    "acceptedDate": '13 May, 2016',
-    "renewalDate": '12 June, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "John",
-    "surname": "Burrows",
-    "image": "john-burrows",
-    "acceptedDate": '13 May, 2016',
-    "renewalDate": '12 June, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Holly",
-    "surname": "Mills",
-    "image": "holly-mills",
-    "acceptedDate": '23 February, 2016',
-    "renewalDate": '22 March, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Scott",
-    "surname": "Barker",
-    "image": "scott-barker",
-    "acceptedDate": '13 May, 2016',
-    "renewalDate": '12 June, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Sam",
-    "surname": "Sears",
-    "image": "sam-sears",
-    "acceptedDate": '13 May, 2016',
-    "renewalDate": '12 June, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Keiran",
-    "surname": "Nicholls",
-    "image": "keiran-nicholls",
-    "acceptedDate": '13 May, 2016',
-    "renewalDate": '12 June, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Annie",
-    "surname": "Brookes",
-    "image": "annie-brookes",
-    "acceptedDate": '23 February, 2016',
-    "renewalDate": '22 March, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "Molly",
-    "surname": "Wood",
-    "image": "molly-wood",
-    "acceptedDate": '13 May, 2016',
-    "renewalDate": '12 June, 2016',
-    "subscriptionType": 'Monthly'
-  }, {
-    "name": "William",
-    "surname": "Barnes",
-    "image": "william-barnes",
-    "acceptedDate": '23 February, 2016',
-    "renewalDate": '22 March, 2016',
-    "subscriptionType": 'Monthly'
-  }];
+  $scope.showAllNotification = function (coachId) {
+    MyServices.getAllRequest({
+      Id: coachId
+    }, function (response) {
+      if (response.value == true) {
+        $scope.athletes = response.data;
+        $scope.requestCount = $scope.athletes.length;
+      }
+    })
+  }
+  $scope.showAllNotification(coachId);
+
+  $scope.getMyAthletes = function (keywordChange) {
+    $scope.totalItems = undefined;
+    $scope.athletecoaching = undefined;
+    if (keywordChange) {
+      $scope.currentPage = 1;
+    }
+    MyServices.getMyAthletes({
+      page: $scope.currentPage,
+      keyword: $scope.search.keyword
+    }, ++i, function (response, ini) {
+      if (ini == i) {
+        if (response.value) {
+          $scope.athletecoaching = response.data.results;
+          $scope.totalItems = response.data.total;
+          $scope.maxRow = response.data.options.count;
+        } else {
+          $scope.athletecoaching = [];
+        }
+      }
+    });
+  };
+  $scope.getMyAthletes();
 })
 
 .controller('AthletesRequestCtrl', function ($scope, $ionicModal, MyServices) {
   $scope.profileData = MyServices.getUser();
+
+  $scope.reason = function (notificationId) {
+    $scope.Id = notificationId;
+    $scope.data = {};
+    var myPopup = $ionicPopup.show({
+      template: '<textarea auto-grow type="password" ng-model="data.reasonForRejection"><textarea>',
+      title: '<h4>Reject Unsubscription!</h4>',
+      subTitle: 'Please enter some reason',
+      scope: $scope,
+      buttons: [{
+        text: 'Cancel'
+      }, {
+        text: '<b>Reject</b>',
+        type: 'button-assertive',
+        onTap: function (e) {
+          $scope.rejectRequest($scope.data.message);
+        }
+      }, ]
+    });
+  };
+
   $scope.showLoading = function (value, time) {
     $ionicLoading.show({
       template: value,
@@ -1713,23 +1699,50 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 })
 
-.controller('AthletesCoachingDetailCtrl', function ($scope, $ionicModal) {
-
-  $scope.athleteCoaching = {
-    name: 'Matt',
-    surname: 'Chant',
-    image: 'matt-chant',
-    acceptedDate: '10 December, 2016',
-    renewalDate: '11 January, 2017',
-    subscriptionType: 'Monthly',
-    location: 'United Kingdom',
-    age: '22',
-    sports: 'All Sports',
-    events: '200, 400m',
-    about: 'Athlete, currently studying sport psychology at Loughborough University, 200 and 400 meter runner',
-    achievements: 'Natiional indoor 400m bronze meadlist, SEAA Indoor gold medalist holding current championship record, English Schools medalist, Various county medals',
-    previousSeasonReview: 'Transition from rugby back into athletics, target was to lose 10kg, hit my target, season was Injury free - very few competitions'
+.controller('AthletesCoachingDetailCtrl', function ($scope, $ionicModal, $stateParams, MyServices, $ionicPopup) {
+  $scope.unsubscribe = {};
+  if ($stateParams.athleteId) {
+    $scope.athleteCoaching = undefined;
+    MyServices.getOneAthleteCoached({
+      athleteId: $stateParams.athleteId
+    }, function (response) {
+      if (response.value) {
+        $scope.athleteCoaching = response.data;
+      } else {
+        $scope.athleteCoaching = [];
+      }
+    })
+  }
+  $scope.reason = function (athleteCoachId, coachID) {
+    $scope.unsubscribe._id = athleteCoachId;
+    $scope.unsubscribe.coachID = coachID;
+    $scope.data = {};
+    var myPopup = $ionicPopup.show({
+      template: '<textarea auto-grow type="password" ng-model="data.reasonForRejection"><textarea>',
+      title: '<h4>Unsubscription!</h4>',
+      subTitle: 'Please enter some reason',
+      scope: $scope,
+      buttons: [{
+        text: 'Cancel'
+      }, {
+        text: '<b>Reject</b>',
+        type: 'button-assertive',
+        onTap: function (e) {
+          $scope.unsubscribe.reason = $scope.data.reasonForRejection;
+          $scope.rejectRequest();
+        }
+      }, ]
+    });
   };
+
+  $scope.rejectRequest = function () {
+    $scope.unsubscribe.status = "Unsubscribe";
+    MyServices.Unsubscribeathlete($scope.unsubscribe, function (response) {
+      // if (response.value === true) {
+      // } else {
+      // }
+    })
+  }
 
 })
 
@@ -1750,34 +1763,17 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
 .controller('NotificationsCtrl', function ($scope, $ionicModal, MyServices, $ionicScrollDelegate, $ionicPopup) {
   $scope.profileData = MyServices.getUser();
-  $scope.notifications = [{
-    name: 'Matt',
-    surname: 'Chant',
-    type: 'athleteUnsubscribe'
-  }, {
-    name: 'Matt',
-    surname: 'Chant',
-    type: 'competition'
-  }];
+  // $scope.notifications = [{
+  //   name: 'Matt',
+  //   surname: 'Chant',
+  //   type: 'athleteUnsubscribe'
+  // }, {
+  //   name: 'Matt',
+  //   surname: 'Chant',
+  //   type: 'competition'
+  // }];
 
-  $scope.reason = function () {
-    $scope.data = {};
-    var myPopup = $ionicPopup.show({
-      template: '<textarea auto-grow type="password" ng-model="data.message"><textarea>',
-      title: '<h4>Reject Unsubscription!</h4>',
-      subTitle: 'Please enter some reason',
-      scope: $scope,
-      buttons: [{
-        text: 'Cancel'
-      }, {
-        text: '<b>Reject</b>',
-        type: 'button-assertive',
-        onTap: function (e) {
-          console.log($scope.data.message);
-        }
-      }, ]
-    });
-  };
+
 
   // console.log($scope.profileData);
   var i = 0;
@@ -1807,8 +1803,34 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
     })
   };
 
-  $scope.showCoachNotification(coach);
+  // $scope.showCoachNotification(coach);
 
+  $scope.readNotification = function () {
+    $scope.totalItems = undefined;
+    $scope.athletenotifications = undefined;
+    $scope.coachnotifications = undefined;
+    $scope.currentPage = 1;
+    MyServices.readcoachNotification({
+      Id: coach,
+      page: $scope.currentPage
+    }, ++i, function (response, ini) {
+      if (ini == i) {
+        if (response.value == true) {
+          $scope.isAthlete = false;
+          $scope.coachnotifications = response.data.results;
+          $scope.notificationCount = response.data.unreadcount;
+          $scope.maxRow = response.data.options.count;
+          $scope.totalItems = response.data.total;
+          $scope.showCoachNotification(coach);
+        } else {
+          $scope.coachnotifications = [];
+        }
+      }
+
+    })
+  }
+
+  $scope.readNotification();
 
 })
 

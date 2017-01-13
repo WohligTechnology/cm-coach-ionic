@@ -222,7 +222,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 
   .state('app.athletes-coaching', {
-    url: '/athletes-coaching',
+    url: '/athletes-coaching/:page/:keyword',
     views: {
       'menuContent': {
         templateUrl: 'templates/athletes-coaching.html',
@@ -232,7 +232,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.athletes-coaching-detail', {
-    url: '/athletes-coaching-detail',
+    url: '/athletes-coaching-detail/:athleteId',
     views: {
       'menuContent': {
         templateUrl: 'templates/athletes-coaching-detail.html',

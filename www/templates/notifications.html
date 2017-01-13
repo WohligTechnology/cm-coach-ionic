@@ -1,29 +1,30 @@
 <ion-view view-title="Notifications">
   <ion-content>
     <ion-list class="no-pad-list">
-      <ion-item class="item-text-wrap" ng-repeat="notifications in coachnotifications">
+      <ion-item class="item-text-wrap" ng-repeat="notification in coachnotifications">
         <!-- Unsbuscribe -->
-        <div ng-if="notifications.type == 'athleteSubscription'">
-          <p><a ui-sref="app.athletes-request">{{notifications.athletecoach.athlete.name}} {{notifications.athletecoach.athlete.surname}}</a>            wants to subsribe your coaching service.</p>
+        <div ng-if="notification.type === 'athleteSubscription'">
+          <p><a ui-sref="app.athletes-request">{{notification.athletecoach.athlete.name}} {{notification.athletecoach.athlete.surname}} </a>wants
+            to subsribe your coaching service.</p>
           <div class="button-bar hide">
             <button class="button button-small button-positive">Accept</button>
             <button class="button button-small button-assertive" ng-click="reason()">Reject</button>
           </div>
-          <!-- Payment done -->
-          <div ng-if="notifications.type == 'athleteSubscriptionPaymentDone'">
-            <p>{{notification.athletecoach.athletecoach.athlete.name}} {{notification.athletecoach.athlete.surname}} has paid
-              your subscription fees.
-            </p>
-          </div>
-          <!-- unsubscribe -->
-          <div ng-if="d.type == 'competition'">
-            <p>{{notification.athletecoach.athlete.name}} {{notification.athletecoach.athlete.surname}} wants to unsubsribe
-              from your coaching service..</p>
-          </div>
-          <!-- competition  -->
-          <div ng-if="d.type == 'competition'">
-            <p>{{d.name}} {{d.surname}} rejected your competition.</p>
-          </div>
+        </div>
+        <!-- Payment done -->
+        <div ng-if="notification.type === 'athleteSubscriptionPaymentDone'">
+          <p>{{notification.athletecoach.athlete.name}} {{notification.athletecoach.athlete.surname}} has paid your subscription
+            fees.
+          </p>
+        </div>
+        <!-- unsubscribe -->
+        <div ng-if="d.type == 'competition'">
+          <p>{{notification.athletecoach.athlete.name}} {{notification.athletecoach.athlete.surname}} wants to unsubsribe from
+            your coaching service..</p>
+        </div>
+        <!-- competition  -->
+        <div ng-if="d.type == 'competition'">
+          <p>{{d.name}} {{d.surname}} rejected your competition.</p>
         </div>
       </ion-item>
     </ion-list>

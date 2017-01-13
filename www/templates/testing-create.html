@@ -26,9 +26,9 @@
           <span class="error-msg" ng-show="formName.details.$invalid && formName.details.$touched">Invalid Competition Details</span>
         </ion-item>
         <div class="item item-divider item-icon-right" ng-click="addAthlete();">Add Athletes <i class="icon ion-ios-plus-empty"></i></div>
-        <ion-item class="item-name item-avatar item-icon-right" ng-repeat="d in formData.athlete" ng-if="formData.athlete">
+        <ion-item class="item-name item-avatar item-icon-right" ng-repeat="d in formData.newathlete" ng-if="formData.newathlete">
           <img ng-src="{{(d.profilePic|uploadpath) || 'img/img-placeholder.png'}}">
-          <h2>{{d.name}} {{d.surname}}</h2>
+          <h2>{{d.name}} {{d.athlete.surname}}</h2>
           <i class="icon ion-ios-trash-outline" ng-click="removeAthlete($index);"></i>
         </ion-item>
       </ion-list>

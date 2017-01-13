@@ -89,7 +89,7 @@ angular.module('starter.services', [])
       searchAthlete: function (formData, i, callback) {
         formData = _.merge(formData, requestCredentials);
         $http({
-          url: adminurl + 'athlete/search',
+          url: adminurl + 'athletecoaching/searchAthleteByCoach',
           method: 'POST',
           data: formData
         }).success(function (data) {
@@ -249,6 +249,16 @@ angular.module('starter.services', [])
           callback(data, i);
         });
       },
+      readcoachNotification: function (formData, i, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'notificationcoach/readcoachNotification',
+          method: 'POST',
+          data: formData
+        }).success(function (data) {
+          callback(data, i);
+        });
+      },
       getAllRequest: function (formData, callback) {
         formData = _.merge(formData, requestCredentials);
         $http({
@@ -266,6 +276,32 @@ angular.module('starter.services', [])
         }).success(callback);
       },
       updateAthleteCoaching: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'athletecoaching/updateAthleteCoaching',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      getMyAthletes: function (formData, i, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'athletecoaching/getMyAthletes',
+          method: 'POST',
+          data: formData
+        }).success(function (data) {
+          callback(data, i);
+        });
+      },
+      getOneAthleteCoached: function (formData, callback) {
+        formData = _.merge(formData, requestCredentials);
+        $http({
+          url: adminurl + 'athletecoaching/getOneAthleteCoached',
+          method: 'POST',
+          data: formData
+        }).success(callback);
+      },
+      Unsubscribeathlete: function (formData, callback) {
         formData = _.merge(formData, requestCredentials);
         $http({
           url: adminurl + 'athletecoaching/updateAthleteCoaching',

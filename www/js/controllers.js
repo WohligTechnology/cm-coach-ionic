@@ -614,11 +614,15 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   //Search Athlete API
   var j = 0;
   $scope.getAthlete = function (search) {
+    $scope.athletes = [];
     MyServices.searchAthlete({
       keyword: search
     }, ++j, function (data, ci) {
       if (ci == j) {
-        $scope.athletes = data.data.results;
+        _.each(data.data.results, function (key) {
+            $scope.athletes.push(key.athlete);
+          })
+          // $scope.athletes = data.data.results;
       }
     });
   };
@@ -628,7 +632,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   };
   //Match Selected
   $scope.matchAthlete = function () {
-    $scope.formData.athlete = $scope.selectAthlete.array;
+    $scope.formData.newathlete = $scope.selectAthlete.array;
   };
 
   //Loading
@@ -644,6 +648,11 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
 
   //Submit Form
   $scope.submitData = function (formData) {
+    if (formData.newathlete) {
+      formData.athlete = _.map($scope.formData.newathlete, function (key) {
+        return key._id;
+      });
+    }
     $scope.showLoading('Please wait...', 15000);
     MyServices.updateBlog(formData, function (data) {
       if (data.value === true) {
@@ -665,7 +674,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
       if (response.data) {
         $scope.hideLoading();
         $scope.formData = response.data;
-        $scope.selectAthlete.array = $scope.formData.athlete = response.data.athlete;
+        $scope.selectAthlete.array = $scope.formData.newathlete = response.data.athlete;
       } else {
         $scope.formData = {};
       }
@@ -1619,7 +1628,7 @@ angular.module('starter.controllers', ['starter.services', 'checklist-model', 'c
   $scope.getMyAthletes();
 })
 
-.controller('AthletesRequestCtrl', function ($scope, $ionicModal, MyServices) {
+.controller('AthletesRequestCtrl', function ($scope, $ionicModal, MyServices, $ionicPopup) {
   $scope.profileData = MyServices.getUser();
 
   $scope.reason = function (notificationId) {

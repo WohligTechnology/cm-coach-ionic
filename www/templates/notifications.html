@@ -6,6 +6,7 @@
         <div ng-if="notification.type === 'athleteSubscription'">
           <p><a ui-sref="app.athletes-request">{{notification.athletecoach.athlete.name}} {{notification.athletecoach.athlete.surname}} </a>wants
             to subsribe your coaching service.</p>
+          <p>{{notification.createdAt | date:"dd/MM/yyyy 'at' h:mma"}}</p>
           <div class="button-bar hide">
             <button class="button button-small button-positive">Accept</button>
             <button class="button button-small button-assertive" ng-click="reason()">Reject</button>

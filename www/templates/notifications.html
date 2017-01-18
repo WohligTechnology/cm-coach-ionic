@@ -19,9 +19,17 @@
           </p>
         </div>
         <!-- unsubscribe -->
-        <div ng-if="d.type == 'competition'">
+        <div ng-if="notification.type == 'Unsubscribe'">
           <p>{{notification.athletecoach.athlete.name}} {{notification.athletecoach.athlete.surname}} wants to unsubsribe from
             your coaching service..</p>
+        </div>
+        <!--Injury-->
+        <div ng-if="notification.type == 'athleteInjury'">
+          <p><span class="notify-name">{{notification.athleteinjury.athlete.name}} {{notification.athleteinjury.athlete.surname}} </span>athlete
+            injured form from {{notification.athleteinjury.injuryDate | date:"dd/MM/yyyy"}} to {{notification.athleteinjury.resumeTrainingDate
+            | date:"dd/MM/yyyy"}}.
+          </p>
+          <p>{{notification.createdAt | date:"dd/MM/yyyy 'at' h:mma"}}</p>
         </div>
         <!-- competition  -->
         <div ng-if="d.type == 'competition'">
